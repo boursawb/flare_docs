@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-31T16:15:13.8016224-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Copy count optimization CCO/Copy count optimization (CCO).htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Copy count optimization CCO/Copy count optimization (CCO).htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Copy count optimization (CCO).htm"
+      TimeStamp="5/31/2018 4:15:05 PM" />
+    <Url
+      Source="../TOCs/Copy count optimization (CCO).fltoc"
+      TimeStamp="5/31/2018 4:15:14 PM" />
+  </GeneratedFiles>
+</HtmlImport>

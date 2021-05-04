@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title></title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h2><strong class="standOutPrimary">Auto-release filters</strong>
+        </h2>
+        <p>Auto-release filters provide a way to scale back what is currently being automatically released from the system.&#160; The walk-through demonstrates how to restrict the work being released to only those orders that have a priority code of H (high priority).&#160; </p>
+        <h2>Auto-release filter requirements</h2>
+        <ul class="ul_1">
+            <li class="ListParagraph_1">Auto-release is enabled</li>
+            <li class="ListParagraph_1">A valid release criteria has been defined</li>
+            <li class="ListParagraph_1">The release criteria in use has autoBatch=”true” defined</li>
+            <li class="ListParagraph_1">A valid auto-release filter has been defined</li>
+            <li class="ListParagraph_1">Auto-release has been configured to use a specific filter</li>
+        </ul>
+        <h2>Build the matcher and filter profile</h2>
+        <ol start="1" class="ol_1">
+            <li class="ListParagraph">Open the Order Sort Configuration utility and create a new matcher called <strong class="standOutPrimary">PriorityH</strong></li>
+            <li class="ListParagraph">Set the attribute to <strong class="standOutPrimary">priorityCode</strong></li>
+            <li class="ListParagraph">Set <strong class="standOutPrimary">is </strong>to <strong class="standOutPrimary">==</strong></li>
+            <li class="ListParagraph">Set <strong class="standOutPrimary">to </strong>value to <strong class="standOutPrimary">H</strong></li>
+            <li class="ListParagraph">Click <strong class="standOutPrimary">ok </strong>to save the new matcher</li>
+            <li class="ListParagraph">Minimize or close the Order Sort Configuration utility</li>
+            <li class="ListParagraph">Browse to <strong class="standOutPrimary">\\&lt;yourServer&gt;idf\sharedconfig\ordersort\autoreleaseprofile</strong> and open any one of the files displayed via an XML edit</li>
+            <li class="ListParagraph">Set the <strong class="standOutPrimary">description </strong>to <strong class="standOutPrimary">Priority H</strong></li>
+            <li class="ListParagraph">Set the matcher to <strong class="standOutPrimary">PriorityH</strong></li>
+            <li class="ListParagraph">Perform a save as and save the file with the name <strong class="standOutPrimary">HighPriority.autoreleaseprofile.xml</strong></li>
+            <li class="ListParagraph">If Auto-release is currently active (with no filter applied), click the <strong class="standOutPrimary">Turn off auto-release</strong> button on the sort groups tab</li>
+            <li class="ListParagraph">Click the button again to enable Auto-release and specify an auto-release filter to limit the orders released based on the criteria defined above</li>
+            <li class="ListParagraph">Click <strong class="standOutPrimary">ok </strong>to apply the settings</li>
+        </ol>
+    </body>
+</html>

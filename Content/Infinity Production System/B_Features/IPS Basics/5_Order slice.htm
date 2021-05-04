@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>5_Order slice</title>
+        <link href="../../../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Order slices" />Order slices</h1>
+        <p>For high volume production environments, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> uses order slices to segment the total orders in the system into smaller sets based on criteria you define. If custom slices have not been built, the system will automatically generate a <MadCap:keyword term="slice" />slice for each set of 100,000 orders that exist. By using order slices, it is possible to have several hundred thousand orders in the system concurrently, but still view them in smaller more manageable chunks known as a slice. Both system generated and user defined order slices can be viewed by clicking the button in the upper left corner of the Products tab in the UI, as shown below.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/orderSliceButton.png" class="img" title="Order slice button" alt="Order slice button" />
+        </p>
+        <p>When selecting a specific slice, it only impacts the orders displayed in the UI&#160;where the slice was selected. For example, if workstation A&#160;selects the <strong class="standOutPrimary">ABC-Co.</strong>, it has not impact on workstation B that is currently using the <strong class="standOutPrimary">All </strong>system generated slice. </p>
+        <p class="note">Switching between slices is not meant to be a quick or frequent task. When dealing with slices containing upwards of 100,000 orders, switching from one slice to another can take several minutes. The goal of a slice is to section off a large set of orders so they can be managed independently, isolated from all other orders in the system</p>
+        <h2>Configuring an order slice</h2>
+        <p>Each order slice will consist of the following 5 parameters.</p>
+        <ul>
+            <li><strong>Matcher </strong>A matcher will be used to identify the orders that should be included in the slice. </li>
+            <li><strong>Image </strong>An image can be suplied to more easily identify the slice on the chooser dialog.</li>
+            <li><strong>Page size </strong>The page size specifies the maximum number of orders that can exist in the slice before a new slice will be generated. If page size has been set to 50,000, a new slice will be generated for the next order received matching the defined criteria.</li>
+            <li><strong>System generated </strong>This is a boolean flag which identifies the slice as either system generated or user defined. All custom built slices should have this value set to false.</li>
+            <li><strong>Display order </strong>The display order specifies the order of the slices as they are shown on the chooser dialog.</li>
+        </ul>
+        <p>All order slices must reside in the following location on the master core host (DB server).</p>
+        <p><code>\\&lt;yourServer&gt;\idf\sharedconfig\ordersort\orderslice</code>
+        </p>
+        <p>Creating an order slice</p>
+        <ol>
+            <li>Identify the criteria that will be used to assign orders to the slice</li>
+            <li>Use the <strong class="standOutPrimary">Sort Rule Configuration Tool </strong>to build the new matcher, or create the matcher manually via the XML&#160;configuration files directly</li>
+            <li>Create a new XML&#160;file in the order slice directory mentioned above (in sharedconfig location). Make sure the file name follows the convention <code>&lt;yourSliceName&gt;.orderslice.xm</code>l</li>
+            <li>Copy the contents of an existing system generated order slice into the new order slice XML&#160;created in the previous step. </li>
+            <li>Update each of the 5 attributes in the new order slice to the appropriate values</li>
+            <li>Save the new order slice</li>
+            <li>Click the order slice button to ensure the new slice displays on the slice chooser dialog</li>
+        </ol>
+        <p>Once the slice has been saved, click the order slice button at the top of the products tab in the UI&#160;and verify the new slice displays as expected. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/ordersliceChooser.png" class="img " title="Order slice chooser" alt="Order slice chooser" />
+        </p>
+        <p>To select a slice, simply click the button below the icon for the order slice to load. If there is no need to change the current slice, click the Ok button to close the dialog. If a slice has been selected that displays a subset of the total orders in the system, a<strong class="standOutPrimary">**truncated results</strong>message will be displayed next to the order count in the upper left corner of the UI&#160;(products tab).</p>
+    </body>
+</html>

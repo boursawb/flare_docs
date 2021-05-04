@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Batches and press jobs</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Batches and press jobs</h1>
+        <p>For each successful batch submitted, one or more press jobs will be generated. For batches that include more than one component, multiple press jobs will be created. A&#160;batch reprint can be performed from either the batches or press jobs tab. One additional option to Reprint batch as single order per batch exists on the batches tab and can be used to create a one-to-many output from the original batch. Both tabs contain a column displaying status lights to indicate which step of the given work flow the batch or press job has reached. The status lights can be used to diagnosing why a batch has failed to complete or job has not been successful in making it to press. It is important to understand that the press job status lights display the status of down-stream devices. IPS&#160;will display job status information only if an integration exists for the given device.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/batchTabRelease.png" class="img" style="margin-top: 20px;margin-bottom: 0px;" title="Batches tab" alt="Batches tab" />
+        </p>
+        <h2>Reprinting batches</h2>
+        <p>The following batch reprint options can be performed from the batches tab within <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /></p>
+        <h3>
+            <MadCap:keyword term="Manual Reprint Batch" />Manual Reprint Batch</h3>
+        <p>This option allows you to select  the destination device for each component to be reprinted. In the case of a batch containing multiple components, you can remove the check from any component which should be excluded.</p>
+        <ol>
+            <li>Highlight the batch&#160;to be reprinted</li>
+            <li>Right-click on the batch</li>
+            <li>Select the option to <strong class="standOutPrimary">Manually Reprint Batch</strong></li>
+            <li>Click <strong class="standOutPrimary">Yes </strong>on the confirmation dialogue to reprint the batch</li>
+            <li>Select the desired destination on the batch dialogue and click <strong class="standOutPrimary">Ok</strong></li>
+        </ol>
+        <h3>
+            <MadCap:keyword term="Reprint Batch" />Reprint Batch</h3>
+        <p>Reprinting the batch will resubmit the job to press using the device group configuration to determine the appropriate destination for the job.</p>
+        <ol>
+            <li>Highlight the batch&#160;to perform the action on</li>
+            <li>Right-click on the highlighted batch</li>
+            <li>Select the option to <strong class="standOutPrimary">Reprint Batch</strong></li>
+        </ol>
+        <h3>
+            <MadCap:keyword term="Reprint batch single order per batch" />Reprint batch single order per batch</h3>
+        <p>This option will result in <strong class="standOutPrimary">n </strong>number of new batches being created, 1 for each order within the original batch. </p>
+        <ol>
+            <li>Highlight the batch&#160;to perform the action on</li>
+            <li>Right-click on the highlighted batch</li>
+            <li>Select the option to <strong class="standOutPrimary">Reprint single order per batch</strong></li>
+        </ol>
+        <p>This option for batching jobs to press is less common than the others but can be invaluable in determining which order in a batch has resulted in a failure. When a single order fails to submit, it will result in the entire batch failing. This option can be used to create individual batches for each order allowing the majority of the work to get to press and at the same time, highlight the order which resulted in the initial failure.</p>
+        <h3>
+            <MadCap:keyword term="Manual reprint press jobs" />Manual reprint press jobs (Press jobs tab only)</h3>
+        <p>The Manual Reprint Press Jobs feature streamlines the process for reprinting one or more press jobs associated with an exception batch. To reprint specific jobs from an existing exception batch, follow the steps shown below.</p>
+        <ol>
+            <li>Change to the <strong class="standOutPrimary">Press Jobs tab </strong></li>
+            <li><code>[CTRL +&#160;click]</code> each press job that should be included in the reprint (each will be highlighted)</li>
+            <li>Right-click on any of the highlighted jobs and select the Manual Reprint Press Jobs item from the menu</li>
+            <li>Click Yes on the confirmation dialog to perform the reprint</li>
+            <li>Confirm the batch dialog has all expected boxes checked based on your selection</li>
+            <li>Click OK&#160;to perform the reprint</li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/ExceptionBatchDialogReprint.png" />
+        </p>
+        <p class="Note">The press jobs selected must be part of the same batch. Selecting jobs from two different batches may produce unexpected results or a failure during batch processing.</p>
+        <p>&#160;</p>
+    </body>
+</html>

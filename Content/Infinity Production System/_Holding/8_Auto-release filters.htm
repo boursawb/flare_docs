@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:conditions="General.IPS" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Auto-release filters</title>
+        <link href="../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Auto-release filter" />Auto-release filters</h1>
+        <p>When using auto-release, a filter can be applied which limits what <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can release automatically. This is accomplished by using a matcher to identify a subset of orders that can be released while the filter is in play. This means that filters are only limited by the criteria that can be defined in a matcher. In most auto-release enabled environments, the majority of sort groups will be configured to auto-release. For example, if you had to increase the amount of work going to press for a specific customer, you could create a filter profile which only allows orders with a customer name of PrintMark to be released automatically. Until the filter is turned off, all other products would have to be manually released by an operator.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/autoReleaseFilter.jpg" class="img thumbnail" title="Auto release filter" alt="Auto release filter" />
+        </p>
+        <p>If there is a need to change the filter that is being used, auto-release must be disabled and turned on again to select a new filter profile. </p>
+        <h2>Creating an auto-release filter</h2>
+        <p>An auto-release filter is comprised of two components, a matcher and an autorelease profile. The matcher is no different than one you would create to sort orders. Release filters reside in the <code>sharedconfig\ordersort\autoreleaseprofile </code>folder on the master core host server. The naming convention for the auto-release filter must be in the form of <code>name.autoreleaseprofile.xml</code>. An example of a properly named auto-release filter would be <code>PrintMark.autoreleaseprofile.xml</code>.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Create the matcher</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Launch the <strong class="standOutPrimary">Sort Rule Configuration </strong>tool</li>
+                    <li>Within the <strong class="standOutPrimary">Matcher Actions </strong>section, click the <strong class="standOutPrimary">Create a new matcher </strong>link</li>
+                    <li>Specify the desired name for the match (for example - AF-PrintMark)</li>
+                    <li>Select <strong class="standOutPrimary">Order </strong>or <strong class="standOutPrimary">Product</strong> from the first drop-down list</li>
+                    <li>Select the desired attribute to match against (for example - Customer)</li>
+                    <li>Select the appropriate operand in the Is drop-down list</li>
+                    <li>Specify a value to match against (for example - PrintMark)</li>
+                    <li>Click <strong class="standOutPrimary">Ok </strong>to save the new matcher</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Create the auto-release filter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Make a connection to the master core host server</li>
+                    <li>Open the <code>sharedconfig\ordersort\autoreleaseprofile </code>location</li>
+                    <li>Edit one of the existing auto-release filters using Notepad++&#160;or other text / XML&#160;editor</li>
+                    <li>Change the value of the description attribute to match the new filter</li>
+                    <li>Change the value of the matcher attribute to the name of the previously created matcher</li>
+                    <li>Perform a Save As to save the filter with the new name</li>
+                </ol>
+                <p>Example XML</p>
+                <p>Auto-release Filter XML</p><pre><code class="language-xml">&lt;autoreleaseprofile description="PrintMark Customer" matcher="AF-PrintMark"&gt;
+&lt;/autoreleaseprofile&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Setting an auto-release filter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Change to the <strong class="standOutPrimary">sort groups </strong>tab in the UI</li>
+                    <li>Click the button to <strong class="standOutPrimary">turn on auto-release</strong></li>
+                    <li>Select the radio button to <strong class="standOutPrimary">turn on auto-release</strong></li>
+                    <li>Select the radio button to use a filter</li>
+                    <li>Select the desired filter from the drop-down list</li>
+                    <li>Click <strong class="standOutPrimary">Ok</strong></li>
+                </ol>
+                <p>
+                    <img src="../../Resources/Images/Assets/IPS/autoReleaseEnable.jpg" class="img thumbnail" title="Auto release enable" alt="Auto release enable" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

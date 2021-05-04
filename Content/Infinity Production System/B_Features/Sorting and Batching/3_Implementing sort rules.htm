@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Implementing sort rules</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Implementing sort rules</h1>
+        <p>Once all rules have been created, any additional maintenance or modifications needed can be performed from the Sort Rule Configuration interface. There are 3 steps which must be performed following the creation of sort rules.</p>
+        <ol>
+            <li>Add the rules to the appropriate sort profile</li>
+            <li>Specify the order of rules within the sort profile</li>
+            <li>Set the active sort profile</li>
+        </ol>
+        <h2>Adding rules to a sort profile</h2>
+        <p>Only rules that exist in the active sort profile will be used during the order sorting process. When adding rules to a sort profile you will add all rules currently defined in the system and remove those that are unwanted.</p>
+        <ol>
+            <li>Click the <strong class="standOutPrimary">All Sort Profiles </strong>link in the Configuration Objects window</li>
+            <li>Click the active sort profile in the main search window so it is highlighted, right-click and select <strong class="standOutPrimary">Modify Sort Profile</strong></li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/modifysortprofile.jpg" class="img " title="Modify sort profile" alt="Modify sort profile" />
+        </p>
+        <ol>
+            <li value="3">Click the <strong class="standOutPrimary">Add all rules to this profile </strong>link</li>
+            <li>Once all rules have been added, click the minus button to remove any rules that should not exist in the profile</li>
+        </ol>
+        <h2>Ordering rules within a profile</h2>
+        <p>Given that an order can only have a single rule applied, it is critical that the order of rules within the sort profile is very deliberate. In general, you will order the rules from most strict to least strict, with a final catch-all rule at the bottom. The following actions can be taken to adjust the order of rules displayed in the sort profile.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/sortprofilecontrols.jpg" class="img " title="Sort profile controls" alt="Sort profile controls" />
+        </p>
+        <p>For example, the following image shows the first 4 rules defined within a sort profile. Once the rules have been added to the sort profile, the position of each rule can be adjusted using the controls to the right (shown above)&#160;or by typing in the positional number (1,2,3,4,etc.)&#160;in the box to the left of the rule and pressing enter.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/sortProfileExample.jpg" class="img " title="Sort profile example" alt="Sort profile example" />
+        </p>
+        <h2>Setting the active sort profile</h2>
+        <p>The active sort profile determines which rules will be in play. At any given time, there can only be one active sort profile. You can configure as many sort profiles as needed, each with their own rule definition and you can switch between sort profiles to meet business requirements. The following steps illustrate how to change the active sort profile.</p>
+        <ol>
+            <li>Change to the sort groups tab</li>
+            <li>Click the button to <strong class="standOutPrimary">Change Sort Profile</strong></li>
+            <li>Select the desired profile</li>
+            <li>Click <strong class="standOutPrimary">Ok</strong></li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/changeSortProfile.png" class="img " MadCap:conditions="General.IPS" title="Change sort profile" alt="Change sort profile" />
+        </p>
+    </body>
+</html>

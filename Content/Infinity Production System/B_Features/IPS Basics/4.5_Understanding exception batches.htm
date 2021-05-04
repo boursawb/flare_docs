@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Understanding exception batches</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Exception batches" />Exception batches</h1>
+        <p>An exception batch occurs when a batch is released containing an order that exceeds the value for max spreads. The max spread value is used to determine when to cut off a batch and start a new one. For example, if a calendar product has max spreads set to 480 and each order contains a single calendar consisting of 26 pages (1 page = 1 spread, in this example), <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will continue to put orders into the batch getting as close to 480 spreads as possible. At that point, the batch will be closed and a new one will be started. When the batching process completes, the associated press job will consist of 468 pages and include 18 orders. However, if a single order exceeds the value defined for max spread, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can be configured to split the resulting press job into manageable pieces to accommodate down-stream finishing requirements. One example could be a single order for 1000 books, each having 500 pages. This would likely result in a very large number of spreads and could be problematic as the job moves through the finishing process. </p>
+        <h2>
+            <MadCap:keyword term="Batch continuation" />Batch continuation</h2>
+        <p>The feature that results in an exception batch being create is know as batch continuation. Batch continuation can be enabled on a product-by-product basis by following the steps shown below.</p>
+        <ol>
+            <li>Open the batch definition requiring the change</li>
+            <li>Add the <code><MadCap:keyword term="usebatchcontinuation" />usebatchcontinuation="true" </code>attribute to the <code>&lt;idfbatch&gt;</code>&#160;element </li>
+            <li>Save the changes to the batch definition</li>
+        </ol>
+        <p>An example showing the use of batch continuation is shown below.</p>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;idfbatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="idfbatch.xsd"
+    id="85x11Book"
+    abbreviation="8.5x11BOOK"
+    maxspreads="960"
+    usebatchcontinuation="true"&gt;
+	...</code></pre>
+        </p>
+        <h2>Disable exception batches</h2>
+        <p>At times, it may be desirable to disable batch continuation for a specific component. <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> allows you to turn off batch continuation for one component, but leave it on for another within the same batch definition. For example, you may have a single book order where it makes sense to generate multiple smaller press jobs for the book component, but all covers could easily fit into a single job. When batch continuation is enabled, the jobs created for each component will be balanced. Meaning, if the book component is split into 15 press jobs, the cover component will also be split into an equal number of jobs. Even if the result is only a single cover per PDF. Disabling batch continuation can be done on a component-by-component basis and can be applied to a standard batch component or production intent. To disable batch continuation for one or more batch components, follow the steps shown below.</p>
+        <ol>
+            <li>Open the batch definition requiring the change</li>
+            <li>Add the <code><MadCap:keyword term="disableExceptionBatches" />disableExceptionBatches="true"</code> attribute to the component(s) that should be excluded from batch continuation</li>
+            <li>Save the changes to the batch definition</li>
+        </ol>
+        <p>An example batch component using this feature is shown below.</p>
+        <p><pre><code class="language-xml">&lt;batchcomponent piName="NoExcepBatch" imposition="YRBK-IMPO" destinationtype="indigo" piCompName="bookblock" usepresscopycountoptimization="true" 
+	disableExceptionBatches="true"&gt;</code></pre>
+        </p>
+    </body>
+</html>

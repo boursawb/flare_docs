@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link href="../../../Resources/TableStyles/PatternedRows.css" rel="stylesheet" MadCap:stylesheetType="table" /><title>Troubleshooting decorators</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Troubleshooting decorators</h1>
+        <table style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/PatternedRows.css');" class="TableStyle-PatternedRows" cellspacing="0">
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows"><strong>Issue</strong>
+                    </td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows"><strong>Suggestion</strong>
+                    </td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">New attribute not being applied to orders as expected</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">
+                        <p>Verify the decorator is using the appropriate matcher.</p>
+                        <p>Ensure the spelling and case of the matcher within the decorator is identical to the spelling and case of the matcher within the ordersort matcher folder.</p>
+                        <p>Ensure only the name of the matcher was specified in the decorator, not the .matcher.xml portion of the name.</p>
+                        <p>Confirm that the name of the matcher within the ordersort matchers folder includes the .matcher.xml suffix in the file name.</p>
+                        <p>Verify the appropriate workflow and object context have been specified for the attribute that is being decorated. </p>
+                        <p>Verify that the decorator is running at an appropriate workflow context to ensure the matcher will find the attributes required.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Unable to modify existing attributes</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">
+                        <p>Verify that the data type specified in the decorator for "type="&#160;matches the data type of the attribute being decorated. This information can be found on the view order attributes web page, or view order attributes from DB&#160;web page.</p>
+                        <p>Verify the spelling and case of the attribute being modified by comparing what has been defined in the decorator to what displays on the view order attributes web page. It is always recommended to copy the attribute name from the view order attributes web page and paste it in to the appropriate field within the order decorator.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Orders are being decorated, but with an incorrect / unexpected value</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">Verify there is only a single decorator attempting to set the attribute. In the event there are multiple decorators configured to set the same value for the same attribute, the one with the highest run level will take precedence. </td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-LightRows">Attribute not applied when specified in onNoMatch section of decorator</td>
+                    <td class="TableStyle-PatternedRows-BodyA-Regular-LightRows">
+                        <p>Ensure the decorator XML&#160;is well formed.</p>
+                        <p>Verify from a working example that the onNoMatch section has been defined correctly within the decorator.</p>
+                        <p>If attempting to decorate an existing order attribute, modify the attribute name to create a new attribute. This will verify that the original attribute value in question can be modified</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

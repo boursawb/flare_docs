@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="4" MadCap:lastHeight="577" MadCap:lastWidth="576" MadCap:sourceDocument="Y:\qa\Documentation\Support\Infinity Documentation\Content\IPS User Guide\I_AdvancedFeatures\PrintWhen Expression\PrintWhen.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>PrintWhen</title>
+        <link href="../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1 MadCap:autonum="CHAPTER 1">Layout <MadCap:keyword term="PrintWhen" />PrintWhen expression</h1>
+        <p>All layout stamps can be configured with a PrintWhen expression to conditionally display the stamp based on a set of defined criteria. This is accomplished by adding a small snippet of JavaScript to the stamp in question. In the example shown below, a text stamp has been configured with a PrintWhen expression that will ensure the stamp is only applied if the signature contains a slate. This is accomplished by inspecting the file name of the signature and if it matches the criteria defined, the stamp is applied. </p><pre class="XMLBlock" xml:space="preserve">&lt;printWhen&gt;
+	&lt;script&gt;
+		&lt;![CDATA[
+		
+		// Lookup the stamp data in the map
+		var fileName = data.fileName;
+		
+		// If null, do not treat as a slate
+		if (fileName == null) {
+		return false;
+		}
+		// Otherwise, if filename has slate in it, treat it like a slate
+		else {
+		return fileName.contains('slate-front');
+		}
+		]]&gt;
+	&lt;/script&gt;
+&lt;/printWhen&gt;</pre>
+        <p>All code from the opening <span class="SetOffFirstLevel">&lt;printWhen&gt;</span>&#160;tag to the closing <span class="SetOffFirstLevel">&lt;/printWhen&gt;</span>&#160;would typically be placed prior to the first stamp attribute or following the last stamp attribute for ease of readability.</p>
+        <h2>Defining a PrintWhen expression</h2>
+        <p>In order to configure a stamp to use a PrintWhen expression, the following tasks must be completed.</p>
+        <ul>
+            <li>Identify the stamp requiring the conditional logic</li>
+            <li>define the logic and Identify the attributes that will be used to generate the conditional statements</li>
+            <li>Add the javascript to the stamp</li>
+        </ul>
+        <p>For a list of available common signature stamps, see <MadCap:xref href="../Infinity Production System/B_Features/Batch Item Number/Item Number.htm#signatureStamps">"Additional signature stamps" on page 1</MadCap:xref>.</p>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>System configuration</title>
+    </head>
+    <body>
+        <h1>System configuration</h1>
+        <p>To use a SmartStacker integration, the following directory structures must be configured within your environment.</p>
+        <h2>Create the finishing directories</h2>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location on the database server for the environment you are working in</li>
+            <li>Create a new folder called <code>finishing</code> at the root of <code>sharedconfig</code></li>
+            <li>Open the <code>finishing</code> folder and create a new folder called <code>laycrimplayout</code> inside of <code>finishing</code></li>
+            <li>Create a new jdf file within the <code>laycrimplayout</code> folder with a name that corresponds to the product you are working with. For example, if you are integrating Smart Stacker to work with a new 5 x 7 Card product, you might name the file <code>cardA5x7.laycrimplayout.jdf</code></li>
+        </ol>
+        <h2>Create the blanks folder</h2>
+        <p>The imposition folder in sharedconfig will contain a folder named blanks. This folder will hold the PDFs used for generating blanks and printed waste in the batched output. There will need to be a set of blanks and printed waste PDFs (front and back) that match the final trim size of each product that will use a SmartStacker finishing plan. For example, if the final trim size of our card product will be 5 x 7, then we will need to create 4 single page PDF&#160;files. Two of the files will be for the <strong class="standOutPrimary">Added Blanks </strong>front and back, and the remaining two will be for the <strong class="standOutPrimary">Printed Waste </strong>front and back.</p>
+        <ol>
+            <li>Browse to <code>sharedconfig\imposition </code> on the database server for the environment you are working in</li>
+            <li>Create a new folder called <code>blanks</code></li>
+            <li>Create a set of PDFs for the product you are working with and copy them to the blanks folder created in step 2</li>
+        </ol>
+    </body>
+</html>

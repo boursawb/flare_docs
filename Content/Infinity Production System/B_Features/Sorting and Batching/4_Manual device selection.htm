@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Manual device selection</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Manual device selection" />Manual device selection</h1>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> offers two methods for submitting work to press, auto device selection and manual device selection. Manual device selection allows you to choose a specific destination for the job to be sent. Automatic device selection relies on predefined device groups which determine the device the batch will be submitted to. </p>
+        <p>Manual device selection occurs when a Create Batch action is initiated from the Products tab or when a manual release/reprint option is selected from the sort groups, batches or press jobs tabs. All manual release options will result in a dialogue box displaying which contains the destination(s)&#160;that each component can be sent to. Additionally, you will have the ability to turn off any components which may not need to be printed. The six options for manually releasing work to press are shown below.</p>
+        <ul>
+            <li>Create Batch - Products tab</li>
+            <li>Create Single Product Batch - Products tab</li>
+            <li>Manual - Release Next Batch - Sort Groups tab</li>
+            <li>Manual - Release All - Sort Groups tab</li>
+            <li>Release Many - Manual - Sort Groups tab</li>
+            <li>Manual Reprint Batch - Batches/Press Jobs tabs</li>
+        </ul>
+        <h2><a name="ManualDeviceRestrictions"></a>
+            <MadCap:keyword term="Manual device restrictions" />Manual device restrictions</h2>
+        <p>Administrators have the ability to restrict the devices available to a given product during a manual batch process. Device restrictions can be applied on a product by product basis, on all products associated with a given sort group, or for all products defined for a given destination type. When a manual batch creation is performed, and the product contained within the batch uses a device group containing manual device restrictions, the batching process will be restricted to only those devices that the administrator has allowed. Manual device restrictions are configured within the device group associated with the product, sort group or destination type requiring them. </p>
+        <h2>Setting up manual device restrictions</h2>
+        <ol>
+            <li>Identify the device group that is used during a normal release</li>
+            <li>Add a manual device section to the device group configuration file as shown below</li>
+        </ol><pre><code class="language-xml">&lt;devicegroup desciption="A test group" deviceType="indigo" &gt;
+	&lt;prioritydevices loadbalance="random"&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Prio-1"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Prio-2"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Prio-3"&gt;
+		&lt;/device&gt;
+	&lt;/prioritydevices &gt;
+	&lt;remakedevices loadbalance="random"&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Remake-1"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Remake-2"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Remake-3"&gt;
+		&lt;/device&gt;
+	&lt;/remakedevices&gt;
+	&lt;standarddevices loadbalance="random"&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Standard-1"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Standard-2"&gt;
+		&lt;/device&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-DeviceGroup-Standard-3"&gt;
+		&lt;/device&gt;
+	&lt;/standarddevices&gt;
+	&lt;manualdevices&gt;
+		&lt;device dfe="ULTRA-3-6-1" device="Cal-Manual-Standard-1"&gt;
+		&lt;/device&gt;
+	&lt;/manualdevices&gt;
+&lt;/devicegroup&gt;</code></pre>
+        <ol MadCap:continue="true">
+            <li>Include the DFE / device pair entries that will make up the manual devices</li>
+            <li>Save the device group configuration file</li>
+        </ol>
+        <p>Manual device restrictions provide a way to ensure that only the appropriate / desired choices are selected when batching work to press. </p>
+        <p>For additional information regarding configuring device groups, refer to the section located here. <MadCap:xref href="../_Working/3_Device groups.htm">"Device groups" on page&#160;1</MadCap:xref></p>
+    </body>
+</html>

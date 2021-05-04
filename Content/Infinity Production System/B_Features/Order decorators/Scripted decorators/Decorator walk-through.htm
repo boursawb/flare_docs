@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Decorator walk-through</title>
+    </head>
+    <body>
+        <h1>Decorator walk-through</h1>
+        <p>In this walk-through, we will create a scripted decorator using the information provided in the preceding sections.</p>
+        <h2>The goal</h2>
+        <p>You are working with orders where each consist of two line items, one for the book block and one for the cover. You need to create a new order level attribute called <code>totalBookPages </code>that can be stamped on the cover component using a prebatch layout. To do this, we need to inspect each line item within the order, identify which one matches the product type for the book block, capture the value of pages and store the value into a new order level dynamic attribute called <code>totalBookPages</code>.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 1 - Initial decorator setup</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>If this is the first scripted decorator built, you need to make sure the &lt;attributes&gt;&#160;element is replaced with the appropriate &lt;script&gt;&#160;element and [CDATA] block. Coping from an existing scripted decorator if one exists can be a good approach as well. With any decorator, the following four parameters must be included.</p>
+                <ul>
+                    <li>matcher</li>
+                    <li>run level</li>
+                    <li>workflow context</li>
+                    <li>object context</li>
+                </ul>
+                <p>For detailed information on how to configure any of these parameters, see <MadCap:xref href="../01_Working with decorators.htm">Order Decorators</MadCap:xref>. The following code can be used as a starting point for a new scripted decorator. </p>
+                <p class="Note">Be sure to change the parameters referenced above to meet your needs.</p>
+                <p><pre xml:space="preserve"><code class="language-xml">&lt;decorator&gt;
+
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;MatchOnOrderId&lt;/matcher&gt;
+
+	&lt;!-- Run late, after defaults sort code has  been applied --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+
+	&lt;!-- Applies to the order inject processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;order&lt;/objectContext&gt;
+	
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;script&gt;
+	
+	&lt;![CDATA[	
+		/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is an order
+		 **/
+		 // Your code here
+	]]&gt;			
+	
+	&lt;/script&gt;
+&lt;/decorator&gt;</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 2 - Confirm your context</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Make sure you have specified the correct object context in the XML&#160;portion of the decorator and it matches the object name specified in the opening method of the script. Remember that the object context determines what level of the object (batch, order, lineItem, component), attributes can be saved to. For example, if an object context of lineItem is used, you cannot create a new order level attribute. In order to meet the stated goal, we will need to set our decorator object context to order and use the same within the JavaScript opening method.</p>
+                <p class="Note">For the remainder of the walk-through, we will focus on only the JavaScript (the code contained within the [CDATA] section. The full decorator code will be shown at the end for reference.</p>
+                <p><pre><code class="language-js">/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is an
+		 **/
+		function decorate(order) {
+		
+		}</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 3 - Identify and initialize variables</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>We need to create a variable that will hold the value of the book block pages that will eventually be saved as a new dynamic attribute, available for stamping on the cover component.</p>
+                <p>&#160;</p>
+                <p><pre xml:space="preserve"><code class="language-js">/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is an order
+		 **/
+		
+		function decorate(order) {
+		
+			// Define a variable to hold our new order level attribute - totalBookPages
+			var bookPages = 0;
+		}</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 4 - Inspect each line item within the order</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>In this step, we will use the order objects getItems()&#160;method and a for loop to inspect each item contained within the order.</p>
+                <p>&#160;</p>
+                <p><pre xml:space="preserve"><code class="language-js">function decorate(order) {
+		
+			// Define a variable to hold our new order level attribute - totalBookPages
+			var bookPages = 0;
+			
+			// Look through each of the items in the order
+			order.getItems().forEach(function(item) {
+				// Your code here
+			})
+		}</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 5 - Locate and update</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>In this step, we will add code to see if the product type associated with the line item is <code>SC8x8Book</code>. If it is, we will then capture the value of pagesWithQuantity for this line item and store it to the totalBookPages variable. </p>
+                <p class="Note">Technically, this step started by making sure productType was not null. This is a good practice to get into any time you wish to get the value of an existing attribute.</p>
+                <p><pre xml:space="preserve"><code class="language-js">// Define a variable to hold our new order level attribute - totalBookPages
+			var bookPages = 0;
+			
+			// Look through each of the items in the order
+			order.getItems().forEach(function(item) {
+				
+				// Make sure productType is not null
+				if (item.getDynamicAttributes().get('productType') != null) {
+				
+					// Check to see if the product type is for the book
+					if (item.getDynamicAttributes().get('productType') == 'SC8x8Book') {
+						
+						bookPages = item.getDynamicAttributes().get('pagesWithQuantity');
+					}
+				}
+			})</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 6 - Create our new attribute</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The last thing we need to do is take the value now assigned to our totalBookPages variable and use it to create a new order level dynamic attribute that can be used for stamping book page information on cover components.</p>
+                <p>&#160;</p>
+                <p><pre xml:space="preserve"><code class="language-js">/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is an order
+		 **/
+		
+		function decorate(order) {
+		
+			// Define a variable to hold our new order level attribute - totalBookPages
+			var bookPages = 0;
+			
+			// Look through each of the items in the order
+			order.getItems().forEach(function(item) {
+				
+				// Make sure productType is not null
+				if (item.getDynamicAttributes().get('productType') != null) {
+				
+					// Check to see if the product type is for the book
+					if (item.getDynamicAttributes().get('productType') == 'SC8x8Book') {
+						
+						bookPages = item.getDynamicAttributes().get('pagesWithQuantity');
+					}
+				}
+			})
+			// Add our new order level attribute to dynamic attributes
+			order.getDynamicAttributes().put('Book Pgs', bookPages );
+		}</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Full Complete Code</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The complete version of the decorator is shown below.</p>
+                <p>&#160;</p>
+                <p><pre xml:space="preserve"><code class="language-xml">&lt;decorator&gt;
+
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;MatchOnOrderId&lt;/matcher&gt;
+
+	&lt;!-- Run late, after defaults sort code has  been applied --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+
+	&lt;!-- Applies to the order inject processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;order&lt;/objectContext&gt;
+	
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;script&gt;
+	
+	&lt;![CDATA[	
+
+		/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is an order
+		 **/
+		
+		function decorate(order) {
+		
+			// Define a variable to hold our new order level attribute - totalBookPages
+			var bookPages = 0;
+			
+			// Look through each of the items in the order
+			order.getItems().forEach(function(item) {
+				
+				// Make sure productType is not null
+				if (item.getDynamicAttributes().get('productType') != null) {
+				
+					// Check to see if the product type is for the book
+					if (item.getDynamicAttributes().get('productType') == 'SC8x8Book') {
+						
+						bookPages = item.getDynamicAttributes().get('pagesWithQuantity');
+					}
+				}
+			})
+			// Add our new order level attribute to dynamic attributes
+			order.getDynamicAttributes().put('Book Pgs', bookPages );
+		}
+	]]&gt;		
+								
+	&lt;/script&gt;
+	
+&lt;/decorator&gt;</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

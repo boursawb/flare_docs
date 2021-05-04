@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Skipping EPM evaluation</title>
+    </head>
+    <body>
+        <h1>Suppressing prebatch components</h1>
+        <p>Following the prebatch phase of the Infinity workflow, all prebatch results are candidates for EPM&#160;evaluation. In situations where one or more prebatch components are not applicable in the context of EPM, the component can be suppressed. There are two methods for accomplishing this.</p>
+        <h2>Prebatch configuration</h2>
+        <p>An attribute can be added to one or more prebatch components, causing <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" />&#160;to skip these components during the evaluation process. This will ensure that orders containing items that can be printed using EPM&#160;do not get disqualified due to non-EPM&#160;items contained in the order.</p>
+        <ol>
+            <li>Open the prebatch definition in an XML&#160;editor</li>
+            <li>For each component that should be suppressed during evaluation, add the attribute <strong class="standOutPrimary">epmSkipEval </strong>with a value of <strong class="standOutPrimary">true</strong></li>
+            <li>Save and exit the prebatch definition</li>
+        </ol>
+        <p><strong class="standOutSecondary">Example suppressed prebatch component</strong>
+        </p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;prebatchcomponent name="5x7Envl" 
+	source="5x7Envl"
+	componenttype="5x7Envl"        
+	epmSkipEval="true"
+	splitrange="n"
+	duplex="false"
+	layout="5x7_Env_Layout"	
+	prebatchimposition="1UP-ROTATE180-NOMARKS" 
+	autosizewidthoverride="367"
+	autosizeheightoverride="504"
+&gt;
+&lt;/prebatchcomponent&gt;</code></pre>
+        </p>
+        <h2>Decorator configuration</h2>
+        <p>Decorators can be used to apply an attribute in the form shown below that will result in the specified product component being excluded from EPM&#160;evaluation.</p>
+        <p><code>EPM_EvalSkip_&lt;productType&gt;_&lt;prebatchComponentName&gt; = true,false,null</code>
+        </p>
+        <p>If a value of true is specified, the component will be suppressed and excluded from EPM&#160;evaluation. All other values will result in the component being evaluated. The following decorator examples demonstrates how to exclude the envelope component for a 5x7 Greeting Card product from EPM&#160;evaluation.</p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;decorator&gt;
+
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;5x7GrtCrd&lt;/matcher&gt;
+
+	&lt;!-- Run early to apply a default --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+
+	&lt;!-- Applies to the order inject processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;order&lt;/objectContext&gt;
+	
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		&lt;attribute&gt;		
+			&lt;key&gt;EPM_EvalSkip_5x7GrtCrd_Envl&lt;/key&gt;
+			&lt;type&gt;boolean&lt;/type&gt;
+			&lt;value&gt;true&lt;/value&gt;
+		&lt;/attribute&gt;
+	&lt;/attributes&gt;
+	
+&lt;/decorator&gt;</code></pre>
+        </p>
+        <p class="Note">IPS&#160;includes features that would allow EPM&#160;evaluation down to a single page of a component. A&#160;prebatch component, such as a bookblock, could be split into multiple component parts, allowing them to be treated independently from an EPM&#160;perspective. For example, the first 29 pages of a 30 page book may be a great candidate for EPM&#160;printing. However, the final page requires that CMYK&#160;printing be used. At prebatch, the bookblock could be split into two parts; book-a and book-b where book-b is page 30. This would allow for page 30 of the book to be excluded from the evaluation resulting in the order as a whole being EPM&#160;compatible.</p>
+    </body>
+</html>

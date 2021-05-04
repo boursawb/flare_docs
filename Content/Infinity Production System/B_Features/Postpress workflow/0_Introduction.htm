@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Introduction</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Post-press</h1>
+        <p>The post press workflow provides a method for <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to communicate with downstream devices once the job has been batched and successfully printed. Press jobs that are configured to run through a post press workflow will automatically show up on the <MadCap:keyword term="Post Press" />Post Press tab in the UI. </p>
+        <ul>
+            <li>Understanding the post press workflow</li>
+            <li>Configuring a post press workflow</li>
+            <li>Defining the data format</li>
+            <li>User interface</li>
+        </ul>
+        <p>A post-press workflow provides a way for <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to collect information about an item being printed and then pass that information on to a down-stream finishing device. One common post-press solution would be to collect data about a press job for a 5x7 card product and then export that information to a CSV&#160;file that will ultimately be consumed by an envelope inserter machine. </p>
+        <p>All data collected during the post-press process will be pulled from a press job. The data that is extracted from the press job is determined by the VDP&#160;layout file you implement. The extraction of these attributes from the press job will result in a comma separated value (CSV)&#160;file that can then be passed on to, or consumed by a down-stream finishing device. The following steps provide an overview of what will be required to implement a post-press workflow within your environment.</p>
+        <ol>
+            <li>Identify a product and associated component to be used for the post-press workflow</li>
+            <li>Configure the system to identify the above mentioned press-jobs</li>
+            <li>Configure down-stream finishing equipment to utilize the exported data file</li>
+        </ol>
+    </body>
+</html>

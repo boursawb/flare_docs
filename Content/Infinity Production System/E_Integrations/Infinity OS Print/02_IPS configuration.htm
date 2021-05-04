@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>IPS configuration</title>
+    </head>
+    <body>
+        <h1><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> configuration</h1>
+        <p>In order to submit jobs to one of the configured OS&#160;Print devices, a new DFE&#160;configuration file must be created. The DFE configuration file for the OS print service contains the attributes necessary for interfacing <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> with OS&#160;Print devices. To create a new OS print DFE, follow the steps shown below.</p>
+        <h2>Creating the DFE&#160;configuration file</h2>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location and open the <strong class="standOutPrimary">DFE </strong>sub-folder</li>
+            <li>Create a new <code>OSPrint.xml </code>file if one does not already exist</li>
+            <li>Past in the code shown below and save the file</li>
+        </ol>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;dfe 
+	type="osprintservice" 
+	dfeName="Infinity Digital OSPrint1" 
+	hostName="&lt;yourOSPrintHost&gt;" 
+	port="9300"&gt;
+&lt;/dfe&gt;</code></pre>
+        </p>
+        <p class="Note">If this is a single server environment, setting the hostName attribute to localhost will be sufficient. In a multi-server production environment, this will need to be changed to the host name of the server which has the OS&#160;Print service installed.</p>
+        <h2>Creating the default device group</h2>
+        <p>A&#160;device group will be used when submitting jobs to an OS&#160;Print device using <MadCap:conditionalText MadCap:conditions="General.IPS">auto-release or </MadCap:conditionalText>automatic device selection to determine which device the job should be submitted to. To create a new OS&#160;Print default device group, follow the steps shown below.</p>
+        <p>Browse to the sharedconfig location</p>
+        <p>Open the DFE&#160;folder and then open the devicegroups sub-folder</p>
+        <p>Create a new file called osprintservice-default.devicegroups.xml, if one does not already exist</p>
+        <p>Paste in the starter code shown below and save the file</p>
+        <p><pre><code language="xml">&lt;devicegroup desciption="A test group" deviceType="indigo" &gt;
+		&lt;prioritydevices loadbalance="random"&gt;
+			&lt;device dfe="Infinity Digital OSPrint1" device="Scodix1"&gt;
+			&lt;/device&gt;
+		&lt;/prioritydevices &gt;
+		&lt;remakedevices loadbalance="random"&gt;
+			&lt;device dfe="Infinity Digital OSPrint1" device="Scodix1"&gt;
+			&lt;/device&gt;
+		&lt;/remakedevices&gt;
+		&lt;standarddevices loadbalance="random"&gt;
+			&lt;device dfe="Infinity Digital OSPrint1" device="Scodix1"&gt;
+			&lt;/device&gt;
+ 		&lt;/standarddevices&gt;
+&lt;/devicegroup&gt;</code></pre>
+        </p>
+        <p>You will need to update the value for <code>device= </code>within the XML&#160;to match the OS&#160;Print device configured in your environment. To see which OS&#160;Print devices are available, you can open DFE&#160;and Devices from the Tools menu located at the top of the UI.</p>
+        <ol>
+            <li>Select <strong class="standOutPrimary">DFE&#160;and Devices </strong>from the <strong class="standOutPrimary">Tools </strong>menu</li>
+            <li>Filter the <strong class="standOutPrimary">DFE&#160;Name </strong>column by <strong class="standOutPrimary">osp</strong></li>
+            <li>Take note of the item(s) that display in the <strong class="standOutPrimary">Device Name </strong>column</li>
+        </ol>
+        <p>These are the available devices that can be specified for the value of device= within the devicegroup configuration file.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/DfeAndDevices.png" title="DFE and Devices" alt="DFE and Devices" class="img" />
+        </p>
+        <p class="Note">When specifying the device name within the devicegroup configuration file, the names must be entered exactly how they appear within the DFE and Devices tool, matching in both spacing and case.</p>
+    </body>
+</html>

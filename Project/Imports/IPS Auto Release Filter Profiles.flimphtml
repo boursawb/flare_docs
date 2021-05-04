@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-29T15:12:11.4165114-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/IPS Auto Release Filter Profiles.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/IPS Auto Release Filter Profiles.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/IPS Auto-Release Configuration.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/IPS Auto-Release Configuration.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/Setting up and using an auto.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/Setting up and using an auto.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/Setting up Auto Release.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F1_Autorelease/Setting up Auto Release.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/IPS Auto Release Filter Profiles.htm"
+      TimeStamp="5/29/2018 3:11:47 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/IPS Auto-Release Configuration.htm"
+      TimeStamp="5/29/2018 3:11:48 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Setting up and using an auto.htm"
+      TimeStamp="5/29/2018 3:11:49 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Setting up Auto Release.htm"
+      TimeStamp="5/29/2018 3:11:50 PM" />
+    <Url
+      Source="../TOCs/IPS Auto Release Filter Profiles.fltoc"
+      TimeStamp="5/29/2018 3:12:13 PM" />
+  </GeneratedFiles>
+</HtmlImport>

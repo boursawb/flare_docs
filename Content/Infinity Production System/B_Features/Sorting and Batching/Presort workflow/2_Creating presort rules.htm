@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link href="../../../Resources/TableStyles/PatternedRows.css" rel="stylesheet" MadCap:stylesheetType="table" /><title>Creating presort rules</title>
+        <link href="../../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Creating presort rules</h1>
+        <p>To implement presort rules, the following tasks must be completed.</p>
+        <ol>
+            <li>Define the criteria that will be used to identify orders of interest</li>
+            <li>Build the necessary sort rule(s)&#160;</li>
+            <li>Add the sort rule(s)&#160;to the appropriate sections of the active sort profile</li>
+        </ol>
+        <h2>Defining the criteria</h2>
+        <p>The criteria used to determine which orders should be tagged with the new presort rule attributes is completely up to you. One important consideration to keep in mind is if the data you are after exists at the workflow steps the presort rule has been defined at. For example, if you create a presort rule at inject which attempts to identify book orders from a specific customer, using a specific ship method and with a product page count of greater than 50, the rule will likely never match. The reason for this is that pages is not known until analyze completes, so in order for this rule to work, it would need to be an analyze presort rule, not i. </p>
+        <p>Depending on the complexity of your criteria, one approach to simplify things may be to presort and match of specific items at different steps of the workflow and then at the final sort phase, match on a combination of presort rule names. This same methodology could be used when working with order decorators as well. For example, the following example shows a simplified version of such a solution.</p>
+        <table style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/PatternedRows.css');" class="TableStyle-PatternedRows" cellspacing="0">
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows" style="font-weight: bold;">Workflow Step</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows" style="font-weight: bold;">Criteria</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows" style="font-weight: bold;">Presort rule name</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows" style="font-weight: bold;">inject</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">customer name is Infinity</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">custNameInfinity</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows" style="font-weight: bold;">analyze</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">product pages between 20 and 40</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">prodPagesRange2040</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-DarkerRows" style="font-weight: bold;">prebatch</td>
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-DarkerRows">shipping method is UPS</td>
+                    <td class="TableStyle-PatternedRows-BodyA-Regular-DarkerRows">shipMethodUPS</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>Once these presort rules exist on the orders, they could then be used by order decorators during the final sort phase of the workflow.</p>
+        <h2>Creating the rules</h2>
+        <p>Presort rules are created the same way as standard sort rules, either manually via an XML&#160;editor or using the sort rule configuration tool. In this example, we will use the sort rule configuration to to create an analyze presort rule that identifies orders containing products with a page count greater than or equal to 100 and page count less than or equal to 200.</p>
+        <ol>
+            <li>Click the <strong class="standOutPrimary">Create New Sort Rule </strong>link in the sort rule configuration tool</li>
+            <li>Enter <code>psa_pagesGTE100LTE200 </code>for the name of the new sort rule and click Next</li>
+            <li>Select the appropriate sort rule group for the new rule and click Next</li>
+            <li>Click the link to create a new matcher</li>
+            <li>Enter the same name used for the sort rule, <code>psa_pagesGTE100LTE200 </code>for the matcher name</li>
+            <li>Select <strong class="standOutPrimary">Product </strong>from the first drop down list</li>
+            <li>Select <strong class="standOutPrimary">pages </strong>from the second drop down list</li>
+            <li>Select<strong class="standOutPrimary"> &gt;=</strong> from the third drop down list</li>
+            <li>Enter <strong class="standOutPrimary">100 </strong>for the value</li>
+            <li>Click the <strong class="standOutPrimary">Add additional matcher criteri</strong>a button</li>
+            <li>Select <strong class="standOutPrimary">Product </strong>from the first drop down list</li>
+            <li>Select <strong class="standOutPrimary">pages </strong>from the second drop down list</li>
+            <li>Select<strong class="standOutPrimary"> &lt;=</strong> from the third drop down list</li>
+            <li>Enter <strong class="standOutPrimary">200 </strong>for the value</li>
+            <li>Click <strong class="standOutPrimary">Ok </strong>to save the new matcher</li>
+            <li>Click the green <strong class="standOutPrimary">Add </strong>button to add the matcher to the sort rule</li>
+            <li>Locate the new matcher, check the box and click the <strong class="standOutPrimary">Ok </strong>button</li>
+            <li>Click <strong class="standOutPrimary">Next </strong>on the Choose matchers ccreen</li>
+            <li>Select the appropriate <strong class="standOutPrimary">split-by-list </strong>from the drop down and click next</li>
+            <li>Click Next on the <strong class="standOutPrimary">review changes </strong>screen</li>
+            <li>Click <strong class="standOutPrimary">Finish </strong>to complete the process</li>
+        </ol>
+        <h3>Add sort rule to profile</h3>
+        <p>Once the rule has been built, it must be added to the appropriate section of the active sort profile.</p>
+        <ol>
+            <li>Click the <strong class="standOutPrimary">All Sort Profiles </strong>link in the sort rule configuration tool</li>
+            <li>Right-click on the <strong class="standOutPrimary">active sort profile </strong>and click <strong class="standOutPrimary">Modify Sort Profile</strong></li>
+            <li>Change to the <strong class="standOutPrimary">presort analyze rule </strong>tab and add the newly created rule</li>
+            <li>Click <strong class="standOutPrimary">Ok </strong>to save the changes</li>
+            <li><strong class="standOutPrimary">Reprocess </strong>the applicable orders at analyze</li>
+        </ol>
+        <p class="note">It is important to understand that when an order contains more than one product and not all products within the order meet the criteria of the matcher, the rule will not be applied to the order. In the above example, if an order contained two products and one product had a page count of 115 while the other was 55, the order would not be tagged with this presort rule as 55 is less than 100.</p>
+    </body>
+</html>

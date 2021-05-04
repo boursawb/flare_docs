@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>IPSEPM system configuration</title>
+    </head>
+    <body>
+        <h1>IPS/EPM system configuration</h1>
+        <p>Typically, the configuration of this integration will be performed by Infinity Digital and will only require application level changes to the hotfolder configuration specific to the customer environment. The following information can be used by administrators for setting up new environments, or for reference in the event existing configuration settings are lost.</p>
+        <p class="Note">Contact Infinity Digital Product Support for assistance with any of the following items.</p>
+        <ol>
+            <li>Ensure the &lt;masterCoreHost&gt;\idf\sharedconfig\epm\epmclient folder structure exists and contains both the cancelJob and submitJob EPM&#160;client configuration files. If this folder structure does not exist, it must be created. If the files do not exist, create them from the examples included at the end of this section</li>
+            <li>Ensure the &lt;masterCoreHost&gt;\idf\sharedconfig\hotfolderclient\hotfolder folder structure exists and contains the EPM&#160;hotfolder configuration file. The file must be named EPM_DefaultHotfolder.hotfolder.xml. If the folder structure does not exist, it must be created. If the file does not exist, create it from the example included at the end of this section.</li>
+            <li>Add the following roll down attributes to the uiconfig.config.xml file located in &lt;masterCoreHost&gt;\idf\sharedconfig\ui. <code>Order EPM end,Order EPM start,Order EPM queue,Order EPM error,Order EPM Error Messages,Order EPM Worker,Order EPM Seconds,EPM_EvalResult</code></li>
+        </ol>
+        <h2>Sample XML&#160;configuration files</h2>
+        <h3>cancelJob.empclient.xml</h3>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;EPMJobCancel id="$data.pdf"&gt;
+        
+&lt;/EPMJobCancel&gt;
+</code></pre>
+        </p>
+        <h3>submitJob.xml</h3>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;EPMJob id="order1_line1_component1"&gt;
+
+    &lt;jobcontent 
+		src="$data.pdf"&gt;
+	&lt;/jobcontent&gt;
+	&lt;joboptions 
+		pageSelection="All"
+		performSpotColorCheck="Yes"
+		listOfSpotColors="EPMSpot"
+		listOfSpotsToIgnore="cut crease CutContour"
+		performSmallBlackObjectsCheck="Yes"
+		smallestBlackLineThickness="0.2mm"
+		smallestBlackTextPt="6"
+		performBlackPagesCheck="Yes"
+		failEPMValue="33"
+		convertBlackPagesToDeviceGray="No"
+		performRichBlackCheck="Yes"
+		minCyanValue="30"
+		maxCyanValue="60"
+		minMagentaValue="0"
+		maxMagentaValue="0"
+		minYellowValue="0"
+		maxYellowValue="0"
+		faileEPMRichBlackCoverageAbovePercentage="10"
+		performInkCoverageCheck="Yes"
+		maxInkCoveragePercentage="320"
+		performDeltaECheck="Yes"
+		deltaECMYKDeviceLink="/path/to/proCmykDe.icc"
+		deltaERGBDeviceLink="/path/to/proRghDE.icc"
+		maxDeltaEDeviation="6"
+		performDeltaCCheck="Yes"
+		deltaCCMYKDeviceLink="/path/to/proCmykCh.icc"
+		deltaCRGBDeviceLink="/path/to/proRghCh.icc"
+		maxDeltaCDeviation="6"&gt;
+	&lt;/joboptions&gt;
+        
+&lt;/EPMJob&gt;</code></pre>
+        </p>
+        <h3>EPM_DefaultHotfolder.hotfolder.xml</h3>
+        <p><pre><code class="language-xml">&lt;Hotfolder&gt;
+	&lt;States&gt;
+		&lt;State&gt;
+			&lt;Name&gt;Input&lt;/Name&gt;
+			&lt;Initial&gt;true&lt;/Initial&gt;
+			&lt;Folders&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\input&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\input&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\input&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;
+		&lt;State&gt;
+			&lt;Name&gt;Cancel&lt;/Name&gt;
+			&lt;Cancel&gt;true&lt;/Cancel&gt;
+			&lt;Folders&gt;			
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\cancel&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\cancel&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\cancel&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;		
+		&lt;State&gt;
+			&lt;Name&gt;CancelSwitch&lt;/Name&gt;
+			&lt;Cancel&gt;false&lt;/Cancel&gt;
+			&lt;Folders&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\cancelswitch&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\cancelswitch&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\cancelswitch&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;				
+		&lt;State&gt;
+			&lt;Name&gt;Working&lt;/Name&gt;
+			&lt;Folders&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\working&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\working&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\working&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;
+		&lt;State&gt;
+			&lt;Name&gt;Complete&lt;/Name&gt;
+			&lt;Complete&gt;true&lt;/Complete&gt;
+			&lt;Folders&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\complete&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\complete&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\complete&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;		
+		&lt;State&gt;
+			&lt;Name&gt;Error&lt;/Name&gt;
+			&lt;Error&gt;true&lt;/Error&gt;
+			&lt;Folders&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\1\error&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\2\error&lt;/Folder&gt;
+				&lt;Folder&gt;\\localhost\idf\testhotfolder\3\error&lt;/Folder&gt;
+			&lt;/Folders&gt;
+		&lt;/State&gt;		
+	&lt;/States&gt;
+&lt;/Hotfolder&gt;</code></pre>
+        </p>
+    </body>
+</html>

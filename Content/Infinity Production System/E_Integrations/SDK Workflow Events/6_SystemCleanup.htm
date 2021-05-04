@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>System clean-up</title>
+    </head>
+    <body>
+        <h1>Automatic file clean-up</h1>
+        <p>Once the event message has been processed by the system consuming the message, it should be removed from the location where it was written to by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. Following integration best practices, the system that consumed the message should handle any necessary clean-up of the files. In the event this cannot occur, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes a facility to perform the necessary clean-up. </p>
+        <h2>Configuration</h2>
+        <p>To configure one or more clean-up locations, follow the steps shown below.</p>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location</li>
+            <li>Locate the <strong class="standOutPrimary">util </strong>folder, create it if it doesn't exist</li>
+            <li>Open the <strong class="standOutPrimary">util </strong>folder and locate the <strong class="standOutPrimary">cleanup </strong>folder, create it if it doesn't exist</li>
+            <li>Open the <strong class="standOutPrimary">cleanup </strong>folder and create a new file called <strong class="standOutPrimary">eventCleanUp.cleanup.xml </strong>(or any name you prefer)</li>
+            <li>Paste in the contents from the below example as a model to work from</li>
+            <li>Make any necessary changes, save and close the file such as <strong class="standOutPrimary">path</strong>, <strong class="standOutPrimary">poll interval</strong>, or <strong class="standOutPrimary">delete older than</strong></li>
+            <li>Create any additional clean-up files required</li>
+        </ol>
+        <p><pre><code class="language-xml">&lt;Cleanup&gt;
+	&lt;Path&gt;\\localhost\idf\test&lt;/Path&gt;
+	&lt;PollInterval&gt;8h&lt;/PollInterval&gt;
+	&lt;DeleteOlderThan&gt;48h&lt;/DeleteOlderThan&gt;
+	&lt;Extensions&gt;
+		&lt;Ext&gt;csv&lt;/Ext&gt;
+		&lt;Ext&gt;xml&lt;/Ext&gt;
+		&lt;Ext&gt;txt&lt;/Ext&gt;
+	&lt;/Extensions&gt;
+&lt;/Cleanup&gt;</code></pre>
+        </p>
+        <p>You can define as many extensions as required in order to specify the types of files that should be removed from this location. A&#160;seperate *.cleanup.xml file will need to be created for each unique location where <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> should check.</p>
+    </body>
+</html>

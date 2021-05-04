@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Adding a finishing plan</title>
+    </head>
+    <body>
+        <h1>Adding a finishing plan</h1>
+        <p>For a product to be available to down-stream finishing devices such as the SmartStacker, a finishing plan must be included in the batch definition for the given component. The finishing plan tells <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> about the structure of the bundles that will be built, as well as the laycrimp layout file that will be used. </p>
+        <h2>Updating the batch component</h2>
+        <ol>
+            <li>Open the batch definition in an XML&#160;editor</li>
+            <li>Create a few lines of space below the batch component being updated</li>
+            <li>Add the finishing plan code snippet to your batch component</li>
+            <li>Change the value of <code>layCrimpLayoutFile </code>to match the name of the laycrimp layout file created previously. Only include the file name, not the .<code>laycrimplayout.jdf </code>extension</li>
+            <li>Change the value of <code>bundleExpression </code>to use the attribute that will define how bundles are built</li>
+        </ol><pre xml:space="preserve"><code class="language-xml">&lt;FinishingPlan type="SmartStacker"&gt;
+	&lt;Attributes&gt;
+		&lt;Attribute&gt;
+			&lt;Key&gt;layCrimpLayoutFile&lt;/Key&gt;
+			&lt;Value&gt;SOME_CARD&lt;/Value&gt;
+			&lt;Type&gt;string&lt;/Type&gt;
+		&lt;/Attribute&gt;
+		&lt;Attribute&gt;
+			&lt;Key&gt;bundleExpression&lt;/Key&gt;
+			&lt;Value&gt;%orderId%&lt;/Value&gt;
+			&lt;Type&gt;string&lt;/Type&gt;
+		&lt;/Attribute&gt;
+	&lt;/Attributes&gt;
+&lt;/FinishingPlan&gt;</code></pre>
+        <p>Once the finishing plan is added, save and close the batch definition.</p>
+    </body>
+</html>

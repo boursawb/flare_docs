@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-29T16:48:22.3880053-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/0_introAutomaticColorTarget.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/0_introAutomaticColorTarget.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/1_introColorTargets.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/1_introColorTargets.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/2_colorQualityConfiguration.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/2_colorQualityConfiguration.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/3_Color target submission.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/3_Color target submission.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/4_QuickRefTroubleshooting.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/4_QuickRefTroubleshooting.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/5_BarcodeLayout.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F2_AutomatedColorTargets/5_BarcodeLayout.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_introAutomaticColorTarget.htm"
+      TimeStamp="5/29/2018 4:48:21 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_introColorTargets.htm"
+      TimeStamp="5/29/2018 4:48:21 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_colorQualityConfiguration.htm"
+      TimeStamp="5/29/2018 4:48:21 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/3_Color target submission.htm"
+      TimeStamp="5/29/2018 4:48:21 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/4_QuickRefTroubleshooting.htm"
+      TimeStamp="5/29/2018 4:48:21 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/5_BarcodeLayout.htm"
+      TimeStamp="5/29/2018 4:48:22 PM" />
+    <Url
+      Source="../TOCs/0_introAutomaticColorTarget.fltoc"
+      TimeStamp="5/29/2018 4:48:24 PM" />
+  </GeneratedFiles>
+</HtmlImport>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>EPM eStop</title>
+    </head>
+    <body>
+        <h1>EPM emergency stop (eStop)</h1>
+        <p>EPM&#160;eStop provides a way to turn off EPM&#160;in one or more steps of the workflow. There are three groups of work that can be addressed when determining which eStop options to use.</p>
+        <ul>
+            <li>Order awaiting EPM&#160;evaluation</li>
+            <li>Work queued to Enfocus</li>
+            <li>Orders tagged EPM&#160;compatible, ready to be released / batched</li>
+        </ul>
+        <p>The three options available via EPM&#160;eStop applicable to these groups of work are shown below.</p>
+        <ul>
+            <li><strong>Disable Order EPM&#160;Evaluation</strong>: When checked, no orders are submitted for EPM&#160;evaluation and any existing work queued in EPM&#160;evaluation is canceled. </li>
+            <li><strong>Disable Sort Group EPM&#160;Processing</strong>: When checked, sort groups are no longer split by EPM evaluation status and all work is released as non EPM. A&#160;reprocess at sort must be performed on the affected sort groups following any changes to the sort group workflow of the ESTOP&#160;configuration.</li>
+            <li><strong>Disable Batch EPM&#160;Processing</strong>: When checked, EPM&#160;attributes of batches are ignored and the batch submitted to the DFE&#160;as a normal / non-EPM&#160;job.</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/EPMeStopDialog.png" />
+        </p>
+        <p class="Note">When EPM eStop is invoked, attributes applied to orders identifying them as EPM compatible will not be removed. If / when EPM is turned back on, orders already evaluated will be available for EPM printing with no user action required.</p>
+    </body>
+</html>

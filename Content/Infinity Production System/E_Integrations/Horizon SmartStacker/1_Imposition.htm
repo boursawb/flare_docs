@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Building the imposition</title>
+    </head>
+    <body>
+        <h1>Impositions</h1>
+        <p>It is important to understand how pages flow into your imposition when using <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. A&#160;basic forward filling imposition has the following characteristics.</p>
+        <ul>
+            <li>The far left column will be column 1</li>
+            <li>The bottom row will be row 1</li>
+            <li>Page 1 will be positioned at column 1, row 1</li>
+            <li>Odd pages within the signatures section will have a value of <code>up </code>for <code>face</code> (duplex products)</li>
+            <li>Even pages within the signatures section will have a value of <code>down </code>for <code>face</code> (duplex products)</li>
+            <li>If the imposition is for a simplex product, all page definitions within the signature section will have a value of <code>up </code>for the <code>face </code>attribute</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/impositionStandard.png" title="Standard imposition" alt="Standard imposition" class="img" />
+        </p>
+        <h2>Reverse order</h2>
+        <p>When building an impositions for a SmartStacker integration, it is recommended to set the <code>reverseorder </code>attribute to <code>true</code>. This will result in the pages being filled starting from the end of the job, working towards the top of the stack. This will also cause the rows and columns to behave differently than previously described. In the example shown above, column 1, row 1, resides in the lower left corner of the spread. However, when the order is reversed, column 1, row 1, moves to the bottom right corner of the spread. Reversing the order also changes the behavior of the <code>face up / face down </code>attributes defined in the signatures section of the imposition. A&#160;reverse order imposition has the following characteristics.</p>
+        <ul>
+            <li>The far right column will be column 1</li>
+            <li>The bottom row will be row 1</li>
+            <li>Page 1 will be positioned at column 1, row 1</li>
+            <li>Odd pages within the signatures section will have a value of <code>down </code>for <code>face</code> (duplex products)</li>
+            <li>Even pages within the signatures section will have a value of <code>up </code>for <code>face</code> (duplex products)</li>
+            <li>If the imposition is for a simplex product, all page definitions within the signature section will have a value of <code>down </code>for the <code>face </code>attribute</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/impositionReverse.png" title="Reverse imposition" alt="Reverse imposition" class="img" />
+        </p>
+        <p class="Note">Reversing the order of your imposition will require that page 1 be set to <code>Face Down</code>, alternating for the remaining pages defined in the signatures section of the imposition. Failing to do so will result in the backs for your content displaying on the front side of the sheet, and fronts ending up on the back of the sheet. </p>
+        <h2><a name="BlanksPrintedWaste"></a>Defining blanks</h2>
+        <p>The imposition can include instructions to tell the SmartStacker which signatures to discard and which to include in the output as printed waste. If the value for <code>&lt;whenAttr&gt;&lt;/whenAttr&gt;</code>&#160;is set to <code>blankType </code>with <code>&lt;equals&gt;&lt;/equals&gt;</code> not set (null), the PDF&#160;specified in the <code>&lt;use&gt;&lt;/use&gt;</code> element will be used for that signature and the output will be discarded by the SmartStacker. If however the value for <code>&lt;whenAttr&gt;&lt;/whenAttr&gt;</code>&#160;is set to <code>blankType </code>with <code>&lt;equals&gt;&lt;/equals&gt;</code> set to <code>printedWaste</code>, the PDF&#160;specified in the <code>&lt;use&gt;&lt;/use&gt;</code> element will be used and the content will be included in the generated output at the top of the stack. </p>
+        <h3>Blank type equals null</h3>
+        <p>A blank type of null (no value specified for the <code>&lt;equals&gt;</code> element)&#160;will result in the specified PDF&#160;being included in the press PDF&#160;output, with these signatures getting discarded by the SmartStacker and sent to the bin. The reason you need to specify a PDF&#160;that will be used for the content of a signature that ultimately will be wasted is so you can visibly see which signatures in the PDF&#160;were defined as waste, vs. those that were defined as printed waste. It also provides a way to know exactly what a signature was if there is a need to review what items were discarded by the SamrtStacker.</p>
+        <h4>Normal blank</h4>
+        <p>A&#160;blank added by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to ensure the first page of a bundle always starts at position 1 of a row.  This is required for offset stacking.  Blanks identified by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.IPS" /> are automatically removed by the SmartStacker</p>
+        <h3>Blank type equals printedWaste</h3>
+        <p>Specifying a blank type of <code>printedWaste</code> is very similar to the previous description of blank type null. The key difference is that the signature will be included in the output generated and show up at the top of the stack, as previously mentioned. The <strong class="standOutPrimary">printedWaste </strong>feature allows you to specify content to be printed that is not part of the actual job in an effort to minimize or eliminate waste, and at the same time, produce viable output. </p>
+        <h4>Printed waste blank</h4>
+        <p>These are blanks added by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to avoid situations the SmartStacker cannot handle (ie. two partially filled consecutive rows / columns based on the defined imposition).  These blanks cannot be removed by SmartStacker and get printed.  Printed waste can easily be removed by an operator as this portion of the job will end up on the top of the off-set stack.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>XML - Blanks section of an imposition</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p><pre xml:space="preserve"><code class="language-xml">&lt;blanks&gt;
+	&lt;blank&gt;
+		&lt;face&gt;up&lt;/face&gt;
+		&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+		&lt;equals&gt;&lt;/equals&gt;
+		&lt;use&gt;5x7BlankFront.pdf&lt;/use&gt;
+	&lt;/blank&gt;
+	&lt;blank&gt;
+		&lt;face&gt;down&lt;/face&gt;
+		&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+		&lt;equals&gt;&lt;/equals&gt;
+		&lt;use&gt;5x7BlankBack.pdf&lt;/use&gt;
+	&lt;/blank&gt;
+	&lt;blank&gt;
+		&lt;face&gt;up&lt;/face&gt;
+		&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+		&lt;equals&gt;printedWaste&lt;/equals&gt;
+		&lt;use&gt;5x7PrintedWasteFront.pdf&lt;/use&gt;
+	&lt;/blank&gt;
+	&lt;blank&gt;
+		&lt;face&gt;down&lt;/face&gt;
+		&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+		&lt;equals&gt;printedWaste&lt;/equals&gt;
+		&lt;use&gt;5x7PrintedWasteBack.pdf&lt;/use&gt;
+	&lt;/blank&gt;
+&lt;/blanks&gt;</code>=</pre><pre xml:space="preserve"><img src="../../../Resources/Images/Assets/IPS/blanksPrintedWaste.png" title="Blanks" alt="Blanks" class="img" /></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Introduction</title>
+    </head>
+    <body>
+        <h1>Introduction</h1>
+        <p>
+            <MadCap:keyword term="Scripted decorators" />Scripted decorators extend the capabilities of standard decorators by allowing the use of JavaScript for creating and manipulating attributes. Where a standard decorator is limited to creating new attributes or modifying the value of an existing attribute, scripted decorators can perform calculations, manipulate strings, aggregate values across line items, perform complex logic operations, and a whole lot more. Effectively working with scripted decorators will require a solid understanding of the Infinity batch and order structure, as well as a basic working knowledge of JavaScript or background in other programming or scripting languages. Typical scenarios where scripted decorators would be used include the following.</p>
+        <ul>
+            <li>Pad a string or integer attribute with leading zeros</li>
+            <li>Increase the value for quantity by 15%&#160;and save this as a new attribute (or overwrite existing)</li>
+            <li>Create a new attribute by concatenating existing attributes</li>
+            <li>Trim a portion of an attributes value</li>
+            <li>Create a new order attribute that signifies orders that have one or more line items with a quantity &lt;&#160;10 </li>
+        </ul>
+        <p>Scripted decorators allow you to encapsulate and build your own custom business logic into <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> that would otherwise require code changes to the software.</p>
+        <h2>Key points</h2>
+        <p>The following 4 key points will help you be successful when creating and working with scripted decorators.</p>
+        <p><strong>If a standard decorator will do the job, let it</strong>
+        </p>
+        <p>If the goal is simply to add a new attribute to the order, change the value of an existing attribute, or apply one of the supported format options to the value, then using a scripted decorator may be overkill.</p>
+        <p><strong>Create new attributes whenever possible</strong>
+        </p>
+        <p>As it is possible and sometimes desirable to update the value of an existing attribute, it is always recommended to create a new attribute and store the value to that whenever possible. In some situations, such as manipulation of the quantity field, updating existing attributes will be required. </p>
+        <p><strong>Context is critical</strong>
+        </p>
+        <p>From the start, to the end, and everything in between relies on context. The object context of the decorator signifies where the new attribute can be created. For example, if the object context specified is batch, the only attributes that can be created or modified are batch level attributes. If the context is component, the only attributes that can be created or modified are line item components.. When iterating through items of an order, the current context shifts from order to item, so any attempts to retrieve or create new attributes would be done at the line item level, not order as you may expect. </p>
+        <p><strong>Know the structure</strong>
+        </p>
+        <p>Having a good understanding of the basic batch and order structure will be critical to creating scripted decorators. Knowing the following should provide everything you need for successfully creating scripted decorators.</p>
+        <ul>
+            <li>Batches<ul><li>Orders<ul><li>Items<ul><li>Components</li></ul></li></ul></li></ul></li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Color target submission</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1><a name="Color"></a>
+            Color target submission</h1>
+        <p>Color targets can be submitted manually from the UI or can be sent automatically when a defined threshold has been exceeded. For detailed information on target thresholds, refer to <MadCap:xref href="../_Working/_retired/9_colorQualityConfiguration-XML version.htm#Thresholds">"Understanding target thresholds" on page&#160;1. </MadCap:xref></p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Manual target submit" />Manual target submit</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Select the Color quality tab within the <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> UI</li>
+                    <li>Click the generate color target button</li>
+                    <li>Select the desired product bin</li>
+                    <li>Select the desired DFE&#160;/ Device to submit the target to</li>
+                    <li>Click the Generate button</li>
+                    <li>Click the Close button</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Automatic target submission" />Automatic target submission</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Verify the product bin contains all batch components to be tracked</li>
+                    <li>Verify the target threshold has been set to the desired value</li>
+                    <li>If using light volume threshold, set the desired amount of time and ensure Indicate Start of Shift has been clicked</li>
+                    <li>Save the product bin</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>For each batch component contained within the product bin that results in a job showing printed within <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />, the counter for the product bin / press combination will be incremented by the number of spreads contained within the job. Once the total number of spreads for this counter has been exceeded, a color target will be submitted to press.</p>
+    </body>
+</html>

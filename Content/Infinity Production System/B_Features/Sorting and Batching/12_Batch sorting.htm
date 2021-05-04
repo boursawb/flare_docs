@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Batch sorting</title>
+    </head>
+    <body>
+        <h1>Batch sorting</h1>
+        <p>By default, line items contained within a product batch will be ordered based on the criteria specified in the sort rule configuration. If the <code>sortorder </code>attribute is not specified for a given sort rule, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> will use a system default sort order of <code>priority:desc,priorityDate:asc</code>. This will ensure that the oldest batches with the highest priority are released first. Batch sorting provides a way to resort the line items within a product batch immediately following the release event. This makes it possible to have one set of criteria that determines which batches should be released and in what order, and a second criteria that specifies the order of the items in the final press output. To better understand how batch sorting can be used, consider the following example.</p>
+        <p>A&#160;company is producing a large number of books. The number of orders received has resulted in a sort group containing 10 batches with each batch consisting of multiple orders. The <code>sortorder </code>attribute has not been defined for this sort rule so the system will use the default of <code>priority:desc, priorityDate:asc </code>for ordering the orders within the product batches and product batches within the sort group. To ensure that orders are processed as they are received and by priority, using the system default sort order makes perfect sense. However, organizing the items within a batch by priority and priority date may not be as valuable to the production team responsible for finishing the books. To maintain a high level of efficiency during the finishing process, it will make more sense to order the items within the batch by page count of the book block in ascending order which can be accomplished by using batch sorting.</p>
+        <h2>Sorting items in a product batch</h2>
+        <p>Sorting line items within a product batch can be accomplished via the following.</p>
+        <ol>
+            <li>Open the batch definition</li>
+            <li>Add the attribute sortBy with the desired criteria to the IDFBatch section of the batch definition</li>
+        </ol>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;idfbatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="idfbatch.xsd"
+    id="432"
+    abbreviation="6 x 6 BOOK"
+    maxspreads="300"
+	sortBy="pages:desc"&gt;</code></pre>
+        </p>
+        <p class="Note">The value specified for sortBy can be any line item or order level dynamic attribute. Dynamic attributes for an order can be viewed by right-clicking an order from the products tab and selecting the option to View Order Attributes.</p>
+        <h2>Viewing the order of line items in a product batch</h2>
+        <p>Once a batch has been released and exists on the batches tab, it is possible to view the product batches generated and the order of line items within each product batch from the UI. </p>
+        <ol>
+            <li>Right-click on the batch in question and click <strong class="standOutPrimary">View Product Batches</strong></li>
+            <li>Double-click the desired product batch to expand the row</li>
+            <li>Take note of the <strong class="standOutPrimary">Batch Sequence Actual </strong>column</li>
+        </ol>
+        <p>Batch Sequence Actual shows the orders of the line items as they exist within the product batch as determined by the <code>sortBy </code>attribute defined in the batch definition..</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/productBatchViewer.jpg" title="Product batch viewer" alt="Product batch viewer" class="img" />
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

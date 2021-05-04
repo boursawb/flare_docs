@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Fit Policy</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1><a name="Fit"></a>Fit Policy</h1>
+        <p>When working with JPG&#160;based order content, or content that requires the dimensions be modified when received, a fit policy can be applied to specify exactly how this will be accomplished. The fit policies available within the Infinity software include the following.</p>
+        <ul>
+            <li>scale</li>
+            <li>scalenocenter</li>
+            <li>cropandcenter</li>
+            <li>cropnocenter</li>
+        </ul>
+        <p>To use a fit policy, you must first specify auto-size width and height override attributes within the prebatch component. If the content does not match the size of the overrides specified, a default fit policy of scale will be used. If scale is not the desired fit policy, the <code>fitpolicy=""</code>&#160;attribute can be used with one of the values previously mentioned.</p>
+        <p class="note">If the aspect ratio defined by the width and height overrides does not match the aspect ratio of the content received when dealing with PDF&#160;order based content, the system will rotate the image such that it matches. The default rotation is 270 degrees. If a rotation of 90 degrees is preferred, the attribute autorotate="&lt;degrees&gt;"&#160;can be applied to the prebatch component.</p>
+        <h2>Fit policy options</h2>
+        <p>The fit policy to use will be determined by requirements for the output, regardless of the type of content that will use it. Fit policies can be applied to prebatch components, related content of prebatch components, batch additional content, and batch additional spreads. The following definitions can be used to assist in determining which fit policy will best meet your requirements.</p>
+        <p>
+            <MadCap:keyword term="Scale" /><strong>Scale </strong>The content will be scaled to match the size specified for the overrides. The content will be centered which will result in additional white space on either the top/bottom or left/right sides of</p>
+        <p>
+            <MadCap:keyword term="Scalenocenter" /><strong>Scalenocenter </strong>The content will be scaled to match the size specified for the overrides. The content will scale up and to the right until either side matches the specified width or height, leaving white space on either the top or right side of the page.</p>
+        <p>
+            <MadCap:keyword term="Cropandcenter" /><strong>Cropandcenter </strong>The content will be scaled until both the width and height specified for the overrides have been met. The content will then be centered, resulting in the output matching the values specified for the overrides. The final output will either have the top/bottom evenly cropped, or the left/right evenly cropped.</p>
+        <p>
+            <MadCap:keyword term="Cropnocenter" /><strong>Cropnocenter </strong>The content will be scaled until the both the width and height specified for the overrides have been met. The side that exceeded the specified value in the overrides will then be cropped, resulting in the output matching the values specified for the overrides. The final output will either be cropped on the top or the right.</p>
+        <p class="note">Fit policy only supports related content built using Jasper report files. A&#160;fit policy cannot be applied to related content that uses templated layouts or other content types.</p>
+        <h2>Fit policy examples</h2>
+        <p>The following images show an example of each fit policy previously mentioned applied to a batch additional spread</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/fitPolicyExamples.png" class="img" title="Fit policy examples" alt="Fit policy examples" style="width: 554px;height: 373px;" />
+        </p>
+        <h2>Implementing fit policy</h2>
+        <p>A&#160;fit policy can be applied to a prebatch component, prebatch related content, batch additional spread, or batch additional content. The fitpolicy attribute will be added to the item and a value matching one of the fit policies will be supplied. An example fit policy applied to a prebatch component is shown below.</p><pre><code class="language-xml">&lt;prebatchcomponent 
+	name="text" 
+       splitrange="1-n"
+       layout="NO-STAMP-LAYOUT"	
+       autosizewidthoverride="814.32"
+       autosizeheightoverride="612"
+	fitpolicy="cropandcenter"
+	duplex="true"
+	autorotate="270"
+       &gt;</code></pre>
+        <p>Defining a fit policy for related content, additional content, or an additional spread simply requires including the attribute <code>fitpolicy="&lt;value&gt;"&#160;</code>to the list of attributes.</p>
+        <h2>
+            <MadCap:keyword term="Fit policy ranges" />Fit policy ranges</h2>
+        <p>Using a fit policy range, a unique fit policy can be applied to each page of a product. For example, portrait and landscape cards of the same size (5x7 and 7x5 respectively), can be processed together by simply applying a fit policy. Additionally, specif pages of the output can be sized and rotated as needed to produce the desired output. </p>
+        <h3>Applying a fit policy range</h3>
+        <p>Fit policy ranges are added to the prebatch definition under the prebatch component and have a specific order of precedence that is used. </p>
+        <p><strong>First priority</strong> If a fit policy has been applied at the run list attribute level (some VDP&#160;orders), this fit policy will be applied. </p>
+        <p><strong>Second priority </strong>Fit policies are evaluated at the range level. If no match is found, the system moves on to the next level.</p>
+        <p><strong>Third priority </strong>The fit policy associated with the prebatch component itself will be applied.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Fit policy range example</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The following prebatch definition shows an example of fit policy ranges.</p><pre><code class="language-xml">&lt;prebatchcomponent name="265" 
+            componenttype="bookblock"
+            splitrange="1-n"
+            layout="NO-STAMP-LAYOUT"        
+            autosizewidthoverride="441"
+            autosizeheightoverride="315"
+            autorotate="90"
+            &gt;
+			&lt;fitpolicyranges&gt;
+				&lt;fitpolicyrange
+					range="repeat(1,4,n)"
+					fitpolicy="cropandcenter"
+					autosizeheightoverride="400.76"
+					autosizewidthoverride="599.76"
+					autorotate="90"
+					/&gt;
+				&lt;fitpolicyrange
+					range="repeat(2,4,n)"
+					fitpolicy="cropnocenter"
+					autosizeheightoverride="400.76"
+					autosizewidthoverride="599.76"
+					autorotate="270"
+					/&gt;
+				&lt;fitpolicyrange
+					range="repeat(3,4,n)"
+					fitpolicy="scalenocenter"
+					autosizewidthoverride="400.76"
+					autosizeheightoverride="599.76"
+					autorotate="90"
+					/&gt;
+			&lt;/fitpolicyranges&gt;
+	
+	&lt;relatedcontent name="slate-front" type="TemplatedLayout" uri="265-SLATE-FRONT"/&gt;
+	&lt;relatedcontent name="slate-back" type="TemplatedLayout" uri="265-SLATE-BACK"/&gt;
+	&lt;!-- &lt;resample dpi="300" filter="Lanczos"/&gt; --&gt;
+&lt;/prebatchcomponent&gt;</code></pre>
+                <p>Given that only pages 1-3 are covered by the fit policy ranges, page 4 will use the fit policy defined for the prebatch component itself. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="false"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-22T10:10:13.7023531-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/0_Intro UI Basics.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/0_Intro UI Basics.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/1_Working with orders.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/1_Working with orders.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/2_Batching from products.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/2_Batching from products.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/3_Batching from sort groups.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/3_Batching from sort groups.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/4_Batches and press jobs.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/4_Batches and press jobs.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/5_Order slice.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B_UI Basics/5_Order slice.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/0_Intro UI Basics.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/1_Working with orders.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/2_Batching from products.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/3_Batching from sort groups.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/4_Batches and press jobs.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/5_Order slice.htm"
+      TimeStamp="5/22/2018 10:10:02 AM" />
+    <Url
+      Source="../TOCs/0_Intro UI Basics.fltoc"
+      TimeStamp="5/22/2018 10:10:14 AM" />
+  </GeneratedFiles>
+</HtmlImport>

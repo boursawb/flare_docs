@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" /><title></title>
+        <link href="../Stylesheets/StylesForHomePage.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="contentBody" class="off-canvas-main">
+            <MadCap:bodyProxy />
+            <div class="footer center">
+                <div class="home-master-page-footer">
+                    <div>
+                        <p>
+                            <img src="../Images/Assets/PlaceholderLogo/infdigLogoWeb.jpg" title="Infinity Digital Logo" alt="Infinity Digital Logo" />
+                        </p>
+                        <p><MadCap:variable name="General.CompanyName" />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <img src="../Images/Assets/Icons/MainIcons/Contact-gray.png" />
+                        </p>
+                        <p><MadCap:variable name="General.Email" />
+                        </p>
+                        <p><MadCap:variable name="General.PhoneNumber" />
+                        </p>
+                        <p><MadCap:variable name="General.StreetAddress" /> <MadCap:variable name="General.CityStateZip" /></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

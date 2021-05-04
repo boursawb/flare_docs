@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Laycrimp layouts</title>
+    </head>
+    <body>
+        <h1>Laycrimp layouts</h1>
+        <p>Implementing a finishing plan to integrate <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> with a Horizon SmartStacker requires the use of a laycrimp layout file that will be used to instruct the device how to cut and stack the printed output. The Guided walk-through section will take you step-by-step through the process of creating the layout. For now, we will look at an existing laycrimp layout to get a better understanding of the data it contains, and how <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> will use it. The top portion of the layout includes attributes specific to the sheet, such as name and size. The rest of the layout consists of the data that results in the instructions that will ultimately drive the finishing process.  </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>xample:&#160;laycrimp layout (jdf file)</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" standalone="no" ?&gt;
+&lt;JDF Type="ProcessGroup" xsi:type="Product" ID="ID1" Status="Waiting" JobID="job1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.4" xmlns="http://www.CIP4.org/JDFSchema_1_1"&gt;
+	&lt;ResourcePool&gt;
+		&lt;Layout ID="JobLayout" Class="Parameter" PartIDKeys="SignatureName SheetName Side" Status="Available" Automated="true"&gt;
+			&lt;Layout SignatureName="Signature01"&gt;
+				&lt;Layout SheetName="Sheet01" SurfaceContentsBox="0.000000 0.000000 2119.680000 1494.000000"&gt;
+					&lt;Layout Side="Front"&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1585.1 192.6" 	TrimSize="504 360" ClipBox="1585.1 192.6 	2089.1 552.6" Ord="0"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1585.1 567.0" 	TrimSize="504 360" ClipBox="1585.1 567.0 	2089.1 927.0" Ord="1"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1585.1 941.0" 	TrimSize="504 360" ClipBox="1585.1 941.0 	2089.1 1301.4" Ord="2"/&gt;	
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1066.7 192.6" 	TrimSize="504 360" ClipBox="1066.7 192.6	1570.7 414.0" Ord="3"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1066.7 567.0" 	TrimSize="504 360" ClipBox="1066.7 567.0 	1570.7 792.0" Ord="4"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1066.7 941.0" 	TrimSize="504 360" ClipBox="1066.7 941.0 	1570.7 1170.0" Ord="5"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	548.3 192.6" 	TrimSize="504 360" ClipBox="548.3 192.6		1052.3 414.0" Ord="6"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	548.3 567.0" 	TrimSize="504 360" ClipBox="548.3 567.0 	1052.3 792.0" Ord="7"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	548.3 941.0" 	TrimSize="504 360" ClipBox="548.3 941.0 	1052.3 1170.0" Ord="8"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	29.9 192.6"	TrimSize="504 360" ClipBox="29.9 192.6		533.9 414.0" Ord="9"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	29.9 567.0" 	TrimSize="504 360" ClipBox="29.9 567.0 		533.9 792.0" Ord="10"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	29.9 941.0" 	TrimSize="504 360" ClipBox="29.9 941.0 		533.9 1170.0" Ord="11"/&gt;
+					&lt;/Layout&gt;
+				&lt;/Layout&gt;
+			&lt;/Layout&gt;
+		&lt;/Layout&gt;
+	&lt;/ResourcePool&gt;
+	&lt;ResourceLinkPool&gt;
+		&lt;LayoutLink rRef="JobLayout" Usage="Input" /&gt;
+	&lt;/ResourceLinkPool&gt;
+&lt;/JDF&gt;</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Understanding the layout</h2>
+        <p>The above layout was built for a 12UP imposition consisting of 4 columns and 3 rows. We can see that each of the content blocks represent a column / row intersection within the imposition. When building your laycrimp, much of the information contained in the file will be static. The two attributes we are most interested in are <strong class="standOutPrimary">TrimSize </strong>and <strong class="standOutPrimary">ClipBox</strong>. The TrimSize attribute specifies the final size of the product after the trim occurs. The ClipBox specifies a set of x / y coordinate pairs that define where final cuts will be made. </p>
+        <h3>Coordinate pairs</h3>
+        <p>The <code>ClipBox </code>attribute of each <code>ContentObject </code>will include two sets of x /y coordinates describing where the sheet will be cut. At each page of the imposition (intersection of a column and row), two points will be identified in opposite corners as shown below. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/laycrimpCoordinates.png" title="Laycrimp coordinates" alt="Laycrimp coordinates" class="img" /> </p>
+    </body>
+</html>

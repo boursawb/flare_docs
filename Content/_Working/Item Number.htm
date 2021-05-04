@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="4" MadCap:lastHeight="575" MadCap:lastWidth="576" MadCap:sourceDocument="Y:\qa\Documentation\Support\Infinity Documentation\Content\IPS User Guide\I_AdvancedFeatures\Batch Item Number\Item Number.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Batch Item Number Stamp</title>
+        <link href="../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1 MadCap:autonum="CHAPTER 1">
+            <MadCap:keyword term="Item number stamp" />Item number stamp</h1>
+        <p>Item number stamps provide a way to associate the items contained in one press job to the related items contained in one or more other press jobs all within the same product batch. One of the most practical applications for this feature is its use when printing batches of multi-component books. Consider a batch which results in three press jobs, one for the book block, one for the covers and one for the wraps. It will be necessary at some point during the finishing process to join the appropriate book block, with its cover and the associated wrap. To handle such a situation, an item number can be included on each component resulting in a unique number being stamped on each of the components that make up one complete product. </p>
+        <p class="note" MadCap:autonum="&lt;b&gt;&lt;span style=&quot;color: #819ff7;&quot; class=&quot;mcFormatColor&quot;&gt;Note: &lt;/span&gt;&lt;/b&gt;">It is important to understand that the item number will increment for each item contained within the product batch, as well as each copy of an item. For example, if a product batch contains 10 books with the first 5 books having a quantity of 1 and the last 5 books having a quantity of 2, the item numbers generated for this product batch would be 1 - 15.</p>
+        <ul style="list-style-type: square;">
+            <li>Book 1 - Quantity 1 - Item 1</li>
+            <li>Book 2 - Quantity 1 - Item 2</li>
+            <li>Book 3 - Quantity 1 - Item 3</li>
+            <li>Book 4 - Quantity 1 - Item 4</li>
+            <li>Book 5 - Quantity 1 - Item 5</li>
+            <li>Book 6 - Quantity 1/2 - Item 6</li>
+            <li>Book 6 - Quantity 2/2 - Item 7</li>
+            <li>etc...</li>
+        </ul>
+        <h2>Item number stamp configuration</h2>
+        <p>Item number stamps are line level, stack box stamps, available at the signature level in a batch imposition. The following two attributes are available when implementing this feature.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="itemNumber" />itemNumber</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Corespondent to a copy of a line item</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="itemNumbers" />itemNumbers</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Corresponds to the total number of items in the product batch, taking in to account individual line items as well as copies of a line item</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>These attributes can be used with any stamps available in a layout provided that the box specified for the stamp corresponds with one of the defined stack boxes contained within the batch imposition associated with the layout being modified. An example text stamp is shown below.</p><pre class="XMLBlock" xml:space="preserve"> &lt;text 
+                formatstring="%itemNumber% OF %itemNumbers%"
+                font="Arial" 
+                fontsize="12"
+                positioning="relative"
+                box="stack-1-front"
+                side="left"
+                x="-5"
+                y="0"
+                rotation="270"
+                autocenter="true"
+                color="black"                						
+            /&gt;</pre>
+        <p>The example above assumes that the batch imposition that is associated with this layout has a signature containing a stack box equal to <span class="SetOffFirstLevel">stack-1-front</span>. </p>
+        <p class="note" MadCap:autonum="&lt;b&gt;&lt;span style=&quot;color: #819ff7;&quot; class=&quot;mcFormatColor&quot;&gt;Note: &lt;/span&gt;&lt;/b&gt;">It is important to note that related content will not receive a unique item number, but instead will inherit the item number associated with the content. </p>
+        <h3><a name="signatureStamps"></a>
+            Additional signature stamps</h3>
+        <p>The following signature are avialable for stamping at batch time relative to a given stack box.</p>
+        <ul>
+            <li>%itemNumber%</li>
+            <li>%itemNumbers%</li>
+            <li>%copy%</li>
+            <li>%copies%</li>
+            <li>%page%</li>
+            <li>%pages%</li>
+            <li>%spreadn%</li>
+            <li>%spreadofm%</li>
+            <li>%duplexsheetn%</li>
+            <li>%duplexsheetofm%</li>
+            <li>%row%</li>
+            <li>%column%</li>
+            <li>%signature%</li>
+            <li>%fileName%</li>
+            <li>%filePath%</li>
+        </ul>
+    </body>
+</html>

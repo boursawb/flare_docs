@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Enhanced Productivity Mode</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Enhanced Productivity Mode" />Enhanced Productivity Mode (EPM)</h1>
+        <p>Enhanced productivity mode (EPM) is a technology that omits the black ink and prints only with cyan, magenta, and yellow.  Color profiles are used to convert CMYK jobs to CMY only.  With EPM, devices such as HP Indigo presses can reach an acceptable color gamut, including black.  Key benefits of using EPM include reduction in the amount of consumables used, and in the case of HP presses, decreased impression counts resulting in a cost savings to the customer.  <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can be configured to integrate with Enfocus technology for the purposes of EPM evaluation.</p>
+        <h2>
+            <MadCap:keyword term="EPM" />EPM&#160;workflow</h2>
+        <p>The EPM phase of the Infinity workflow is represented by the fourth light of the order state column.  This light represents the status of an order as it moves through the EPM evaluation process.  The input(s) for EPM evaluation are the PDF(s) generated during the prebatch phase of the Infinity workflow. As the order progresses through Enfocus/Switch, the status will update from queued, to working, and finally complete.  In the event of an error, the light will display red, indicating an error has occurred.  Details regarding the error can be viewed in a tool tip by hovering the mouse over the error light, or by reviewing the error in order history.  Following EPM evaluation, orders identified as EPM compatible will be tagged with an <code>EPM_Eval Result </code>attribute and split by the value of this attribute during the sorting process.</p>
+        <p>
+            <img src="../../../Resources/Images/EPMWorkflowStep.png" /> </p>
+        <h2>
+            <MadCap:keyword term="EPM evaluation" />EPM&#160;evaluation</h2>
+        <p>EPM evaluation will only occur for orders that have been explicitly called out.  Given the various types of products printed at most facilities, it is unlikely that all would be good candidates for EPM printing. To control which orders are submitted for EPM evaluation, the order attribute <code>EPM_Eval </code>is used.  When this attribute is applied to an order with a value of <code>true</code>, the order moves through the EPM workflow for evaluation.  When this attribute is set to false, or the attribute has not been applied to an order, the standard CMYK&#160;workflow is followed.  EPM is applied and controlled at the order level.  This means that EPM applies to the entire order, or applies to none of it.  Due to situations where one or more products contained in an order would be candidates for EPM while another may not, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> allows administrators to decide which order items will be used during the evaluation process.</p>
+        <p><strong class="standOutSecondary">Example:&#160;Multi-product order</strong>
+        </p>
+        <p>Consider an order containing 3 products: 5x7 Greeting card, Envelope, and 5x7 Ad page.  EPM must be enabled at the order level, but only the 5x7 Greeting card is a good candidate for EPM printing.  IPS can be configured to use only the 5x7 Greeting card for the EPM evaluation process.</p>
+        <h3>Tagging order for EPM&#160;evaluation</h3>
+        <p>There are two methods for flagging an order to be evaluated for EPM&#160;compatibility.</p>
+        <ul>
+            <li>Manually, via the EPM&#160;menu of the Products tab</li>
+            <li>Using decorators to apply the EPM_Eval attribute with a value of true</li>
+        </ul>
+        <h4>Manual EPM&#160;evaluation</h4>
+        <ol>
+            <li>Select the order(s)&#160;from the <strong class="standOutPrimary">Products </strong>tab </li>
+            <li>Right-click on the order and navigate to <strong class="standOutPrimary">EPM</strong></li>
+            <li>Select <strong class="standOutPrimary">Enable EPM&#160;and Reprocess</strong></li>
+        </ol>
+        <p>This will result in the <code>EPM_Eval </code>attribute getting applied to each order, with a value of true (yes displays in the UI).</p>
+        <p>
+            <img src="../../../Resources/Images/EnableEPMManualy.png" title="Enable or cancel EPM for an order" alt="Enable or cancel EPM for an order" />
+        </p>
+        <h4>Decorate order for EPM&#160;evaluation</h4>
+        <p>The EPM_Eval attribute can be automatically applied to an order using decorators. To create a decorator to apply this attribute, follow the steps shown below.</p>
+        <ol>
+            <li>Create a matcher that identifies the applicable orders</li>
+            <li>Create a new decorator using the above matcher</li>
+            <li>Set the object context of the decorator to order</li>
+            <li>Set the workflow context to analyze (can be any prior to prebatch)</li>
+            <li>Create a new attribute called EPM_Eval</li>
+            <li>Set the data type to boolean</li>
+            <li>Set the value for the new attribute to true</li>
+            <li>Save and close the decorator</li>
+        </ol>
+        <p><strong class="standOutSecondary">Example decorator</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;decorator&gt;
+
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;5x7GrtCrd&lt;/matcher&gt;
+
+	&lt;!-- Run early to apply a default --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+
+	&lt;!-- Applies to the order analyze processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;order&lt;/objectContext&gt;
+
+	
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		
+		&lt;attribute&gt;
+		
+			&lt;key&gt;EPM_Eval&lt;/key&gt;
+			&lt;type&gt;boolean&lt;/type&gt;
+			&lt;value&gt;true&lt;/value&gt;
+			
+		&lt;/attribute&gt;
+				
+	&lt;/attributes&gt;
+	
+&lt;/decorator&gt;</code></pre>
+        </p>
+        <p class="Note">For easier maintenance and manageability, it may be desirable to include all logic for which orders should be evaluated for EPM&#160;in a single decorator (or scripted decorator), instead of spanning this logic across multiple files.</p>
+    </body>
+</html>

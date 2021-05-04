@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Creating a decorator</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Working with <MadCap:keyword term="decorators" />decorators</h1>
+        <p>A&#160;decorator is an XML&#160;file in the form of name.decorator.xml and reside in <code>sharedconfig\ordersort\decorators</code>. As there is no limit to the number of attributes that can be added to a single decorator, it is recommend to create discrete, meaningful decorators that have a specific purpose in mind. When creating new decorators, the following recommendations should be considered.</p>
+        <ul>
+            <li>Prefix each decorator name with the workflow context it will run at (i.e. inject_, analyze_, ppress_</li>
+            <li>Following the underscore, use a descriptive name which identifies the purpose of the decorator</li>
+            <li>Add a suffix to the decorator which identifies the level the decorator will run at</li>
+        </ul>
+        <p>An example decorator following these conventions would look similar to <code>analyze_8x10BookPromo_1.decorator.xml.</code></p>
+        <p>When creating an order decorator that will modify the value of an existing attribute, it is necessary to determine the data type of the attribute being modified, as this information will be required when building the decorator XML&#160;file. The View Order Attributes web page shows the data types of all attributes displayed. In looking at our previous Promo example, we could use the View Attributes web page to determine the data type of <strong class="standOutPrimary">priority </strong>to ensure the decorator is created correctly. By viewing the attributes web page, we can see that the data type for priority is intt.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/viewAttrPriority.jpg" class="img " title="View order attributes" alt="View order attributes" />
+        </p>
+        <h2>Creating a decorator overview</h2>
+        <ul>
+            <li>Create a matcher that will identify the orders to be decorated</li>
+            <li>Set the desired run level for the decorator</li>
+            <li>Set the appropriate workflow and object context for the decorator</li>
+            <li>Add the attributes to the decorator to be applied to the orders</li>
+            <li>Add the attributes to the on no match section (if needed)</li>
+        </ul>
+        <h3>Create the matcher</h3>
+        <p>Using the Sort Rule Configuration Tool, create a new matcher to identify the orders being decorated. Alternatively, a matcher can be created manually via editing the XML&#160;directly. </p>
+        <p class="note">If using the sort rule configuration tool to create a matcher that will be used by a decorator, always ensure the drop-down is set to order and not product. If the attribute the matcher will use only shows up when product has been selected, the matcher can still be created using the sort rule configuration tool but the XML&#160;will need to be modified after wards to change the compare level to order. Given that the object context is specified within the decorator, using the matcher to identify at which level to operate at is not valid. Matchers used by decorators must have their compare level set to Order.</p>
+        <p>A&#160;sample matcher for the Book Promo example is shown here <MadCap:xref href="#MatcherXML">"Matcher - XML" on page&#160;1</MadCap:xref>. Note that the matcher is using a compare attribute of analyzePreSort Rule. Presorting at analyze will be discussed later in this chapter.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;matcherdef&gt;
+	&lt;andmatcher&gt;
+		&lt;matcher comparelevel="order" 
+				 compareattribute="analyzePreSort Rule" 
+				 comparator="equals" 
+				 compareto="11.5 x 8.5 BK"/&gt;
+		&lt;matcher comparelevel="order" 
+				 compareattribute="ipsgroupname" 
+				 comparator="equals" 
+				 compareto="PrintCo"/&gt;
+	&lt;/andmatcher&gt;
+&lt;/matcherdef&gt;</code></pre><pre class="XMLFooter" xml:space="preserve">&#160;</pre>
+        <h3>Set the decorator run level</h3>
+        <p>For our book promo, there is no need for a 2nd level decorator. For this reason, the decorator run level will be set to 1. As mentioned previously, the purpose of the run level is to determine when the decorator runs compared to other decorators. The primary reasons for setting a decorator level higher than 1 include ensuring that the decorator runs after a decorator it is dependent on and forcing a decorator to run last during troubleshooting and analysis.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Setting the workflow and object context</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>In order to determine the workflow context to be used, the following question must be answered. Does the matcher defined in the decorator rely on any information that is not available after the analyze step of the workflow? If the answer to this question is, "no," then setting the context to inject should be sufficient. In many cases, it will be necessary to rely on presort information and configure the decorator's workflow context to analyze. The third workflow context of post press will be discussed later in this section.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Add attributes to the decorator</h3>
+        <p>Each decorator can contain two sections for applying values to new or existing attributes. The first section applies attributes to orders when a match is found. The second section, if used (optional), applies attributes to orders when no match is found for the order being evaluated. The attribute(s)&#160;specified can either be new attributes to be added to the order or modifications to the values of existing attributes. When modifying an existing attribute, it will be necessary to verify the data type of the attribute and verify it has been set correctly in the decorator.</p>
+        <p>Example Decorator (Book Promo) XML</p><pre><code class="language-xml">&lt;decorator&gt;
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;Book Promo&lt;/matcher&gt;
+	&lt;!-- Run early to apply a default --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+	&lt;!-- Applies to the order inject processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;order&lt;/objectContext&gt;
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;Book Promo&lt;/key&gt;
+			&lt;type&gt;boolean&lt;/type&gt;
+			&lt;value&gt;true&lt;/value&gt;
+		&lt;/attribute&gt;
+	&lt;/attributes&gt;
+&lt;/decorator&gt;</code></pre>
+        <h3>Formatting a decorated attribute</h3>
+        <p>It is also possible to format the attribute being decorated. For example, you may want to create a new intiger attribute but then convert it to a string and padd it with 3 0's. Or, create a new attribute of type date/time and then format it to only show MMDD. It is important to understand that once an attribute has been formatted, the resulting data type will always be string. The attribute section of a decorator that formats the new attribute will look like the snippet shown below.</p><pre><code class="XMLBlock">&lt;attribute&gt;
+	&lt;key&gt;dueMonthPadded&lt;/key&gt;
+	&lt;type&gt;int&lt;/type&gt;
+	&lt;value&gt;%dueMonth%&lt;/value&gt;
+	&lt;format&gt;%03d&lt;/format&gt;
+&lt;/attribute&gt;</code></pre>
+        <p>This will create a new attribute that shows a one or two digit value for the month and then pad it to ensure there are 3 total characters in the new string.</p>
+        <h3>Decorated attributes in order history</h3>
+        <p>For each decorator defined in the system, an entry will be written to the order history showing the result of the matcher that was executed. The message displayed in order history is called Attributes Changed and will display the decorator that ran, the attributes being modified, the initial value of the attribute for the order and the new attribute if a change occurred. An example of the attribute changed property window is shown below.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/orderHistoryAttr.jpg" title="Decorator order history" alt="Decorator order history" class="img " />
+        </p>
+    </body>
+</html>

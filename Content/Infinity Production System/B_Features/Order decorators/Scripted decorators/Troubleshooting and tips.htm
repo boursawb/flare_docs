@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Troubleshooting and tips</title>
+    </head>
+    <body>
+        <h1>Troubleshooting and tips</h1>
+        <p>To help in the scripted decorator process.</p>
+        <h2>Confirm your matcher works</h2>
+        <p>Before spending hours trying to determine why your scripted decorator is not functioning how you'd expect, confirm that your matcher is working by using the matcher test tool within the order batch sort utility, or assigning it to a standard decorator.</p>
+        <h2>Correct XML&#160;structure</h2>
+        <p>Make sure the XML&#160;document structure is correct for a scripted decorator. The &lt;attributes&gt;&#160;element should have been replaced with the &lt;script&gt;&#160;element and all JavaScript should exist within the CDATA&#160;section as shown below (good boiler plate code for new decorator - be sure to change the object as required).</p>
+        <p>&#160;</p>
+        <p><pre><code class="language-js">&lt;script&gt;
+ &lt;![CDATA[	
+		/**
+		  * decorate(obj) is the entry function for scripted decorators
+		  * obj will vary depending on objectContext.  In this case
+		  * it is a batch
+		 **/
+		function decorate(batch) {
+		// your code
+ ]]&gt;						
+&lt;/script&gt;</code></pre>
+        </p>
+        <p>&#160;</p>
+        <h2>Watch our for data type mismatches</h2>
+        <p>If you are trying to assign the value of an existing attribute to a variable you have defined, make sure to declare the variable correctly. '1' is not the same as 1. For additional information on the basics of working with variables in JavaScript, see <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank" title="Variables" alt="Variables">W3Schools - Variables</a></p>
+        <h2>Don't forget the object</h2>
+        <p>It is easy to forget that getDynamicAttributes() is a method contained in each object and neglect to start it with object.getDyn... Remember to always start with order.getDynamicAttributes().* when working at the order level as defined by the current context.</p>
+        <h2>Balance is key ()&#160;{}</h2>
+        <p>When working with different code blocks (if, forEach), be care to not omit a closing }&#160;or ). There are many different styles and techniques used to do this. One method is count the number of opening parenthesis in the statement and then add the number of missing closing parenthesis to the end of the declaration (just to the right of the closing brace} ). Consider the following example.</p>
+        <p>&#160;</p>
+        <p><pre><code class="language-js">batch.getOrders().forEach(function(order) {
+	// Your code here
+}</code></pre>
+        </p>
+        <p>&#160;</p>
+        <p>If you look close at this code, you will see that we have 3 opening parenthesis but only 2 closing. To correct the code, we will add a 3 closing parenthesis immediately after the closing brace.</p>
+        <p>&#160;</p>
+        <p><pre><code class="language-js">batch.getOrders().forEach(function(order) {
+	// Your code here
+})</code></pre>
+        </p>
+        <h2>Review errors in <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /></h2>
+        <p>If a scripted decorator fails, check that error that displays in tracing. In most cases, the error generated will give some indication as to what the problem is and how to resolve it.</p>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Tips and best practices</title>
+    </head>
+    <body>
+        <h1>Tips and best practices</h1>
+        <p>The following information provides highlights specific to the configuration and use of the SDK&#160;workflow events. For detailed information regarding a specific topic, please refer to the appropriate section of the documentation.</p>
+        <h2>High-level overview</h2>
+        <p>The major steps for setting up workflow event monitor include the following</p>
+        <ol>
+            <li>Configure the system by ensuring all plugins have been enabled</li>
+            <li>Decide on the events that should be monitored</li>
+            <li>Setup the desired sink(s) and events in the sdkconfig.xml located in sharedconfig</li>
+            <li>Define one or more templates that will be used by the previously created events</li>
+            <li>Create a clean-up file for locations <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> should monitor and clean up</li>
+        </ol>
+        <h2>Decide on the events to monitor</h2>
+        <p>Use the table from <MadCap:xref href="1_Introduction.htm">Introduction</MadCap:xref> to identify which events should be monitored. As a general rule, you should only create an event for things that are truly required. It is not necessary to create an event for every possible event type.</p>
+        <h2>Setup the sink</h2>
+        <p>For most integrations, a single sink location will suffice. If there is a need to create multiple sinks, one for the order management system, a second for the shipping system, and a third for yet another, that is completely fine and can be accomplished by create three individual sinks within the <code>sdkconfig.xml </code>file located in <code>sharedconfig</code>.</p>
+        <h2>Define the templates</h2>
+        <p>For each of the events defined in the SDK&#160;configuration file, a template will need to be created. In some cases, more than one event can share the same template, such as the case with an error event template. The process of building a template should always start with simply building out the structure, regardless of the type (xml, json, text, etc.). Once the structure has been defined, it is simply a matter of filling in the appropriate Velocity code to populate the data.</p>
+        <h2>Know your context</h2>
+        <p>Remember that it is the value specified for <code>&lt;State&gt;</code> within the event that determines the root context of the associated template. This means that if we have an event where the state to monitor for is <code>Order Batch queue</code>, the root context of our template associated with this event will be <code>Order</code>. This is why using <code>$data.id</code> within the template results in the order ID and not batch or line item. If however the value for state being monitored by the event is <code>Batch Content complete</code>, the root context of the associated template would be Batch. This in turn would mean that <code>$data.id </code>now represent the batch ID, not order ID&#160;or line item ID.</p>
+        <h2>Iterating batches and orders</h2>
+        <p>When building a batch template that will display a list of orders, or an order template that will display a list of line items, it is important to understand that displaying attributes of the items being iterated changes slightly. Instead of simply using $data.* we need to use the variable that now contains the context we are interested in. Consider the following example where the goal is to list all orders within the batch and all items within each order.</p>
+        <p><pre><code class="language-xml">&lt;BatchCreated&gt;
+&lt;BatchId&gt;$data.id&lt;/BatchId&gt;
+&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+&lt;Orders&gt;
+#foreach ( $order in $data.context.orders )
+	&lt;OrderId&gt;$order.id&lt;/OrderId&gt;
+	&lt;items&gt;
+	#foreach ( $item in $order.getItems() )
+		&lt;item&gt;
+			&lt;productType&gt;$item.dynamicAttributes.get("productType")&lt;/productType&gt;
+			&lt;quantity&gt;$item.dynamicAttributes.get("quantity")&lt;/quantity&gt;
+		&lt;/item&gt;
+	#end
+	&lt;/items&gt;
+#end
+&lt;/Orders&gt;
+&lt;/BatchCreated&gt;</code></pre>
+        </p>
+        <p>Look at the first #foreach loop and notice that we are taking <code>$data.context.orders</code> and assigning this to a new variable <code>$order</code>. For any attribute specific to the orders contained in this batch, we will call on it by using <code>$order.*</code>, not <code>$data</code>. This is because the root context of this template is Batch, so using <code>$data.id</code> would result in the batch ID&#160;being displayed, not the order ID. The same holds true for the line items contained within each order. To display dynamic attributes specific to the items contained within each order we need to first create a new <code>$item</code> variable and set it to the item context of <code>$order.getItems()</code> as shown in the second #foreach loop.</p>
+        <h2>Make sure to close your loops</h2>
+        <p>Make sure to include a corresponding <code>#end </code>for every <code>#foreach</code> used. Failing to do so will result in the event failing to fire and no event getting generated.</p>
+    </body>
+</html>

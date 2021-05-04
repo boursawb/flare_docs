@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>EPM integration</title>
+    </head>
+    <body>
+        <h1>EPM integration</h1>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> utilizes <strong class="standOutPrimary">hotfolder clients </strong>to integrate with Enfocus/Switch for the purposes of EPM&#160;evaluation. Hotfolder clients are generic and support any hotfolder based integration. All configuration files associated with hotfolder clients are located in <code>.\sharedconfig\hotfolderclient\hotfolder</code>. The hotfolder configuration file for the EPM&#160;integration must be named <code>EPM_DefaultHotfolder.hotfolder.xml </code>and reside at this location.</p>
+        <p class="Note">If the EPM&#160;configuration file does not exist in the hotfolder location, EPM&#160;evaluation will fail.</p>
+        <p>The EPM&#160;hotfolder configuration file contains the paths to input, cancel, complete, and error locations. This configuration file also includes folders to communicate processing states between <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> and the Enfocus/Switch environment.</p>
+        <h2>Hotfolder client - Input folder</h2>
+        <p>This folder signifies the beginning of the workflow where Enfocus/Switch will receive and process jobs submitted by <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" />. </p>
+        <p><strong class="standOutSecondary">Example:&#160;Input hotfolder .</strong>
+        </p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;State&gt;
+	&lt;Name&gt;Input&lt;/Name&gt;
+	&lt;Initial&gt;true&lt;/Initial&gt;
+	&lt;Folders&gt;
+		&lt;Folder&gt;\\enfocus\epm\input_1&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\input_2&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\input_3&lt;/Folder&gt;		
+	&lt;/Folders&gt;
+&lt;/State&gt;</code></pre>
+        </p>
+        <p>It is important to understand that the <code>&lt;Initial&gt;&lt;/Initial&gt;</code>&#160;element, with a value of <code>true</code>, designates this as an Input folder. The <code>&lt;Name&gt;&lt;/Name&gt;</code>&#160;element provides no functional purpose and is simply a display name for this location. If more than one Input hotfolder is specified, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> will load balance jobs by randomly selecting one of the defined locations for each job submitted. </p>
+        <h2>Hotfolder client - Complete folder</h2>
+        <p>The complete folder is used to notify <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> that the EPM&#160;evaluation is complete. For each job processed by the Enfocus/Switch solution, an XML&#160;results file will be read by <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" />. Similar to the <code>&lt;Initial&gt;true&lt;/Initial&gt;</code>&#160;element that designates the Input folder as Input, the <strong class="standOutPrimary">Complete </strong>folder must have a <code>&lt;Complete&gt;true&lt;/Complete&gt;</code>&#160;element defined, with a value of <code>true</code>. </p>
+        <p class="Note">If more than one Input location is defined, resulting in random load balancing, a corresponding cancel, cancel switch, complete, and error locations must exist for each of the defined inputs. For example, if there are 3 input location specified, there should also be 3 error, 3 cancel, 3 cancel switch, and 3 complete locations matching the input locations specified. </p>
+        <p><strong class="standOutSecondary">Example:&#160;Complete hotfolder</strong>
+        </p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;State&gt;
+	&lt;Name&gt;Complete&lt;/Name&gt;
+	&lt;Complete&gt;true&lt;/Complete&gt;
+	&lt;Folders&gt;
+		&lt;Folder&gt;\\enfocus\epm\complete_1&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\complete_2&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\complete_3&lt;/Folder&gt;		
+	&lt;/Folders&gt;
+&lt;/State&gt;</code></pre>
+        </p>
+        <h2>Hotfolder client - Error folder</h2>
+        <p>If Switch encounters an internal error during the EPM&#160;evaluation, an XML&#160;file will be sent to this folder and processed by <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" />. Similar to the elements defined for <strong class="standOutPrimary">Input </strong>and <strong class="standOutPrimary">Complete</strong>, the <code>&lt;Error&gt;&lt;/Error&gt;</code>&#160;element with a value of <code>true </code>designates this location as the error folder.</p>
+        <p><strong class="standOutSecondary">Example:&#160;Error hotfolder</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;State&gt;
+	&lt;Name&gt;Error&lt;/Name&gt;
+	&lt;Error&gt;true&lt;/Error&gt;
+	&lt;Folders&gt;
+		&lt;Folder&gt;\\enfocus\epm\error_1&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\error_2&lt;/Folder&gt;
+		&lt;Folder&gt;\\enfocus\epm\error_3&lt;/Folder&gt;		
+	&lt;/Folders&gt;
+&lt;/State&gt;</code></pre>
+        </p>
+        <h2>Hotfolder client - Cancel &amp;&#160;Cancel Switch</h2>
+        <p>Two hotfolder locations exist for canceling an EPM&#160;job. The hotfolder location containing the <code>&lt;Cancel/&gt;</code>&#160;element with a value of <code>true </code>is used to notify <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> of the cancellation. Once received, the <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> server awaiting the EPM&#160;job is notified of the cancellation and in turn, sends an XML&#160;message to the Cancel Switch hotfolder, canceling the job within the Enfocus/Switch environment.</p>
+        <p class="Note">Only the <strong class="standOutPrimary">Cancel </strong>folder monitored by <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> should include the <code>&lt;Cancel/&gt;</code>&#160;element with a value of <code>true</code>.</p>
+        <p><strong class="standOutSecondary">Example:&#160;Cancel &amp;&#160;CancelSwitch hotfolders</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;State&gt;
+	&lt;Name&gt;Cancel&lt;/Name&gt;
+	&lt;Cancel&gt;true&lt;/Cancel&gt;
+	&lt;Folders&gt;			
+		&lt;Folder&gt;\\server\epm\cancel_1&lt;/Folder&gt;
+		&lt;Folder&gt;\\server\epm\cancel_2&lt;/Folder&gt;	
+		&lt;Folder&gt;\\server\epm\cancel_3&lt;/Folder&gt;		
+	&lt;/Folders&gt;
+&lt;/State&gt;		
+&lt;State&gt;
+	&lt;Name&gt;CancelSwitch&lt;/Name&gt;
+	&lt;Cancel&gt;false&lt;/Cancel&gt;
+	&lt;Folders&gt;		
+		&lt;Folder&gt;\\server\epm\cancel_1&lt;/Folder&gt;
+		&lt;Folder&gt;\\server\epm\cancel_2&lt;/Folder&gt;	
+		&lt;Folder&gt;\\server\epm\cancel_3&lt;/Folder&gt;	
+	&lt;/Folders&gt;
+&lt;/State&gt;</code></pre>
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

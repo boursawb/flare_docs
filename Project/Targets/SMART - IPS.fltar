@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="Smart - IPS"
+  Type="EPUB"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  ConditionTagExpression="include[General.IDF or General.IPS] exclude[General.CJP] ">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true" />
+  <DocumentProperties
+    Author="Infinity Digital"
+    Publisher="Infinity Digital"
+    Type="Technical"
+    Description="Infinity Digital - IPS User Guide" />
+</CatapultTarget>

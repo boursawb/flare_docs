@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Template examples</title>
+    </head>
+    <body>
+        <h1>Template examples</h1>
+        <p>The following templates are real-world examples that can be used in production environments. Modifications can be made to the structure, element names, or attributes included to better suit your environment.</p>
+        <h2>Order examples</h2>
+        <p>The following template examples show how to generate events containing data specific to orders and line items contained within orders.</p>
+        <h4>Example:&#160;Simple order data example</h4>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+	&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+	&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+	&lt;EventId&gt;$data.state&lt;/EventId&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <p><strong>Associated event</strong>
+        </p>
+        <p>Given that the <code>State </code>element specifies an Order object, the context of the objects within the associated template will be of type Order.</p>
+        <p><pre><code class="language-xml">&lt;Event&gt;
+    &lt;State&gt;Order Analyze start&lt;/State&gt;
+    &lt;Sink&gt;default&lt;/Sink&gt;
+    &lt;TemplateName&gt;orderEvent.xml&lt;/TemplateName&gt;
+&lt;/Event&gt;</code></pre>
+        </p>
+        <h4>Example:&#160;Order level dynamic attributes</h4>
+        <p>The following example shows how to include the value of a dynamic attribute in the template. Any number of dynamic attributes can be added. The order and line level attributes that are available can be viewed from the view order attributes web page via the Products tab.</p>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+	&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+	&lt;ShipMethod&gt;$data.context.dynamicAttributes.get("shipmethod")&lt;/ShipMethod&gt;
+	&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+	&lt;EventId&gt;$data.state&lt;/EventId&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <h4>Example:&#160;Items in an order</h4>
+        <p>The following example shows how to display all line items contained within an order.</p>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+&lt;ShipMethod&gt;$data.context.dynamicAttributes.get("shipmethod")&lt;/ShipMethod&gt;
+&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+&lt;EventId&gt;$data.state&lt;/EventId&gt;
+	&lt;Items&gt;
+	#foreach ( $item in $data.context.getItems() )
+		&lt;Item&gt;
+		&lt;LineItemID&gt;$item.id&lt;/LineItemID&gt;
+		&lt;ProductType&gt;$item.dynamicAttributes.get("productType")&lt;/ProductType&gt;
+		&lt;/Item&gt;
+	#end
+	&lt;/Items&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <h2>Batch examples</h2>
+        <p>The following batch example includes details about the batch, orders contained within the batch, and the line items contained within each order. </p>
+        <h4>Example:&#160;Batch details, orders, and items</h4>
+        <p><pre><code class="language-xml">&lt;BatchCreated&gt;
+&lt;BatchId&gt;$data.id&lt;/BatchId&gt;
+&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+&lt;Orders&gt;
+#foreach ( $order in $data.context.orders )
+	&lt;OrderId&gt;$order.id&lt;/OrderId&gt;
+	&lt;items&gt;
+	#foreach ( $item in $order.getItems() )
+		&lt;item&gt;
+			&lt;productType&gt;$item.dynamicAttributes.get("productType")&lt;/productType&gt;
+			&lt;quantity&gt;$item.dynamicAttributes.get("quantity")&lt;/quantity&gt;
+		&lt;/item&gt;
+	#end
+	&lt;/items&gt;
+#end
+&lt;/Orders&gt;
+&lt;/BatchCreated&gt;</code></pre>
+        </p>
+        <h4>Example:&#160;Product batch details</h4>
+        <p>A&#160;product batch is typically a batch of like products. When more than one type of product exists within the product batch it is referred to as a combo batch. An example product batch could be a batch consisting of one or more 8.5 x 11 Photo Books. A&#160;product batch consists of product batch components. Continuing with the photo book example, typical product batch components associated with this product would include a book and cover component. The following code example demonstrates how to retrieve product batch and product batch component information within an SDK&#160;event batch template.</p>
+        <p class="Note">The product batch portion of the code is displayed between the &lt;ProductBatches&gt;&lt;/ProductBatches&gt; tags.</p>
+        <p><pre><code class="language-xml">&lt;Batch&gt;
+	&lt;BatchId&gt;$data.id&lt;/BatchId&gt;
+	&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+	
+	&lt;ProductBatches&gt;
+#foreach ( $productBatch in $data.context.productBatches)
+		&lt;ProductBatch&gt;
+		&lt;ProductType&gt;$productBatch.productType&lt;/ProductType&gt;
+			&lt;ProductBatchComponents&gt;
+#foreach ( $batchComponent in $productBatch.batchComponents )
+				#if (!$batchComponent.excluded)
+				&lt;ProductBatchComponent&gt;
+					&lt;BatchComponent&gt;$batchComponent.batchComponent&lt;/BatchComponent&gt;
+					&lt;ProductionIntentCompName&gt;$batchComponent.productionIntentCompName&lt;/ProductionIntentCompName&gt;
+					&lt;ProductionIntent&gt;$batchComponent.productionIntent&lt;/ProductionIntent&gt;
+					&lt;DFE&gt;$batchComponent.dfe&lt;/DFE&gt;
+					&lt;Device&gt;$batchComponent.device&lt;/Device&gt;
+				&lt;/ProductBatchComponent&gt;
+				#end
+#end
+			&lt;/ProductBatchComponents&gt;
+		&lt;/ProductBatch&gt;
+#end
+	&lt;/ProductBatches&gt;
+	
+	&lt;Orders&gt;
+#foreach ( $order in $data.context.orders )
+		&lt;Order&gt;
+			&lt;OrderId&gt;$order.id&lt;/OrderId&gt;
+			&lt;items&gt;
+#foreach ( $item in $order.getItems() )
+				&lt;item&gt;
+					&lt;productType&gt;$item.dynamicAttributes.get("productType")&lt;/productType&gt;
+					&lt;quantity&gt;$item.dynamicAttributes.get("quantity")&lt;/quantity&gt;
+				&lt;/item&gt;
+#end
+			&lt;/items&gt;
+		&lt;/Order&gt;
+#end
+	&lt;/Orders&gt;
+&lt;/Batch&gt;</code></pre>
+        </p>
+        <p class="Note">There is no requirement to include the entire batch structure within the template. The template could be as simple as the batch ID&#160;and the time stamp of the event, or any combination of the items used.</p>
+        <h2>Press job examples</h2>
+        <p>The following template example shows how to generate data specific to press jobs.</p>
+        <h4>Example:&#160;Printing end</h4>
+        <p><pre><code class="language-xml">&lt;PressJobEvent&gt;
+	&lt;JobID&gt;$data.id&lt;/JobID&gt;
+	&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+	&lt;EventId&gt;$data.state&lt;/EventId&gt;
+&lt;/PressJobEvent&gt;</code></pre>
+        </p>
+        <h2>Capturing error states</h2>
+        <p>A&#160;single template can be used to capture any error condition within the order or batch workflow. To cover all of the workflow steps that can result in an error, an event will need to be built in the main <code>sdkconfig.xml </code>file located in <code>sharedconfig </code>for each one that needs to be monitored. For example, creating events for the following states would be suitable for most production environments.</p>
+        <ul>
+            <li>Order Analyze error</li>
+            <li>Order Prebatch error</li>
+            <li>Order Sort error</li>
+            <li>Batch Content error</li>
+            <li>Batch Submit To Press error</li>
+        </ul>
+        <h4>Example:&#160;Error event</h4>
+        <p><pre><code class="language-xml">&lt;ErrorEvent&gt;
+	&lt;ID&gt;$data.id&lt;/ID&gt;
+	&lt;ErrorState&gt;$data.state&lt;/ErrorState&gt;
+	&lt;TimeStamp&gt;$data.timestampISO&lt;/TimeStamp&gt;
+&lt;/ErrorEvent&gt;</code></pre>
+        </p>
+    </body>
+</html>

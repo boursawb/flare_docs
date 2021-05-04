@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Working with orders</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Working with orders</h1>
+        <p> You can interact with an order by simply clicking on the row and highlighting it in the UI. Once the order is highlighted, there are several actions that can be performed using the context (right-click)&#160;menu. For detailed information about the available actions that can be performed, see <MadCap:xref href="../../A_Getting Started/2_Exploring the workspace.htm">Exploring the workspace</MadCap:xref></p>
+        <h2 MadCap:conditions="" class="NoPageBreak">Displaying order details</h2>
+        <p MadCap:conditions="">By double-clicking an order, you can see an expanded view showing several details about the item selected. The information displayed in the details panel of the expanded row is configurable and can be customized as needed. An example of an expanded row from the products tab is shown below.</p>
+        <p MadCap:conditions="General.IPS">
+            <img src="../../../Resources/Images/Assets/IPS/productsExpandedRow.png" class="img thumbnail" title="Expanded row" alt="Expanded row" />
+        </p>
+        <h2 MadCap:conditions="">Searching for orders</h2>
+        <p MadCap:conditions="">The search field in the upper right corner of the UI&#160;provides a way to enter a string of text to find orders containing that value. When searching for orders, it is important to understand that the column including the value you are looking for must be enabled and visible, or the order will not be displayed in the results found.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Search for orders</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li MadCap:conditions="">Identify the field that will be used for locating the order (customer, order id, etc.)</li>
+                    <li MadCap:conditions="">Ensure this column is currently enabled on the products tab</li>
+                    <li MadCap:conditions="">Type or paste in the value of the item being searched for</li>
+                </ol>
+                <p MadCap:conditions="">The UI&#160;will automatically filter down to only show rows that contain the value entered. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Searching for deleted order history</h2>
+        <p MadCap:conditions="">Once an order has been deleted, IPS&#160;retains history about that order for 7 days. Even though the order itself is not visible within the UI, it is still possible to retrieve the history for an order has been removed. This can be invaluable for troubleshooting that may need to occur after an order was deleted from the system. The following steps can be performed to retrieve history on an order that has been removed from the system within 7 days of the delete occurring.</p>
+        <ol>
+            <li MadCap:conditions="">Right-click on any order within the UI</li>
+            <li MadCap:conditions="">Select the option to View Order History</li>
+            <li MadCap:conditions="">On the order history window, clear the value currently in the text field labeled Order History Window</li>
+            <li MadCap:conditions="">Type in the order ID&#160;in question</li>
+            <li MadCap:conditions="">Click the blue refresh icon </li>
+            <li MadCap:conditions="">Review the history</li>
+        </ol>
+        <p class="note" MadCap:conditions="">If no history is displayed, the order ID&#160;entered was not correct / complete or the order was deleted greater than 7 days from the time of the search.</p>
+        <h2 MadCap:conditions="">Performing actions on orders</h2>
+        <p MadCap:conditions="">When working with orders, there are several actions that can be performed. To perform any of the following actions on one or multiple orders, right click on the highlighted order(s)&#160;and then select the desired action.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Mark Order Highest Priority</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Marking an order with high priority (100)&#160;will result in  moving the order to the top of the queue for purposes of batching. When batches are released, they are initially ordered as defined by the sort rules in play. If a particular order currently exists in the 6th batch of a given sort group but needs to be printed immediately, the order can be marked with high priority to move it to the next batch to be released. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Reprocess an order</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Orders can be reprocessed at various stages of the workflow. The 4 stages where a reprocess can be performed are shown below in the order of execution. </p>
+                <ul>
+                    <li MadCap:conditions="">Analyze</li>
+                    <li MadCap:conditions="">VDP&#160;Merge</li>
+                    <li MadCap:conditions="">Prebatch</li>
+                    <li MadCap:conditions="">Sort</li>
+                </ul>
+                <p class="note" MadCap:conditions="">The VDP&#160;step is only visible when variable data orders exist in the system. Additionally, there is a fifth state/light which displays in the UI&#160;for injection, but the ability to reprocess at this step does not exist and is accomplished by resubmitting the order from the order management system.</p>
+                <p MadCap:conditions="">It is important to understand that when an order is reprocessed, it will move through all steps of the workflow from the point of execution. If an order is reprocessed at analyze, it will again go through the VDP, prebatch and sort steps. Conversely, if an order is reprocessed at the end of the workflow, at sort for example, it will reprocess at the sort step only. Understanding this concept is critical as it can result in duplicate work being sent to press. For example, if an operator had reprocessed an order after it had already been successfully batched and printed, the order would return to the sort groups and be available for batching a second time, ultimately resulting in duplicate work. Some of the issues that can result in needing to reprocess orders include the following.</p>
+                <ul>
+                    <li MadCap:conditions="">Configuration files for a given product have changed since the initial injection of the order</li>
+                    <li MadCap:conditions="">External resources were not available during the initial processing of the order resulting in a workflow step failure</li>
+                    <li MadCap:conditions="">System resource issues resulting in a workflow step failure</li>
+                    <li MadCap:conditions="">Product configuration files do not exist for a given product type</li>
+                </ul>
+                <p MadCap:conditions="">In general, if an order fails at some point in the workflow, you will need to reprocess the order at the failed step or before. To reprocess one or multiple orders, follow the steps shown below.</p>
+                <ol>
+                    <li MadCap:conditions="">Highlight the order(s)&#160;that need to be reprocessed</li>
+                    <li MadCap:conditions="">Right-click and select the appropriate reprocess option</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Divert to alternate output profile</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="General.IPS">Diverting orders to an alternate profile essentially takes the order and reprocesses it at the prebatch step of the workflow using a different set of product configuration files than had previously been used. For example, this can be very useful when orders originally arrived prepared for a sheet fed press but then need to be redirected to a roll fed press. The concept of diverting work essentially allows you to switch how an order will be processed on the fly.</p>
+                <MadCap:dropDown>
+                    <MadCap:dropDownHead>
+                        <MadCap:dropDownHotspot>Divert order to an alternate profile</MadCap:dropDownHotspot>
+                    </MadCap:dropDownHead>
+                    <MadCap:dropDownBody>
+                        <ol>
+                            <li MadCap:conditions="General.IPS">Right-click on the order(s)&#160;that should be diverted</li>
+                            <li MadCap:conditions="General.IPS">Select the option to divert to an alternate output profile</li>
+                            <li MadCap:conditions="General.IPS">Select the desired output profile from the drop-down on the output profile dialogue box</li>
+                            <li MadCap:conditions="General.IPS">Click OK</li>
+                            <li MadCap:conditions="General.IPS">Wait for the orders to complete reprocessing before performing any further actions</li>
+                        </ol>
+                        <ol>
+                            <li MadCap:conditions="General.IPS">Right-click on the order(s)&#160;that should be diverted</li>
+                            <li MadCap:conditions="General.IPS">Select the option to divert to an alternate output profile</li>
+                            <li MadCap:conditions="General.IPS">Select the desired output profile from the drop-down on the output profile dialogue box</li>
+                            <li MadCap:conditions="General.IPS">Click OK</li>
+                            <li MadCap:conditions="General.IPS">Wait for the orders to complete reprocessing before performing any further actions</li>
+                        </ol>
+                        <p MadCap:conditions="General.IPS">Orders can be diverted from the products or sort groups tab. Diverting from products allows the operator to select one or more specific orders while diverting from sort allows for all orders within a group to be diverted at once. </p>
+                    </MadCap:dropDownBody>
+                </MadCap:dropDown>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>View Order History</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">View order history allows you to see what steps of the workflow an order has progressed through as well as the details of each step. Order history can be used for determining when certain actions took place, if a particular action occurred more than one time, which servers or workstation was responsible for a given action as well as provide detailed information related to errors that may have occurred. When selecting the option to view order history, a dialogue similar to the following will display.</p>
+                <p MadCap:conditions="">
+                    <img src="../../../Resources/Images/Assets/IPS/orderHistory.png" class="img thumbnail" title="Order history" alt="Order history" />
+                </p>
+                <p MadCap:conditions="">The left window pane of the history window shows the events and the time each event occurred. When selecting an event on the left, the details for the associated event display on the right. In the illustration shown above, View Order History has been selected and we can see the details of the event pane. By default, events are listed in descending order by their time stamp. Selecting any row from the event properties window and pressing CTRL+C&#160;will copy the details of that event to the Windows clipboard. Alternatively, you can click the scissors icon in the upper right corner to copy the event properties detail to the clipboard. To view the information, click the magnify glass icon to show the information in the default web browser.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>View PreBatch </MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Prebatch is the initial set of output generated by IPS&#160;that will be fed in to the batching process, ultimately resulting in the job that is sent to press. Think of prebatch as the initial preparation that is performed on the content received for the order. There are several functions that can occur at the prebatch step of the workflow including, sizing of content, splitting of content, adding additional content such as custom slates and banners, calculations performed against quantity, as well as several others. Selecting the option to view prebatch will open each PDF&#160;that has been generated during the prebatch phase of the workflow.. </p>
+                <p class="note" MadCap:conditions="">If an application for viewing PDF&#160;files has not been installed on the system, attempting to view prebatch will result in no error or PDF&#160;being displayed. Additionally, if disk utilization has exceeded the system threshold for generating prebatch, you will not be able to view prebatch. When a batch has successfully printed, all associated prebatch output will be deleted, preventing prebatch from being viewed.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Create Batch</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Create batch allows you to select one or more items from the products tab and send them to a specific press. Batches of orders can be manually constructed via sorting and filtering on the products tab by selecting the desired orders, right-clicking them, and then selecting the option to Create Batch. Typically, this feature is used for getting a specific order to press to meet a given deadline or having to reprint an item due to problems in finishing. When performing a Create Batch from the products tab, you will be presented with a dialogue showing the order batch(es)&#160;that will be sent to press. You can then select the desired press for the job to be sent to and click OK. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Archive Test Order</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">This feature allows the user to export the content and associated order XML&#160;to a specified location. Archiving an order is typically used for troubleshooting problems with an order or archiving it off as a backup. To archive an order, follow the steps shown below.</p>
+                <ol>
+                    <li MadCap:conditions="">Select the order(s)&#160;from the products tab to be archived</li>
+                    <li MadCap:conditions="">Right-click on the selection and select Archive Test Order</li>
+                    <li MadCap:conditions="">Select the location to archive the orders to from the Save dialogue box</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Delete Order</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Delete order is used to remove orders no longer needed  from the system. When deleting orders, it is important to understand that orders are at the top of the delete hierarchy and cascades down. This means that when orders are deleted from the system, they are removed from the associated batch as well. Additionally, if all orders contained within a batch are deleted, the batch will also be removed. The removal of the batch will in-turn delete all press jobs associated with the batch. </p>
+                <p MadCap:conditions="" style="page-break-before: always;">Given that the delete function cascades downward, the following rules apply.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>View Order Attributes</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">This feature allows the operator to display all attributes associated with a given order in a web browser. Some of the more common attributes include customer, order ID, and product type. Given the number of attributes typically associated with an order, it is not realistic to include all of them as available columns within the UI. However, there are many situations where viewing an attribute not currently displayed in the UI&#160;may be necessary.  There are two options for viewing order attributes.</p>
+                <ul>
+                    <li MadCap:conditions="">View order attributes</li>
+                    <li MadCap:conditions="">View order attributes from database</li>
+                </ul>
+                <p MadCap:conditions="">View order attributes will display all attributes currently in memory for the selected order. View order attributes from database will display all attributes for the selected order, both in-memory as well as those in the database. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Copy Error Information</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">This feature allows you to highlight a row that is in an error state, select the option to copy error information and have this information sent to the Windows clipboard. This is very useful for collecting preliminary information about a problem that can be sent to our support team for review. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Clear Filters</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">Clear filters is used to remove all filters that are currently applied in the UI. This should be the first thing to try when unable to locate orders that are believed to be in the system.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Product Configuration Browser</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">The product configuration browser provides a graphical view of the IPS&#160;product templates. Product configuration browser is typically used during the template development process and for template modifications when troubleshooting issues. When launching the product configuration browser, it will default to display information for the product currently selected in the UI. Depending on the number of products that have been defined in the system, it can take a few moments to launch. Some of features available within the product configuration browser include:</p>
+                <ul>
+                    <li MadCap:conditions="">Viewing the structure of product templates</li>
+                    <li MadCap:conditions="">Exporting product configuration files</li>
+                    <li MadCap:conditions="">Template editing</li>
+                    <li MadCap:conditions="">Locating a given template in its containing folder</li>
+                    <li MadCap:conditions="">Launching the imposition viewer tool</li>
+                    <li MadCap:conditions="">Searching for existing products</li>
+                </ul>
+                <p MadCap:conditions="">When launching the configuration browser for the first time during a UI&#160;session, you may receive a message indicating that one or more products failed to load. If you choose to see the errors, additional prompts will occur showing each product template that failed to load. You will then have to acknowledge each failing product before the configuration browser will successfully load. </p>
+                <p MadCap:conditions="">
+                    <img src="../../../Resources/Images/Assets/IPS/productConfigurationBrowser.png" class="img thumbnail" title="Product configuration browser" alt="Product configuration browser" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Imposition Preview Tool</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">The imposition preview tool is typically used by a product template developer for viewing how the signatures will be imposed on the sheet. This tool provides the following capabilities to the developer.</p>
+                <ul>
+                    <li MadCap:conditions="">A&#160;graphical view of how the product will be imposed based on the imposition selected</li>
+                    <li MadCap:conditions="">Ability to change various page attributes, sheet count and zoom</li>
+                    <li MadCap:conditions="">Ability to select different impositions and see the results in real-time</li>
+                    <li MadCap:conditions="">Ability to add additional impositions (compound impositions)</li>
+                    <li MadCap:conditions="">Creation of decaf PDF files for testing</li>
+                </ul>
+                <p MadCap:conditions="General.IPS">
+                    <img src="../../../Resources/Images/Assets/IPS/impoViewerTool.png" class="img thumbnail" title="Imposition viewer tool" alt="Imposition viewer tool" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown MadCap:conditions="General.IPS">
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Export Slate Designer Data</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="General.IPS">The slate designer export is used for generating an XML data source for the purposes of building slates via Jaspersoft Studio. </p>
+                <ul>
+                    <li MadCap:conditions="General.IPS">Export Slate Designer Data</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>View Order Content Files</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">This feature allows you to view the original order content files as they were received from the order management system. Depending upon the type of order selected (PDF/JPG),  will either launch the associated PDFs in the default PDF&#160;viewer or open the location containing the JPG&#160;files. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Copy Cell Contents</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p MadCap:conditions="">This captures the value displayed in any cell within the  UI. The information will be sent to the Windows clipboard where it can be pasted in to other fields within the UI or other applications as needed. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>UI data export</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The data export feature allows you to export a tab delineated set of data from any tab within the UI&#160;to a .tsv file. </p>
+                <ol>
+                    <li>Select the tab containing the data to export</li>
+                    <li>Right-click on any row</li>
+                    <li>Select the Export table data option</li>
+                    <li>Browse to the location to save the .tsv to</li>
+                    <li>Enter a name for the new file</li>
+                    <li>Click the Open button to save the file</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

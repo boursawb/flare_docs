@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-23T11:23:18.2556447-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/0_Intro Batching.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/0_Intro Batching.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/1_Manual device selection.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/1_Manual device selection.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/2_Automatic device selection.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/2_Automatic device selection.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/3_Device groups.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/3_Device groups.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/4_Auto release.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/4_Auto release.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/5_Auto-release filters.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/5_Auto-release filters.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/6_batch naming.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/6_batch naming.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/Production Intents.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/Production Intents.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/E_Batching/Release presets.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/E_Batching/Release presets.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_Intro Batching.htm"
+      TimeStamp="5/23/2018 11:23:12 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_Manual device selection.htm"
+      TimeStamp="5/23/2018 11:23:12 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_Automatic device selection.htm"
+      TimeStamp="5/23/2018 11:23:12 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/3_Device groups.htm"
+      TimeStamp="5/23/2018 11:23:12 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/4_Auto release.htm"
+      TimeStamp="5/23/2018 11:23:12 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/5_Auto-release filters.htm"
+      TimeStamp="5/23/2018 11:23:13 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/6_batch naming.htm"
+      TimeStamp="5/23/2018 11:23:13 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Production Intents.htm"
+      TimeStamp="5/23/2018 11:23:13 AM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Release presets.htm"
+      TimeStamp="5/23/2018 11:23:13 AM" />
+    <Url
+      Source="../TOCs/0_Intro Batching.fltoc"
+      TimeStamp="5/23/2018 11:23:19 AM" />
+  </GeneratedFiles>
+</HtmlImport>

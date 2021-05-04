@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-31T15:12:04.4330110-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/0_Introduction.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/0_Introduction.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/1_Understanding the post press workflow.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/1_Understanding the post press workflow.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/2_Configure the post press workflow.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/2_Configure the post press workflow.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/3_Defining the data format.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/3_Defining the data format.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/4_Post-press user interface.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/G_PostPress/4_Post-press user interface.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_Introduction.htm"
+      TimeStamp="5/31/2018 3:11:29 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_Understanding the post press workflow.htm"
+      TimeStamp="5/31/2018 3:11:29 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_Configure the post press workflow.htm"
+      TimeStamp="5/31/2018 3:11:29 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/3_Defining the data format.htm"
+      TimeStamp="5/31/2018 3:11:29 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/4_Post-press user interface.htm"
+      TimeStamp="5/31/2018 3:11:29 PM" />
+    <Url
+      Source="../TOCs/0_Introduction.fltoc"
+      TimeStamp="5/31/2018 3:12:04 PM" />
+  </GeneratedFiles>
+</HtmlImport>

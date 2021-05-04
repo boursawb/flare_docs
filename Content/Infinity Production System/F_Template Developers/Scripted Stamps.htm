@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Scripted Stamps</title>
+    </head>
+    <body>
+        <h1>Scripted Stamps</h1>
+        <p>Scripted stamps are globally available stamps that can be applied to any layout within <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. Once a scripted stamp is created, it can be used any number of times without having to duplicate the code for each layout that requires it. Layouts can be generated as related content, applied directly to a prebatch component, or associated with a prebatch or batch imposition. </p>
+        <p class="Note">It is important to understand that scripted stamps are evaluated for every layout invoked, regardless of the stamp being included in that layout. Assuming a product which consists of a <MadCap:conditionalText MadCap:conditions="General.CJP">banner</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="General.IPS">slate</MadCap:conditionalText>, prebatch layout, prebatch imposition layout, and batch imposition layout, every scripted stamp defined in the system will be evaluated 4 times for each product of this type that processes through <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. For example, creating a scripted stamp which attempts to include batch level attributes will fail during invocation of prebatch layouts if not handled appropriately in your code.</p>
+        <p>As scripted stamps can be used across all layouts, they are primarily used for signature level stamping at batch imposition. </p>
+        <h2>Scripted stamp blueprint</h2>
+        <p>The following blueprint can be used for creating a new scripted stamp.</p>
+        <ol>
+            <li>Identify the required data</li>
+            <li>Validate preconditions</li>
+            <li>Form the data</li>
+            <li>Build the stamp</li>
+        </ol>
+        <p>The first step is to identify the data you want to work with. In the precondition validation section, we assign values to the variables defined in step 1 when the value returned is null. This is done to prevent the script from failing when batch data is requested during invocation of a prebatch layout where that data does not exist. Next you will perform any required formatting that needs to occur on the data retrieved and the final step is to build the stamp to be used in the desired layouts. This blueprint is meant to provide a basic approach for getting started with scripted stamps. </p>
+        <h3>Skeleton blueprint</h3>
+        <p>The following code provides a starting point for creating a scripted stamp.</p>
+        <p><pre><code class="language-xml">&lt;ScriptedData&gt;
+
+&lt;Generator&gt;
+	&lt;Script&gt;
+	&lt;![CDATA[
+	
+/**
+ * string generate(data)
+ *
+ * @parameters
+ *
+ * data:  An object containing all available stamp data
+ *
+ * @returns a string, given stamp data.
+ *
+ **/
+ 
+///////////////////////////////////////////////////
+// Gather data
+///////////////////////////////////////////////////
+
+// Your code here
+ 
+///////////////////////////////////////////////////
+// Validate preconditions for this stamp
+///////////////////////////////////////////////////
+
+// Your code here
+
+///////////////////////////////////////////////////	
+// Format values
+///////////////////////////////////////////////////
+
+// Your code here
+ 
+///////////////////////////////////////////////////	
+// Build the stamp
+///////////////////////////////////////////////////
+
+// Your code here
+
+]]&gt;
+	&lt;/Script&gt;
+&lt;/Generator&gt;
+&lt;/ScriptedData&gt;</code></pre>
+        </p>
+        <h2>Scripted stamp walk-through</h2>
+        <p>In this walk-through, we will create a scripted stamp that generates a unique serial ID&#160;for each item contained in a batch and stamp this information during the batch imposition process.</p>
+        <h3>Step 1 - Create the scripted stamp XML&#160;file</h3>
+        <p>Create a new file in <code>*\sharedconfig\content\scriptedstamp\</code> named <code>serialid.scriptedstamp.xml.</code> Once created, open the file in a text/code editor and paste in the skeleton blueprint code shown above. </p>
+        <h3>Step 2 - Identify the required data</h3>
+        <p>In this step we will identify the attribute that will be used in the script and assign their values to variables. The variables will be declared in the Gather Data section of the script.</p>
+        <p><pre><code class="language-xml">var bagnumber = '' + data.bagnumber;
+var linenumber = data.linenumber;
+var copy = data.copy;
+var totalitems = data.copies;</code></pre>
+        </p>
+        <h3>Step 3 - Validate preconditions</h3>
+        <p>For each variable declared, we need to return a default value in the even the data returned results in a null. </p>
+        <p><pre><code class="language-xml">if (linenumber == null) 
+	return 'noserialid-nolinenumber';
+if (copy == null) 
+	return 'noserialid-nocopy';
+if (bagnumber == null)
+   return 'noserialid-nobagnumber';
+if (totalitems == null)
+   return 'noserialid-totalitems';</code></pre>
+        </p>
+        <h3>Step 4 - Format the data (optional)</h3>
+        <p>In this step, you can perform any formatting that may be required such as padding and trimming the values.</p>
+        <p><pre><code class="language-xml">linenumber = ('0000' + linenumber).slice(-4);
+copy = ('0000' + copy).slice(-4);
+totalitems = ('0000' + totalitems).slice(-4);
+var stampId = '-test';</code></pre>
+        </p>
+        <h3>Full code review</h3>
+        <p><pre><code class="language-xml">&lt;ScriptedData&gt;
+
+&lt;Generator&gt;
+	&lt;Script&gt;
+	&lt;![CDATA[
+	
+/**
+ * string generate(data)
+ *
+ * @parameters
+ *
+ * data:  An object containing all available stamp data
+ *
+ * @returns a string, given stamp data.
+ *
+ **/
+ 
+// Dump stamp data to logs
+throw(‘fake exception’)
+
+///////////////////////////////////////////////////
+// Gather data
+///////////////////////////////////////////////////
+ var bagnumber = '' + data.bagnumber;
+ var linenumber = data.linenumber;
+ var copy = data.copy;
+ var totalitems = data.copies;
+ var purposelyNull;
+ 
+///////////////////////////////////////////////////
+// Validate preconditions for this stamp
+// Bail out with stamp value that tells why if null
+///////////////////////////////////////////////////
+if (linenumber == null) 
+	return 'noserialid-nolinenumber';
+if (copy == null) 
+	return 'noserialid-nocopy';
+if (bagnumber == null)
+   return 'noserialid-nobagnumber';
+if (totalitems == null)
+   return 'noserialid-totalitems';
+
+
+	
+///////////////////////////////////////////////////	
+// Assign defaults for values allowed to be null
+///////////////////////////////////////////////////
+
+  
+///////////////////////////////////////////////////	
+// Format values
+///////////////////////////////////////////////////
+linenumber = ('0000' + linenumber).slice(-4);
+copy = ('0000' + copy).slice(-4);
+totalitems = ('0000' + totalitems).slice(-4);
+var stampId = '-test';
+ 
+///////////////////////////////////////////////////	
+// Build the stamp
+///////////////////////////////////////////////////
+var DELIM = '-';
+var stamp = bagnumber + DELIM + linenumber + DELIM + copy + DELIM + stampId + DELIM + purposelyNull;
+
+ 
+return stamp;
+
+]]&gt;
+	&lt;/Script&gt;
+&lt;/Generator&gt;
+&lt;/ScriptedData&gt;</code></pre>
+        </p>
+        <h3>Step 5 - Build the stamp</h3>
+        <p><pre><code class="language-xml">var DELIM = '-';
+var stamp = bagnumber + DELIM + linenumber + DELIM + copy + DELIM + totalitems + DELIM + stampId; 
+return stamp;</code></pre>
+        </p>
+        <h3>Step 6 - Implement the stamp</h3>
+        <p>Scripted stamps are implemented by adding them to the format string attribute of a text stamp within layouts. The value specified for the format string must match the file name of the stamp. In the case of the stamp built in this walk-through, the value would be <code>serialid</code>. </p>
+        <h2>Troubleshooting</h2>
+        <p>When the expected value for a scripted stamp is not returned,  an exception can be thrown from the scripted stamp that will result in all available stamp data being written to the logs for review. This can be instrumental when trying to understand why stamps are not displaying the expected information. To dump all stamp data to the logs, add the following code just below the main comments section as shown below.</p>
+        <p><pre><code class="language-xml">// Dump stamp data to logs
+throw(‘fake exception’)</code></pre>
+        </p>
+        <p>Which server logs to review will be determined by the host that performed the processing of the layout. For example, if the stamp was added to the layout of a batch imposition, review the batches tab to determine which host took part in batch content processing and review the logs on that host.</p>
+        <h3>Advanced troubleshooting / debugging</h3>
+        <p>The stamp data written to the logs, specifically the data object, can be brought into an online JavaScript debugger to write code against. This can be useful when trying to build out your code for testing and validation purposes without having to test it inside of<MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />.</p>
+        <h4>Popular online JavaScript editors</h4>
+        <ul>
+            <li>Codeopen.io</li>
+            <li>JFiddle</li>
+            <li>JSBin</li>
+        </ul>
+    </body>
+</html>

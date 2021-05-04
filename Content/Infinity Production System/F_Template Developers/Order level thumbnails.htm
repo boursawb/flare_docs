@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Order level thumbnails</title>
+    </head>
+    <body>
+        <h1>Order level thumbnails</h1>
+        <p>This feature allows the user to specify which images from the order content will be available for stamping. The real power of this feature comes into play when stamping thumbnail images onto templated related content (slates) for multi-line orders that are order based, not line item based. The thumbnails will be available for stamping in all layouts, not just those used for related content. Prior to this feature, if an order contained three products (line items), and the related content was associated with line number 1, you could only generate a thumbnail from the first 6 or last 6 pages of this line items content. Given that the related content describes the order, which consists of all three line items, it was not possible to generate thumbnails that were representative of all line items contained in the order. Additionally, since the system was responsible for generating the thumbnails (first six pages and last six xpages of the line item), there was no way to generate a thumbnail for pages outside of these ranges. The template developer now has full control over which pages of the content the system will generate thumbnails for, across all line items contained within the order. </p>
+        <h2>Order thumb structure</h2>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will concatenate the runlist items of each component from every line item, contained in the order. This new list is indexed and then used for generating the thumbnails. A&#160;runlist item is simply the content that is associated with the each of the line item's component's included in the order. To better understand how this works, consider the following example. </p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/thumbPageRanges.jpg" title="Thumbnail range example" alt="Thumbnail range example" class="img" />
+        </p>
+        <p>In the above example, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> has streamed together each page of every component from every line contained in the order. This results in all 16 pages of the order being available for generating thumbnails</p>
+        <h2>Generating thumbnails</h2>
+        <p>Generating the thumbnails that will be made available for stamping involves adding the attribute <code>orderThumbGeneratePages </code>to the idfprebatch element of the prebatch definition. If not specified, the system will generate a default set of thumbnails consisting of the first 4 images of the first line item contained in the order and the last 4 images of the last line item contained in the order. Valid values for the <code>orderThumbGeneratedPages </code>attribute will use the standard range syntax. (i.e. 1-3, 4,5,6, n, (n-1), (n-2). </p>
+        <p class="Note">When generating thumbnails, only create as many as you need. There are performance costs associated with the creation of thumbnails, so you would never set a range such as (1-n)&#160;to have the system generate a thumbnail for every page of every line item contained in the order. </p>
+        <p class="Note">Every product type contained within the order will need to have the same value set for orderThumbGeneratedPages. This means that the prebatch definitions used for each of the three products must have the same value set for orderThumbGeneratedPages. </p>
+        <ol>
+            <li>Open the first prebatch definition to update</li>
+            <li>Add the <code>orderThumbGeneratedPages </code>attribute to the <code>idfprebatch </code>element of the prebatch definition</li>
+            <li>Set the desired range</li>
+            <li>Copy the new attribute and associated value to the remaining prebatch definitions (if any)</li>
+            <li>Ensure all prebatch definitions are saved following the updates</li>
+        </ol>
+        <h2>Stamping the generated thumbnails</h2>
+        <p>Once the thumbnails have been generated, they can be stamped in templated related content and standard layouts using image stamps. The stamps will be generated based on the range that was specified in prebatch. For example, if a range of 1,2,n,(n-1)&#160;was specified, it would result in the following 4 thumbnails available for stamping.</p>
+        <ul>
+            <li>orderthumb_1</li>
+            <li>orderthumb_2</li>
+            <li>orderthumb_n</li>
+            <li>orderthumb_n-1</li>
+        </ul>
+        <p>The 4 items shown above are the values that would be entered in the layout image stamps for stamping each of the thumbnails generated. </p>
+    </body>
+</html>

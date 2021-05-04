@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="6" MadCap:lastHeight="102" MadCap:lastWidth="651" MadCap:sourceDocument="Y:\qa\Documentation\Support\Infinity Documentation\Content\IPS User Guide\I_AdvancedFeatures\Near Line Batch Tickets\NearLine Batch Ticket.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Nearline Batch Ticket</title>
+        <link href="../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1 MadCap:autonum="CHAPTER 1">
+            <MadCap:keyword term="Near Line Batch Ticket" />Near Line Batch Ticket</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes the ability to generate a near line batch ticket. A&#160;near line batch ticket is defined as an additional spread to an existing batch component but will not be included "in-line"&#160;with the press job generated. Near line batch tickets will typically be sent to a laser jet style printer, not to a press. Additionally, near line batch tickets will not display on the press jobs tab within <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> and will not be included in job related calculations and counts. </p>
+        <p>Utilizing near line batch tickets is accomplished via adding an additional spread to the desired batch component. There are two methods that can be used for device selection when working with near line batch tickets.</p>
+        <ul>
+            <li>Specify a DFE&#160;and device</li>
+            <li>Specify a device group and device group mode</li>
+        </ul>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Specify a DFE&#160;and device</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>This method allows the administrator to set a specific DFE&#160;and destination device for the near line batch ticket to be sent. An example of this configuration method is shown below.</p>
+                <p class="note" MadCap:autonum="&lt;b&gt;&lt;span style=&quot;color: #819ff7;&quot; class=&quot;mcFormatColor&quot;&gt;Note: &lt;/span&gt;&lt;/b&gt;">The use of the inline="false"&#160;attribute tells <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> that this additional spread should not be included "inline"&#160;with the job that is going to press, but instead should go to the DFE&#160;and device specified within this additional spread declaration.</p>
+                <p>&#160;</p><pre class="XMLHeader" xml:space="preserve">Nearline Specific XML</pre><pre class="XMLBlock" xml:space="preserve">&lt;!-- Nearline Batch Ticket Sent To Specific DFE--&gt;</pre><pre class="XMLBlock" xml:space="preserve">&lt;spread inline="false" name="nearlinetoCAL-STD-1" layout="A4-LANDSCAPE" dfe="ULTRA-3-6-1" device="CAL-STD-1" relatedcontenturi="YB_idf_batchticket_8X10" relatedcontenttype="IDFBatchTicketV2"/&gt;</pre><pre class="XMLFooter" xml:space="preserve">&#160;</pre>
+                <p>In this example, the following will occur:</p>
+                <ul>
+                    <li>The batch ticket will not be included in the press PDF&#160;for this batch component</li>
+                    <li>The batch ticket will be sent to a device called CAL-STD-1 via the Ultra-3-6-1 DFE</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Specify a device group and device group mode</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>This method allows the administrator to call on a specific device group for submitting the near line batch ticket. The following example illustrates how to configure an additional spread for submitting a near line batch ticket via a specific device group.</p><pre class="XMLHeader" xml:space="preserve">Device Group Specific XML</pre><pre class="XMLBlock" xml:space="preserve">&lt;!-- Nearline Batch Ticket Sent To Device Group Calendar --&gt;</pre><pre class="XMLBlock" xml:space="preserve">&lt;spread inline="false" name="nearlinetoDeviceGroupCalendar" layout="A4-LANDSCAPE" deviceGroup="calendar" deviceGroupMode="remake" relatedcontenturi="YB_idf_batchticket_8X10" relatedcontenttype="IDFBatchTicketV2"/&gt;</pre><pre class="XMLFooter" xml:space="preserve">&#160;</pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Setting up a near line batch ticket</h2>
+        <p>The following steps illustrate the requirements for setting up a near line batch ticket.</p>
+        <ol>
+            <li>Identify the <span class="SetOffFirstLevel">batch component </span>that the near line batch ticket will be associated with</li>
+            <li>Add an <span class="SetOffFirstLevel">additional spread </span>to this batch component (use the examples from above as a guide)</li>
+            <li>Ensure the additional spread includes the <span class="SetOffFirstLevel">inline="false"&#160;</span>attribute </li>
+            <li>Determine if the near line batch ticket will be sent to a <span class="SetOffFirstLevel">specific DFE&#160;</span>and device or to a <span class="SetOffFirstLevel">device group </span>and modify the additional spread accordingly</li>
+            <li>Specify an appropriate <span class="SetOffFirstLevel">name </span>for the additional spread</li>
+            <li>Specify the appropriate batch ticket <span class="SetOffFirstLevel">relatedcontenturi&#160;</span>and batch ticket type <span class="SetOffFirstLevel">relatedcontenttype</span></li>
+            <li>If using device group selection, specify the appropriate <span class="SetOffFirstLevel">deviceGroupMode </span>(standard, remake, priority)</li>
+            <li>Save the batch definition</li>
+        </ol>
+        <p class="note" MadCap:autonum="&lt;b&gt;&lt;span style=&quot;color: #819ff7;&quot; class=&quot;mcFormatColor&quot;&gt;Note: &lt;/span&gt;&lt;/b&gt;">Remember that near line batch tickets do not show up on the press jobs tab in <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" />. If there is a need to inspect the PDF&#160;after the batch ticket is printed, you must browse to the location where the PDF&#160;was written to and view it manually.</p>
+    </body>
+</html>

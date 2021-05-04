@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Dynamic Job Options</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Dynamic Job Options" />Dynamic Job Options</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can dynamically adjust job options based on a value of an order level attribute. When all orders within a batch have the same value for a given attribute, the attribute can roll-up to the batch level and will be available for dynamic job option handling. If the value of a given attribute is not the same for all orders within the batch, the attribute cannot roll-up. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;Dynamic job options</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p class="Example">Consider a situation where you would like to determine the color profile used on press based on the type of product being printed. By using dynamic job options, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can be configured to identify all orders that meet a specific criteria and then adjust the color profile used when submitting the work to press. A&#160;typical scenario might be identifying all orders by customer name and then using a specific color profile for each unique customer. A&#160;key benefit of using dynamic job options is reduced template development. Without this feature, each color profile change referenced in the above example would require a unique set of product templates for each customer. By using dynamic job options, a single product template can be used to cover all scenarios.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p class="note">It is important to understand that if an order attribute cannot roll-up to the batch level, this attribute will not function as expected when attempting to dynamically adjust job options. </p>
+        <h2 class="NoPageBreak">Overview</h2>
+        <p>By using the decorator framework, a special decorator is applied at batch time. The order decorator tells <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />, for the following batch component, apply a value of <code>abc </code>to the job option called <code>jobName</code>. The decorator used relies on a very strict format so that it can be recognized by the system as press job override. (<strong class="standOutPrimary">PJO</strong>). The format of the decorator will start with the pjo prefix, followed by the batch component name the job option should apply to, and ending with the <code>psOp </code>name of the job option to be modified. The following example shows what the ID&#160;would look like for changing the <code>HCMSetup psOp </code>on a batch component named Cover</p>
+        <p class="TableTextEmphasis">
+            <MadCap:keyword term="pjo" /><code>pjo--Cover--HCMSetup </code>
+        </p>
+        <p class="Note">Note the -- (double-hyphen)&#160;between each parameter</p>
+        <h3>Batch Submit</h3>
+        <p>During the batch submit to press process, the system checks for these special decorators. If a match is found, they override the existing <code>PSOp </code>setting in the batch component definition. Additionally, a message will be generated and written to batch history showing that the press job option was replaced. The process for dynamically modifying the press job options will include the following events.</p>
+        <ul>
+            <li>The PJO attributes are noticed from the decorator applied at batch time</li>
+            <li>The attributes are parsed to determine if the batch component applies</li>
+            <li>The <MadCap:keyword term="psop" />psop key is parsed</li>
+            <li>The value of the attribute is read</li>
+            <li>The psopkey and value are applied to the job options that would have been sent to the DFE</li>
+        </ul>
+        <p class="note">It is important to note that not all PSOp settings can be modified dynamically. Two options which may not provide expected results using this process would be substrate and copies. Testing and validation will need to occur in order to determine if the PSOp in question is viable for this feature.</p>
+        <h3>Configuration</h3>
+        <p>To configure <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to dynamically adjust press job options at batch submit, follow the steps shown below.</p>
+        <ol>
+            <li>Create a new decorator to identify and describe the override. This will involve creating a matcher that will identify the orders to be decorated. For additional information on creating decorators, see <MadCap:xref href="../../../Working/Order Decorators.htm">"Order Decorators" on page 1</MadCap:xref></li>
+            <li>Set the decorator <strong class="standOutPrimary">object context </strong>to <strong class="standOutPrimary">batch</strong></li>
+            <li>Set the decorator <strong class="standOutPrimary">workflow context </strong>to <strong class="standOutPrimary">batch</strong></li>
+            <li>In the attributes section of the decorator, set the <strong class="standOutPrimary">ID&#160;</strong>to the desired values following the format <code>pjo--batchComponentName--PSOPName</code></li>
+            <li>Set the override value to apply</li>
+            <li>Set the type to String</li>
+        </ol>
+        <p class="note1">After building the decorator, it is recommended to verify the attribute is being applied at batch time. This can be accomplished by viewing the batch attributes web page. Additionally, viewing batch history for the attribute changed message, as well as viewing the send to DFE&#160;message for the PSOp that was sent can be used to prove functionality.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;PJO decorator</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;decorator&gt;
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;11x8.5Cals_GroupABC&lt;/matcher&gt;
+	&lt;!-- Run late, after defaults sort code has been applied --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+	&lt;!-- Applies to the order inject processing --&gt;
+	&lt;workflowContext&gt;batch&lt;/workflowContext&gt;
+	&lt;!-- Applies to the order level --&gt;
+	&lt;objectContext&gt;batch&lt;/objectContext&gt;
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;pjo--CalBody--HCMSSetup&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;SpecialColorSetup&lt;/value&gt;
+		&lt;/attribute&gt;
+	&lt;/attributes&gt;
+&lt;/decorator&gt;</code></pre>
+                <p>We can see that the press job override is attempting to modify the HCMSetup PSOp value for the CalBody component, changing it to a new value of SpecialColorSetup.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Reviewing batch history</h3>
+        <p>Batch history can be used to determine which attributes have been changed and to determine which PSOps setting was sent to the press during the send to DFE&#160;event. </p>
+    </body>
+</html>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link href="../../../Resources/TableStyles/infinityTableStyle1.css" rel="stylesheet" MadCap:stylesheetType="table" /><title>Introduction</title>
+    </head>
+    <body>
+        <h1>Introduction</h1>
+        <p>The Workflow Events SDK allows integrators to configure <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to submit events to third-party systems following the execution of specific workflow steps.  Examples of common workflow events include an order state indicating it is ready to be batched, the creation of a new batch and the orders it contains, or when a job has successfully printed.  Triggered events will result in a file being generated and placed into a defined network location for consumption and processing by the down-stream system. Examples could include an order management system, a shipping system, or network hotfolder location that is monitored by a systems management solution capable of sending alerts based on messages received.</p>
+        <h2>Event structure</h2>
+        <p>A workflow event is comprised of the following elements.</p>
+        <ul>
+            <li><strong class="standOutPrimary">State </strong>specifies what <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> should watch for.  Valid states include <code>Order Analyze start</code>, <code>Batch Content start </code>and <code>Press Job printing end</code></li>
+            <li><strong class="standOutPrimary">Sink </strong>refers to the location where the event will be submitted to.  This will be a defined network location where the files submitted by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will be picked up by the system being integrated with</li>
+            <li><strong class="standOutPrimary">TemplateName </strong>is simply the template for the sink to use</li>
+        </ul>
+        <p>An example workflow event is shown below.</p>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+	&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+	&lt;EventId&gt;$data.state&lt;/EventId&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <h2>Sink structure</h2>
+        <p>A sink is comprised of the following elements.</p>
+        <ul>
+            <li><strong class="standOutPrimary">id </strong>specifies a unique value for referencing the sink</li>
+            <li><strong class="standOutPrimary">Type </strong>refers to the type of sink.  File is the only type currently available</li>
+            <li><strong class="standOutPrimary">FileNamePattern </strong>specifies the pattern to use for generating the file name of the event</li>
+            <li><strong class="standOutPrimary">FileSystemDirectory </strong>specifies the location to write the files to</li>
+            <li><strong class="standOutPrimary">FileSystemRetentionTime </strong>specifies how long to keep files in the directory.  Consumption and cleanup of files should be handled by the system you are integrating with.  This is provided as a backup, not the preferred way of cleaning up files from this location</li>
+            <li><strong class="standOutPrimary">FileSystemRetentionPollInterval </strong>specifies how often to enforce retention time.  It is recommended to set this value to a fairly high number, not less than 1 hour for production environments</li>
+        </ul>
+        <h2>Current workflow events</h2>
+        <p>The following table shows the events currently available in the SDK.  The events available are determine by specific order, batch, and press job states used by <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />.  An event is the combination of an <code>object type</code>, a <code>workflow step</code>, and a <code>workflow event</code>.</p>
+        <p><strong class="standOutPrimary">Object types </strong>include <code>Order</code>, <code>Batch</code>, and <code>Press Job</code></p>
+        <p><strong class="standOutPrimary">Order workflow steps </strong>include <code>sort</code>, <code>analyze</code>, <code>prebatch</code>, and <code>batch </code>(queued event only, denotes an order that is in the sort groups, ready to batch)</p>
+        <p><strong class="standOutPrimary">Batch workflow steps </strong>include <code>content </code>and <code>submit to press</code></p>
+        <p><strong class="standOutPrimary">Batch and Order workflow events </strong>include <code>start</code>, <code>queue</code>, <code>complete</code>, <code>error </code>and <code>requeue </code>(reprocess)</p>
+        <p><strong class="standOutPrimary">Press Job workflow steps </strong>include <code>printing</code></p>
+        <p><strong class="standOutPrimary">Press Job events </strong>include <code>end</code></p>
+        <table style="width: 100%; mc-table-style: url('../../../Resources/TableStyles/infinityTableStyle1.css'); margin-left: 0; margin-right: auto;" class="TableStyle-infinityTableStyle1" cellspacing="0">
+            <col class="TableStyle-infinityTableStyle1-Column-Column1" style="width: 338px;" />
+            <col class="TableStyle-infinityTableStyle1-Column-Column2" />
+            <tbody>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Analyze start</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the analyze start phase of the order workflow (Products tab, spinning arrows on second order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Analyze queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the analyze queue phase of the order workflow (Products tab, clock face on second order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Analyze complete</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the analyze complete phase of the order workflow (Products tab, green circle with check mark on second order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Analyze error</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order fails the analyze step of the order workflow (Products tab, red circle with check mark on the second order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Analyze requeue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order is reprocessed at analyze</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Batch queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order processes through the sort phase and is now in the sort groups, ready to be batched</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Prebatch start</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the prebatch start phase of the order workflow (Products tab, spinning arrows on third order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Prebatch queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the prebatch queue phase of the order workflow (Products tab, clock face on third order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Prebatch complete</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the prebatch complete phase of the order workflow (Products tab, green circle with check mark on third order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Prebatch error</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order fails the prebatch step of the order workflow (Products tab, red circle with check mark on the third order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Prebatch requeue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order is reprocessed at prebatch</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Sort start</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the sort start phase of the order workflow (Products tab, spinning arrows on fourth order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Sort queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the sort queue phase of the order workflow (Products tab, clock face on fourth order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Sort complete</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order hits the sort complete phase of the order workflow (Products tab, green circle with check mark on fourth order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Sort error</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order fails the prebatch step of the order workflow (Products tab, red circle with check mark on the third order state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Order Sort requeue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when an order is reprocessed at sort</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Content start</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the batch content start phase of the workflow (Batches tab, spinning arrows on the 2nd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Content queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the batch content queue phase of the workflow (Batches tab, clock face on the 2nd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Content complete</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the batch content complete phase of the workflow (Batches tab, green circle with a check mark on the 2nd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Content error</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the batch content error phase of the workflow (Batches tab, red circle with check mark on the 2nd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Content requeue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch is reprinted</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Submit To Press start</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the batch content start phase of the workflow (Batches tab, spinning arrows on the 2nd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Submit To Press queue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the submit to press queue phase of the workflow (Batches tab, clock face on the 3rd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Submit To Press complete</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the submit to press complete phase of the workflow (Batches tab, green circle with a check mark on the 3rd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Submit To Press error</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch hits the submit to press error phase of the workflow (Batches tab, red circle with check mark on the 3rd batch state light)</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyE-Column1-Body1">Batch Submit To Press requeue</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyD-Column2-Body1">Triggered when a batch is reprinted</td>
+                </tr>
+                <tr class="TableStyle-infinityTableStyle1-Body-Body1">
+                    <td class="TableStyle-infinityTableStyle1-BodyB-Column1-Body1">Press Job printing end</td>
+                    <td class="TableStyle-infinityTableStyle1-BodyA-Column2-Body1">Triggered when a press job shows printed (Press jobs tab, Press job state fourth light shows a green circle with check mark)</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Configuration overview</h2>
+        <p>Before <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can submit event messages to third-party systems, the following actions must be taken.</p>
+        <p>Ensure that all SDK&#160;event plugins have been enabled</p>
+        <ul>
+            <li>Identify which events you will need</li>
+            <li>Decide on a format and structure for the event message templates</li>
+            <li>Become familiar with the standard objects, attributes, and syntax (velocity)&#160;used within the templates</li>
+            <li>Build the event templates</li>
+            <li>Update the main SDK&#160;event configuration file to include the necessary sinks and events</li>
+        </ul>
+        <h3>Identify events</h3>
+        <p>Decide which events will be required for the integration. As a best practice, you should only create an event for the items required by the integration. A&#160;typical configuration might include events for orders that finished sorting, when an order fails a workflow step, what orders exist in a batch, and when a job has successfully printed.</p>
+        <h3>Determine template format and structure</h3>
+        <p>The format and structure of the template is completely up to the individual performing the integration. Templates should be built with how the receiving system will process it in mind. If creating the templates in XML&#160;format, the element names used and structure of the elements is up to you. </p>
+        <h3>Velocity / syntax review</h3>
+        <p>In order to successfully build event templates, it will be necessary to understand the common object and attributes that will be used inside of the templates. The templates will use Apache Velocity for including attributes specific to orders, batches, and press jobs. The integrator will need to have a basic understanding of Velocity syntax to build and work with the SDK&#160;events templates.</p>
+        <p class="Note">The version of Velocity used for building event templates is 1.7. For additional information specific to Apache Velocity, see http://velocity.apache.org/engine/1.7/user-guide.html</p>
+        <h3>Build the templates</h3>
+        <p>As briefly mentioned, this will involve deciding on the format that will be used (XML, Text, etc.). It is a good idea to build out the structure of each template before adding in the appropriate velocity to capture the desired data. </p>
+        <h3>Update the main configuration</h3>
+        <p>Once all templates have been built, the main SDK&#160;event configuration will need to be updated to include all required events and sinks that will be used.</p>
+    </body>
+</html>

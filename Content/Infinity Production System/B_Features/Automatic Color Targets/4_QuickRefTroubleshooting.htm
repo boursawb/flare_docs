@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>QuickRefTroubleshooting</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Quick reference and troubleshooting</h1>
+        <p>The following section provides a quick reference for getting up and running with the color quality system as well as some common issues and troubleshooting tips.</p>
+        <h2 class="NoPageBreak">Color quality quick reference</h2>
+        <p>The following steps provide a quick reference for configuring and using automated color targets.</p>
+        <p><strong>Step 1 - Create a new color target</strong>
+        </p>
+        <p>
+            <MadCap:xref href="../_Working/2_colorQualityConfiguration.htm#Create">"Create the color target" on page 1</MadCap:xref>
+        </p>
+        <p><strong>Step 2 - Create the product bin</strong>
+        </p>
+        <p>
+            <MadCap:xref href="../_Working/2_colorQualityConfiguration.htm#CreateProductBin">"Create product bin(s)" on page 1</MadCap:xref>
+        </p>
+        <p><strong>Step 3 - Configure barcode settings</strong>
+        </p>
+        <p>
+            <MadCap:xref href="../_Working/2_colorQualityConfiguration.htm#BarcodeSettings">"Configure barcode settings" on page 1</MadCap:xref>
+        </p>
+        <p><strong>Step 4 - Submit a color target</strong>
+        </p>
+        <p>
+            <MadCap:xref href="../_Working/3_Color target submission.htm#Color">"Color target submission" on page 1</MadCap:xref>
+        </p>
+        <h1>Troubleshooting</h1>
+        <p>Some common issue encountered when working with the color quality feature in <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> include the following.</p>
+        <ul>
+            <li>The device name listed in the press numbers section of the barcode settings does not match the actual device name specified in the DFE&#160;configuration file</li>
+            <li>Any of the related XML&#160;configuration files contain a parsing error</li>
+            <li>Incorrect project or location code specified on the Site Information tab of the barcode settings</li>
+            <li>All intended products have not been included in the product bin. This will result in the number of spreads counted being less than expected</li>
+            <li>The incorrect component was specified in the product bin for a given batch definition</li>
+            <li>The target description file was not created or does not contain the required contents</li>
+            <li>The file name of the color target (TIF&#160;file) and the color target definition file name do not match</li>
+            <li>A&#160;.template.xml layout file matching the name of the color target has not been created</li>
+            <li>The color target file name is incorrect as specified in the target ID&#160;field within the product bin</li>
+        </ul>
+    </body>
+</html>

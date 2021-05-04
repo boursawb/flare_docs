@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>EPM diagnostics</title>
+    </head>
+    <body>
+        <h1>EPM diagnostics</h1>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> order history includes detailed information regarding EPM&#160;evaluations. This information can be used to understand and explain the results for each component evaluation.</p>
+        <p><strong class="standOutSecondary">To view EPM&#160;diagnostics information</strong>
+        </p>
+        <ol>
+            <li>Identify an order on the Products tab to check EPM&#160;results</li>
+            <li>Right-click on the order</li>
+            <li>Navigate to View and select View Order History</li>
+            <li>Filter the results by typing EPM&#160;in the filter criteria window</li>
+        </ol>
+        <p>The following order history shows that EPM&#160;evaluation was skipped for the <code>bookblock </code>component of product type <code>683 </code>and this was due to the fact that <code>epmSkip</code>resulted in a value of <code>true</code>.</p>
+        <p>
+            <img src="../../../Resources/Images/EPMTracing.png" />
+        </p>
+        <h2>EPM&#160;events and event properties</h2>
+        <p>Once EPM&#160;evaluation completes, detailed results of the evaluation can be found in order and EPM&#160;history.</p>
+        <ul>
+            <li><strong>Order EPM Queued </strong>occurs when the order is queued for the EPM&#160;evaluation process</li>
+            <li><strong>Order EPM&#160;Start </strong>indicates when the EPM&#160;evaluation begins</li>
+            <li><strong>Order Level EPM Evaluation Result </strong>displays detailed information regarding the results of the evaluation </li>
+            <li><strong>Order EPM Task Completed </strong>shows when the EPM&#160;evaluation process completes</li>
+            <li><strong>Order EPM Task Deleted </strong>shows when the EPM&#160;evaluation task is deleted</li>
+        </ul>
+        <h3>Understanding Order Level EPM&#160;Evaluation Result</h3>
+        <p>The order level evaluation result include 3 event messages that provide the details of the evaluation process.</p>
+        <ul>
+            <li><strong>epmEvalResult </strong>displays when the component is deemed EPM&#160;compatible and will be either&#160;EPM or EPM_BW</li>
+            <li><strong>epmEvalResultReason </strong>briefly explains why the order is not EPM&#160;compatible</li>
+            <li><strong>epmEvalResultReasonDetails </strong>provides a detailed explanation as to why the order is not EPM&#160;compatible</li>
+        </ul>
+        <p class="Note">The event messages displayed within the Order Level EPM&#160;Evaluation Result event will vary based on the evaluation results. When an order is found to be EPM&#160;compatible, only the epmEventResult will display. If an order is not EPM&#160;compatible, only the two result reason messages will be displayed.</p>
+        <h3>Viewing order history EPM&#160;results</h3>
+        <p>To view EPM&#160;results for a specific order, follow the steps shown below.</p>
+        <ol>
+            <li>Right-click on the order and select View Order History</li>
+            <li>Filter the results by epm to show only relevant events</li>
+        </ol>
+        <h3>Viewing batch history EPM&#160;results</h3>
+        <p>To view EPM&#160;results for a specific batch, follow the steps shown below.</p>
+        <ol>
+            <li>Right-click on the batch and select View Batch History</li>
+            <li>Filter the results by epm to show only relevant events</li>
+        </ol>
+        <p>The following batch history windows shows EPM&#160;failing as a result of missing setpagedevice entries which specify the required EPM&#160;templates to be used during submit to press for EPM&#160;orders.</p>
+        <p>
+            <img src="../../../Resources/Images/epmBatchHistory.png" />
+        </p>
+        <h3>Viewing EPM&#160;history</h3>
+        <p>To review the results for all EPM&#160;evaluations, follow the steps shown below.</p>
+        <ol>
+            <li>.Select Tools in the menu at the top of the UI</li>
+            <li>Navigate to Enhanced Productivity Mode</li>
+            <li>Select View EPM&#160;History</li>
+            <li>Filter for and view the items of interest</li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/epmToolsMenu.png" />
+        </p>
+        <p><strong class="standOutSecondary">Example:&#160;Global EPM&#160;history</strong>
+        </p>
+        <p>
+            <img src="../../../Resources/Images/epmHistoryWindow.png" />
+        </p>
+    </body>
+</html>

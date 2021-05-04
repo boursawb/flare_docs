@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>What is diverting</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>What is diverting?</h1>
+        <p>Diverting to an alternate output profile allows you to change how orders are processed. This can be accomplished automatically, through the user of order decorators, or by manually diverting the work as needed. As previously mentioned, you are simply telling <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to use a different set of product configuration files that are better suited for the changing environment. This could be a change to the print device batches are submitted to, or a change in down-stream finishing processes. In order to divert orders, there are two things which must occur. </p>
+        <ol>
+            <li>The system must be configured to use output profiles.</li>
+            <li>Alternate profiles must be created for each of the required products.</li>
+        </ol>
+        <p>When sending work to an alternate output profile, you can choose to select one or more orders from the products tab, or divert an entire sort group from the sort groups tab. In either case, diverting is accomplished by right-clicking on the desired item and selecting the option to divert. This will present a dialogue showing the available profiles that can be selected. After confirming the selection, the orders will be sent back to the prebatch phase of the work flow and re-process using the prebatch and batch definitions that are associated with the previously selected output profile.</p>
+        <p>All orders that are diverted will carry a new attribute called output profile ID. The output profile ID indicates if an order has been diverted and to which profile it was diverted to. A UI column displaying the output profile ID can be enabled for the products tab, sort groups tab, and batches tab. For orders, sort groups and batches that have not been diverted, the output profile ID column will be blank. In some cases, the user interface configuration may need to be adjusted to ensure the output profile data displays as expected. </p>
+        <p class="note">Note that diverting occurs at the order level and not line item or component level. This will become important when incorporating output profiles with other advanced topics such as order decorating.</p>
+        <p>One thing to keep in mind when diverting large sort groups is that it can take some time for all orders to reprocess and filter back in to their new group. If the goal is to release all batches at the same time, it will be necessary to wait for all orders to complete the divert process before releasing them to press. If this is not a concern, the diverted batches can be released from the new group as they become available. As needed, you can use the order state column on the products tab to filter by orders still in process to determine when the divert has finished.</p>
+    </body>
+</html>

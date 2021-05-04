@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Introduction</title>
+    </head>
+    <body>
+        <h1>Preparation</h1>
+        <p>A&#160;key step in this process will be to collect several pieces of data that will be used to complete the setup. To simplify this process, much of the data can be pulled directly from configuration files you have likely already built.</p>
+        <h2>From the batch imposition</h2>
+        <p>The following data points can be obtained from the batch imposition. </p>
+        <ul>
+            <li><strong>Sheet width </strong>The value specified for <code>spreadwidth</code></li>
+            <li><strong>Sheet height </strong>The value specified for <code>spreadheight</code></li>
+            <li><strong>Vertical gutter </strong>The value specified for <code>vgutter</code></li>
+            <li><strong>Horizontal gutter </strong>The value specified for <code>hgutter</code></li>
+            <li><strong>Rows </strong>The number of rows defined as specified in the signatures section of the imposition</li>
+            <li><strong>Columns </strong>The number of columns defined as specified in the signatures section of the imposition</li>
+        </ul>
+        <h3>Determining gutter requirements</h3>
+        <p>If the total space between the trim marks of adjacent pages is not greater than or equal to 4mm (11.339 points), an amount will need to be specified for the appropriate gutter to make up the difference. For example, if the imposition we are working with has a value of 0 for both horizontal and vertical gutters, and the trimout required is 4.5 points on all sides, then the total distance between our signatures after the trim occurs would be 9 points. This is 2.339 points below the minimum required so we would add the appropriate values to our vertical and horizontal gutters to make up the difference</p>
+        <h2>From the customer</h2>
+        <p>The trimout required will be determined by you, or your customer. This is the amount of space that will be removed from each side of the product during the finishing process. Four attributes are provided for controlling the amount of trim on each side, but in most situations, the same value will be used for all four to ensure the product is trimmed equally on all sides. </p>
+        <ul>
+            <li><strong>Trim left </strong>The amount in points that will be removed from the left side of each signature</li>
+            <li><strong>Trim bottom </strong>The amount in points that will be removed from the bottom of each signature</li>
+            <li><strong>Trim right </strong>The amount in points that will be removed from the right side of each signature</li>
+            <li><strong>Trim top </strong>The amount in points that will be removed from the top of each signature</li>
+        </ul>
+        <h2>From prebatch output</h2>
+        <p>When building the laycrimp layout file we will need to know the full size of the product that will be fed into the imposition. We can get the product width and height by generating prebatch for an order and then inspecting the page size of the PDF&#160;that is generated. </p>
+        <ul>
+            <li><strong>Product width </strong>The width of the product in points (1" = 72 points)</li>
+            <li><strong>Product height </strong>The height of the product in points (1"&#160;= 72 points)</li>
+        </ul>
+        <h2>Calculated values</h2>
+        <p>Some of the data used for generating the laycrimp layout will be calculated based off the data collected.</p>
+        <ul>
+            <li><strong>Distance from side </strong>This is the number of points from the side of the sheet to edge of the first page encountered. </li>
+            <li><strong>Distance from bottom</strong>This is the number of points from the bottom edge of the sheet to the edge of the first page encountered</li>
+            <li><strong>Product trim width </strong>The width of the final product after trim occurs </li>
+            <li><strong>Product trim height </strong>The height of the final product after trim occurs</li>
+        </ul>
+        <h3>Determining the distance from the side</h3>
+        <p>This value can be found by taking the width of the sheet and subtracting the total width of all products contained in a row, plus the sum of all horizontal gutters, multiplied by the total number of columns minus one, and divide this result by two. Written as an expression, it would look like the this. (This configuration assumes that <code>autocenterx="true"</code> and <code>autocentery="true"</code> have been defined in the imposition.)</p>
+        <p><code>((sheetWidth - (productWidth *&#160;numCols) +&#160;(hGutter * (numCols -1)) / 2</code>
+        </p>
+        <h3>Determining the distance from the bottom</h3>
+        <p>This value can be found by taking the height of the sheet and substracting the total height of all products contained in a column, plus the sum of all vertical gutters, multiplied by the total number of rows minus one, and divide this result by two. Written as an expression, it would look like this.</p>
+        <p><code>((sheetHeight - (productHeight *&#160;numRows)&#160;+&#160;(vGutter *&#160;(numRows - 1)) / 2</code>
+        </p>
+        <h3>Determining the product trim width</h3>
+        <p>The final product trim width will be determined by taking the product width and subtracting the amounts specified for trim left and trim right. Written as an expression, it would look like this.</p>
+        <p><code>productWidth - (trimLeft +&#160;trimRight)</code>
+        </p>
+        <h3>Determining the product trim height</h3>
+        <p>The final product trim height will be determined by taking the product height and subtracting the amounts specified for the trim top and trim bottom. Written as an expression, it would look like this.</p>
+        <p><code>productHeight - (trimTop +&#160;trimBottom)</code>
+        </p>
+    </body>
+</html>

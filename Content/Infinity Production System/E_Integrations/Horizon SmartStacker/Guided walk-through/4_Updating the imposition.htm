@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Updating the imposition</title>
+    </head>
+    <body>
+        <h1>Updating the imposition</h1>
+        <p>There are a few requirements and recommendations that should be followed when building out the batch imposition for a Smart Stacker integration. </p>
+        <h2>Setting imposition attributes</h2>
+        <ol>
+            <li>The imposition attribute <code>reverseorder="true/false"&#160;</code>must be set to <code>true</code></li>
+            <li>The attribute <code>autocenterx </code>and <code>autocentery </code>should both be set to true</li>
+            <li>The attribute <code>spreadwidth= </code>should be set to the width of the sheet used for this product</li>
+            <li>The attribute <code>spreadheight= </code>should be set to the height of the sheet used for this product</li>
+            <li>Ensure that <code>type </code>has been set to <code>stepandrepeat</code></li>
+            <li>Save changes to the batch imposition</li>
+        </ol>
+        <p class="Note">It is critical that the paper size does not change from what is originally defined when implementing a finishing plan with Horizon SmartStacker. This will result in unexpected and undesirable behavior during the finishing process. Changing the paper size will require that the dimensions defined in the imposition, device settings in the batch </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example: Imposition XML</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p><pre><code clas="language-xml">&lt;imposition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="imposition.xsd" 
+reverseorder="true"
+type="stepandrepeat" 
+hgutter="0" 
+vgutter="0"
+spreadheight="1494"  
+spreadwidth="2119.536" 
+autocenterx="true" 
+autocentery="true"     
+hmargin="0" 
+vmargin="0" 
+layout="Page-Numbers-10k_LAND_A7FLAT"&gt;
+    
+    &lt;signatures rows="3" cols="4"&gt;
+        &lt;signature row="3" col="4" pagenumber="1" face="up" rotation="0" stackboxname="stack-1-front"/&gt;
+        &lt;signature row="3" col="4" pagenumber="2" face="down" rotation="0" stackboxname="stack-1-back"/&gt;
+        &lt;signature row="2" col="4" pagenumber="3" face="up" rotation="0" stackboxname="stack-2-front"/&gt;
+        &lt;signature row="2" col="4" pagenumber="4" face="down" rotation="0" stackboxname="stack-2-back"/&gt;
+        &lt;signature row="1" col="4" pagenumber="5" face="up" rotation="0" stackboxname="stack-3-front"/&gt;
+        &lt;signature row="1" col="4" pagenumber="6" face="down" rotation="0" stackboxname="stack-3-back"/&gt;
+        &lt;signature row="3" col="3" pagenumber="7" face="up" rotation="0" stackboxname="stack-4-front"/&gt;
+        &lt;signature row="3" col="3" pagenumber="8" face="down" rotation="0" stackboxname="stack-4-back"/&gt; 
+        &lt;signature row="2" col="3" pagenumber="9" face="up" rotation="0" stackboxname="stack-5-front"/&gt;
+        &lt;signature row="2" col="3" pagenumber="10" face="down" rotation="0" stackboxname="stack-5-back"/&gt;
+        &lt;signature row="1" col="3" pagenumber="11" face="up" rotation="0" stackboxname="stack-6-front"/&gt;
+        &lt;signature row="1" col="3" pagenumber="12" face="down" rotation="0" stackboxname="stack-6-back"/&gt;
+        &lt;signature row="3" col="2" pagenumber="13" face="up" rotation="0" stackboxname="stack-7-front"/&gt;
+        &lt;signature row="3" col="2" pagenumber="14" face="down" rotation="0" stackboxname="stack-7-back"/&gt;
+        &lt;signature row="2" col="2" pagenumber="15" face="up" rotation="0" stackboxname="stack-8-front"/&gt;
+        &lt;signature row="2" col="2" pagenumber="16" face="down" rotation="0" stackboxname="stack-8-back"/&gt;
+        &lt;signature row="1" col="2" pagenumber="17" face="up" rotation="0" stackboxname="stack-9-front"/&gt;
+        &lt;signature row="1" col="2" pagenumber="18" face="down" rotation="0" stackboxname="stack-9-back"/&gt;
+        &lt;signature row="3" col="1" pagenumber="19" face="up" rotation="0" stackboxname="stack-10-front"/&gt;
+        &lt;signature row="3" col="1" pagenumber="20" face="down" rotation="0" stackboxname="stack-10-back"/&gt;
+        &lt;signature row="2" col="1" pagenumber="21" face="up" rotation="0" stackboxname="stack-11-front"/&gt;
+        &lt;signature row="2" col="1" pagenumber="22" face="down" rotation="0" stackboxname="stack-11-back"/&gt;
+        &lt;signature row="1" col="1" pagenumber="23" face="up" rotation="0" stackboxname="stack-12-front"/&gt;
+        &lt;signature row="1" col="1" pagenumber="24" face="down" rotation="0" stackboxname="stack-12-back"/&gt;    
+    &lt;/signatures&gt;
+	
+	&lt;blanks&gt;
+		&lt;blank&gt;
+			&lt;face&gt;up&lt;/face&gt;
+			&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+			&lt;equals&gt;&lt;/equals&gt;
+			&lt;use&gt;5x7BlankFront.pdf&lt;/use&gt;
+		&lt;/blank&gt;
+		&lt;blank&gt;
+			&lt;face&gt;down&lt;/face&gt;
+			&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+			&lt;equals&gt;&lt;/equals&gt;
+			&lt;use&gt;5x7BlankBack.pdf&lt;/use&gt;
+		&lt;/blank&gt;
+		&lt;blank&gt;
+			&lt;face&gt;up&lt;/face&gt;
+			&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+			&lt;equals&gt;printedWaste&lt;/equals&gt;
+			&lt;use&gt;5x7PrintedWasteFront.pdf&lt;/use&gt;
+		&lt;/blank&gt;
+		&lt;blank&gt;
+			&lt;face&gt;down&lt;/face&gt;
+			&lt;whenAttribute&gt;blankType&lt;/whenAttribute&gt;
+			&lt;equals&gt;printedWaste&lt;/equals&gt;
+			&lt;use&gt;5x7PrintedWasteBack.pdf&lt;/use&gt;
+		&lt;/blank&gt;
+	&lt;/blanks&gt;
+	
+&lt;/imposition&gt;</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Configuring blanks and printed waste</h2>
+        <p>To review the information regarding blanks and printed waste, refer to <MadCap:xref href="../1_Imposition.htm#BlanksPrintedWaste" target="_blank">Defining blanks</MadCap:xref></p>
+        <ol>
+            <li>Open the batch imposition used by the product</li>
+            <li>Add the following code snippet below the <code>&lt;/signatures&gt;</code>&#160;closing tag of the imposition</li>
+            <li>Update the elements and attributes as needed to meet your requirements</li>
+            <li>Save and close the imposition</li>
+        </ol>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

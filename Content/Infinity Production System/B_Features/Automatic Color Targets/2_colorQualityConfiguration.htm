@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>productbins</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Color quality configuration</h1>
+        <p>Before starting the configuration process, it is important to understand a key concept of this color quality system known as target thresholds. <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes two types of thresholds defined in each product bin. </p>
+        <ul>
+            <li>
+                <MadCap:keyword term="Quantity threshold" />Quantity threshold</li>
+            <li>
+                <MadCap:keyword term="Light volume threshold" />Light volume threshold</li>
+        </ul>
+        <p>A&#160;quantity threshold sets the number of spreads that must accumulate for a given counter before a color target will automatically be sent to the device that exceeded the threshold. For Counter per Press configurations, there will be a counter created for each unique occurrence of a given product bin and press. Each counter must exceed the defined threshold before a color target will be triggered. For All Press configurations, every spread printed, regardless of the device the job was printed on will result in the counter incrementing for the appropriate product bin. The second type of threshold is the light volume threshold and relies on the start of shift indicator to function. The light volume feature will submit a color target to a press if a quantity trigger has not occurred at least one time within the period specified for light volume threshold. In order for a light volume trigger to fire, the following events must occur.</p>
+        <ul>
+            <li>The Start of Shift button is clicked at the beginning of the shift</li>
+            <li>Jobs are submitted which increments the counter but the total spreads printed does not exceed the defined quantity threshold</li>
+            <li>The amount of time from the start of shift to the current time has exceeded the value specified for the light volume threshold</li>
+            <li>At least one spread must be printed after the light volume expiration, still not exceeding the defined quantity threshold</li>
+        </ul>
+        <p>Following these 4 events, a color target will be submitted to the press associated with this counter. </p>
+        <p class="note">If at any point the target threshold is exceeded, resulting in a target being submitted to press, the light volume threshold for that counter is disabled until the next start of shift is indicated</p>
+        <h2><a name="Color"></a>
+            Color quality Web Administrator</h2>
+        <p>To configure the color quality system using the Infinity Admin web interface, the following three tasks must be completed.</p>
+        <ul>
+            <li>Create one or more product bins</li>
+            <li>Configure the barcode settings</li>
+            <li>Create the color target</li>
+        </ul>
+        <p>With the exception of creating a new color target, all Color Quality configurations will be performed using the web UI. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/cqWebUIHome.png" class="img thumbnail" title="Web admin " alt="Web admin" />
+        </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot><a name="CreateProductBin"></a>
+                    Create product bin(s)</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Launch the admin tool by clicking the <strong class="standOutPrimary">Configure </strong>button on the <strong class="standOutPrimary">Color Quality </strong>tab</li>
+                    <li>Click <strong class="standOutPrimary">Product Bins </strong>button</li>
+                    <li>Click the blue floating action button to add a new product bin</li>
+                    <li>Specify a value for <strong class="standOutPrimary">Product Bin Name</strong></li>
+                    <li>Specify a value for <strong class="standOutPrimary">Code</strong></li>
+                    <li>
+                        <p>Select a color targe from the <strong class="standOutPrimary">Color Target </strong>drop-down</p>
+                        <p class="note">If a new color target is required, refer to the following section for steps on creating a new target. This can be changed at a later time, so using the default color target that is included in <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> as an interim solution is fine. </p>
+                    </li>
+                    <li>Specify a value for <strong class="standOutPrimary">Target Threshold Spreads </strong></li>
+                    <li>Specify a value for <strong class="standOutPrimary">Light Volume Threshold </strong>Time i.e. (1h, 2h, etc.)</li>
+                    <li>Check the box Create for <strong class="standOutPrimary">Counter Per Press </strong>if creating a Counter per Press product bin</li>
+                    <li>Click the Apply button</li>
+                    <li>Click the Batch Components tab at the top of the product bin configuration screen</li>
+                    <li>Select the desired batch definition from the drop-down list</li>
+                    <li>Select the desired batch component from the second drop-down list</li>
+                    <li>Click the Add button to add the batch definition / component combination to the product bin</li>
+                    <li>Repeat this process for each item to be added to the product bin</li>
+                    <li>Click Apply</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Barcode configuration parameters</h2>
+        <p>The barcode settings section allows you to specify the site and press information that will be included in the barcode stamp on the color target, if used. The barcode configuration is broken down in to three sections; site information, press numbers and press types. The required parameters for each of these sections along with definitions for each are shown below.</p>
+        <h3>Site Information</h3>
+        <p>The site information section provides human readable as well as numeric information which identifies the site and project information specific to your organization. The information contained within the site section is applicable to all product bins and color targets and cannot be configured uniquely at the product bin level. </p>
+        <ul>
+            <li><strong>Location Code Text</strong> A&#160;unique name which identifies the location</li>
+            <li><strong>Location Code Number</strong> A&#160;unique number which can be used in the color target barcode that identifies the location</li>
+            <li><strong>Project Code Text</strong> A&#160;unique name which identifies the project</li>
+            <li><strong>Project Code Number</strong> A unique number which can be used in the color target barcode that identifies the project</li>
+        </ul>
+        <p class="note">If you are unsure what values to use for project and location code, using an abbreviated version of the company name for project and abbreviated version of your site location for location should be sufficient. For example, for a Portland office of Infinity Digital, we may use INF&#160;for the project and PDX&#160;for the location. </p>
+        <h3>Understanding press numbers</h3>
+        <p>Each value specified for a Press Name in the Press Numbers section must match the name of a device defined in the DFE&#160;configuration file. You can determine the values which can be used by viewing the information available in the DFE&#160;and Devices tool located in the tools menu. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Identifying press names using the DFE and Devices Tool</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Launch DFE&#160;and Devices from the tools menu in the UI</li>
+                    <li>Filter the DFE&#160;column by the DFE&#160;containing the devices of interest</li>
+                    <li>Note the press names in the Device Name column that you wish to use and enter them in to the press numbers section of the barcode settings</li>
+                </ol>
+                <p>The following image shows 3 presses associated with the VM-ULTRACORE1 DFE. The values listed in the Device Name column must match the value specified for the Press Name parameter defined in the Press Numbers section.</p>
+                <p>
+                    <img src="../../../Resources/Images/Assets/IPS/dfeDeviceTool.png" class="img thumbnail" title="DFE and Devices" alt="DFE and Devices" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Press Numbers</h3>
+        <ul>
+            <li><strong>Press Name</strong> The name of the press that will receive color targets</li>
+            <li><strong>Press Number</strong> A&#160;unique numeric value for the given press</li>
+        </ul>
+        <p class="note">Each entry on the Press Numbers tab must have a unique press number. </p>
+        <h3>Understanding press types</h3>
+        <p>For each press (device)&#160;that will receive color targets, a press type will need to be defined. For HP&#160;Production Pro implementations, press type is provided by the digital front end and does not rely on the information contained within the color quality configuration. For HP&#160;Ultracore implementations, press type is not provided by the DFE&#160;and will require the information be specified in the Press Type section. Each device entry within the Ultracore DFE&#160;configuration file must include a <code>modelname </code>attribute that identifies the press type associated with the given device. </p>
+        <p>Example DFE&#160;config (Ultra implementation)</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/colorQualityModelName.jpg" class="img thumbnail" title="XML snippet" alt="XML snippet" />
+        </p>
+        <p>The value specified for model name in the DFE&#160;configuration file must match one of the values specified for <code>Press Type </code>within the Press Types section of the barcode settings configuration. </p>
+        <p class="note">Additional press types can be added as new devices with differing model names are added to the DFE&#160;configuration. </p>
+        <h3>Press Types</h3>
+        <ul>
+            <li>
+                <MadCap:keyword term="Press Type" /><strong>Press Type </strong>The name of the press type that will be used for automated color targets</li>
+            <li>
+                <MadCap:keyword term="Press Type Number" /><strong>Press Type </strong>Number A&#160;unique numeric value for the given press type</li>
+        </ul>
+        <p>Like the press numbers section, each press type defined must have a unique press number for the given press type. Four additional parameters exist which are not configurable via the web admin UI. These include the amount of time in the past the color quality system will look for printed jobs, the interval at which this check occurs, the location where the barcode XML&#160;will be written to, and a peak season flag for enabling / disabling the Infinity logo on triggered color targets. The default values for these settings will be suitable for most implementations. If there is a need to change these parameters, contact Infinity Digital Support for further assistance.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot><a name="BarcodeSettings"></a>
+                    Configure barcode settings</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Click <strong class="standOutPrimary">Barcode Settings </strong>in the navigation menu of the Admin UI</li>
+                    <li>Select the <strong class="standOutPrimary">Site Information </strong>tab</li>
+                    <li>Specify the location code text to be used</li>
+                    <li>Specify the location code number to be used</li>
+                    <li>Specify the project code text</li>
+                    <li>Specify the project code number</li>
+                    <li>Click the apply button</li>
+                    <li>Click the press numbers tab</li>
+                    <li>Type the press name in the text box beneath Press Name</li>
+                    <li>Type a unique number in the text box beneath Press Number</li>
+                    <li>Click the green Add button</li>
+                    <li>Click the Apply button</li>
+                    <li>Click the Press Types tab</li>
+                    <li>Type the press type name in the Press Type text box</li>
+                    <li>Type a unique number in the Press Type Number text box</li>
+                    <li>Click the green Add button</li>
+                    <li>Click the Apply button</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2><a name="Create"></a>
+            Create the color target</h2>
+        <p>A&#160;color target is comprised of a TIF&#160;graphics file, a color target description file (.xml) and a layout file which converts the TIF image to a PDF&#160;that can be submitted to press. The layout can also be used to include human readable text as well as image stamps and bar codes that can be used at key points throughout the production workflow. </p>
+        <h3>Color target file names</h3>
+        <p>Each of these files must follow a very specific naming pattern. Not following this pattern will result in the system failing to find the defined color target. It is also important to note that color target file names, including extensions, are case sensitive. The format and convention that must be used is shown below.</p>
+        <ul>
+            <li><strong>Color Target </strong>&lt;yourName&gt;.colortarget.tif</li>
+            <li><strong>Color Target Description </strong>&lt;yourName&gt;.colortarget.xml</li>
+            <li><strong>Color Target Layout</strong> &lt;yourName&gt;.template.xml</li>
+        </ul>
+        <p>Create a color target</p>
+        <h3>
+            <MadCap:keyword term="Color target configuration" />Color target configuration</h3>
+        <ol>
+            <li>Identify a TIF&#160;graphic that will be used for the color target</li>
+            <li>Use a file name for the TIF&#160;image that identifies the color target being created. This must be in the form of &lt;yourName&gt;.colortarget.tif</li>
+            <li>Create a color target description file which matches the name of the TIF&#160;file. For example, if the name of the TIF&#160;file was infQualityTarget.colortarget.tif then we would create a color target description file called infQualityTarget.colortarget.xml:</li>
+        </ol>
+        <p class="note">The &lt;yourName&gt; portion of the color target graphic file and the color target description file must match exactly. For example:&#160;infQuality.colortarget.tif and infQuality.colortarget.xml.</p>
+        <h3>Color target description contents</h3>
+        <p>As the color target description may not applicable to your integration of the Infinity color quality solution, it is a required component for automated color targets to function as expected. If using the standard implementation (no custom integrations with third party color qualification systems), simply copy the contents shown below in to your color target description xml&#160;file.</p><pre><code class="language-xml">&lt;com.infdig.framework.qcs.colortarget.ColorTarget&gt;
+ &lt;colorTargetId&gt;infQualityTarget&lt;/colorTargetId&gt;
+ &lt;targetPath&gt;auto&lt;/targetPath&gt;
+ &lt;layout&gt;auto&lt;/layout&gt;
+ &lt;numberOfChartColumns&gt;21&lt;/numberOfChartColumns&gt;
+ &lt;numberOfChartRows&gt;27&lt;/numberOfChartRows&gt;
+ &lt;verticalPatchSize&gt;13.5&lt;/verticalPatchSize&gt;
+ &lt;horizontalPatchSize&gt;13.5&lt;/horizontalPatchSize&gt;
+ &lt;maxwellTargetIdNumber&gt;00000001&lt;/maxwellTargetIdNumber&gt;
+ &lt;colorShuttle&gt;MX*&lt;/colorShuttle&gt;
+ &lt;mdRecordId&gt;MD01*&lt;/mdRecordId&gt;
+&lt;/com.infdig.framework.qcs.colortarget.ColorTarget&gt;</code></pre>
+        <ol>
+            <li>Set the colorTargetId field within the color target description file to the same name given for the &lt;yourName&gt;&#160;portion of the color target graphic file. </li>
+            <li>Save and close the color target description file</li>
+            <li>Place the &lt;yourName&gt;.colortarget.tif and &lt;yourName&gt;.colortarget.xml files previously created in sharedconfig\qcs\static\colortargets</li>
+            <li>Create a new layout file which matches the &lt;yourName&gt;&#160;portion of the color target that includes the .template.xml extension. For example, using our target name from above, we would create a new templated layout file called infQualityTarget.template.xml</li>
+        </ol>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Basic layout for target</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;layout xmlns:xsi="http://www.w3.org/2001/xmlSchema-instance"
+xsi:noNamespaceSchemaLocation="../layout.xsd"&gt;
+&lt;boxes&gt;
+&lt;box type="bleed" positioning="absolute"
+sizing="absolute" autosizewidth="true"
+autosizeheight="true" defineboxinpdf="false"/&gt;
+&lt;box type="media" positioning="relative" sizing="relative"
+ref="bleed" left="0" bottom="0"
+width="0" height="0"/&gt;
+	&lt;/boxes&gt;
+	&lt;stamps&gt;
+		&lt;barcodestamps&gt;&lt;/barcodestamps&gt;
+		&lt;pressmarks&gt;&lt;/pressmarks&gt;
+		&lt;imagestamps&gt;&lt;/imagestamps&gt;
+		&lt;textstamps&gt;&lt;/textstamps&gt;
+	&lt;/stamps&gt;
+&lt;/layout&gt;</code></pre>
+                <p>Place the new color target template in the sharedconfig\layouts folder</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>
+            <MadCap:keyword term="Color target press settings" />Color target press settings</h2>
+        <p>At times, there may be a need to include specific press settings along with the color target job submission. This is accomplished in the same manner that is done for standard product job submission. Color targets do not have a specific batch definition associated with them, so the following actions can be taken to ensure a specific set of press settings are used when submitting color targets to press.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Configure press settings</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Copy an existing batch definition to a new file and name it CQPressSettings.xml (or any preferred name)</li>
+                    <li>Edit the batch definition and change the value for ID to CQPS (color quality press settings)</li>
+                    <li>Modify the press settings section of the batch definition to include the required values (psOp section)</li>
+                    <li>Save the new batch definition</li>
+                    <li>Add this batch definition ID&#160;and one of the batch component names to the top of the product batch components section of the product bin xml&#160;file</li>
+                    <li>Save the product bin</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p class="note">It does not matter which batch component is used for this process. The key is to have the top entry in the product bin for batch components be the one which contains the press settings to use for color target submission.</p>
+        <p>&#160;</p>
+    </body>
+</html>

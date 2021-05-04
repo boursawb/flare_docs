@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="false"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-24T12:39:10.8700814-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/0_Intro Output Profiles.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/0_Intro Output Profiles.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/1_What is diverting.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/1_What is diverting.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/2_Configuring IPS to use output profiles.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/2_Configuring IPS to use output profiles.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/3_Setting up alternate output profile products.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/3_Setting up alternate output profile products.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/4_Diverting orders to alternate output profiles.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/4_Diverting orders to alternate output profiles.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/5_Putting your output profiles to use.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F_OutputProfiles/5_Putting your output profiles to use.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_Intro Output Profiles.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_What is diverting.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_Configuring IPS to use output profiles.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/3_Setting up alternate output profile products.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/4_Diverting orders to alternate output profiles.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/5_Putting your output profiles to use.htm"
+      TimeStamp="5/24/2018 12:39:09 PM" />
+    <Url
+      Source="../TOCs/0_Intro Output Profiles.fltoc"
+      TimeStamp="5/24/2018 12:39:12 PM" />
+  </GeneratedFiles>
+</HtmlImport>

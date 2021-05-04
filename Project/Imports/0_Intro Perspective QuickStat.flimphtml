@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="false"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-22T13:20:33.7625842-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/0_Intro Perspective QuickStat.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/0_Intro Perspective QuickStat.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/1_UI Perspectives.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/1_UI Perspectives.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/2_Quick Statistics.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/B2_UIPerspectivesQuickStats/2_Quick Statistics.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/0_Intro Perspective QuickStat.htm"
+      TimeStamp="5/22/2018 1:20:30 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/1_UI Perspectives.htm"
+      TimeStamp="5/22/2018 1:20:30 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/2_Quick Statistics.htm"
+      TimeStamp="5/22/2018 1:20:31 PM" />
+    <Url
+      Source="../TOCs/0_Intro Perspective QuickStat.fltoc"
+      TimeStamp="5/22/2018 1:20:34 PM" />
+  </GeneratedFiles>
+</HtmlImport>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title></title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Exploring the workspace</h1>
+        <p>The  user interface consists of multiple tabs. Each of these tabs represent a portion of the work flow as orders move through the system. As you become more familiar with IPS, think of the tabs like they are on a hill, with the products tab at the top of the hill and press jobs being at the bottom. This analogy will help you understand why certain things happen in the order they do.</p>
+        <h2>Products Tab</h2>
+        <p>The products tab is the main view for displaying orders currently in the system. The products tab allows you to search, view, filter, and sort orders to see only those you are interested in. </p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/productsOverview.png" class="img" />
+        </p>
+        <p>The context menu of the Products tab (right-click menu), consists of the following actions and categories. Expand the category to see the options available.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Root level</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Create Batch </strong>Create a batch from the currently selected order(s)</li>
+                    <li><strong>Create Single Product Batch </strong>Provides a way to select multiple orders and then create a unique batch for each order in a single action</li>
+                    <li><strong>Delete Order </strong>Delete the currently selected order(s)</li>
+                    <li><strong>Mark Order Highest Priority </strong>Change the priority of the selected order from the default of 50 to 100</li>
+                    <li><strong>Divert to alternate output profile </strong>Divert the work to an alternate output profile for reprocessing </li>
+                    <li><strong>Clear Filters </strong>Clear all filters that have been applied, making all rows will be visible</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Reprocess</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Reprocess at Order Analyze </strong>Reprocess an order, sending it back to the analyze phase of the work flow</li>
+                    <li><strong>Reprocess at Order Prebatch </strong>Reprocess an order, sending it back to the prebatch phase of the work flow</li>
+                    <li><strong>Reprocess at Order VDP&#160;Merge </strong>Reprocess an order, sending it back to the VDP merge phase of the work flow</li>
+                    <li><strong>Reprocess at Order Sort </strong>Reprocess an order, sending it back to the sort phase of the work flow</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Copy</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Copy Error Information </strong>For an order that is in an error state, highlighting this row and selecting this option from the menu will copy the error information to the Windows clipboard</li>
+                    <li><strong>Copy Cell Contents </strong>Right-click on a value in a cell and select this option to copy the value to the Windows clipboard </li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>View</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>View History </strong>Opens the order history dialogue for reviewing the status trail of the order </li>
+                    <li><strong>View Prebatch </strong>Opens each of the generated prebatch components within the default PDF&#160;viewer application </li>
+                    <li><strong>View Order Attributes </strong>Opens a web page that displays all of the attributes currently in memory, associated with the selected order </li>
+                    <li><strong>View Order Attributes from DB </strong>Opens a web page that displays all of the attributes defined in the database for the selected order </li>
+                    <li><strong>View Order Content Files </strong>Displays a Windows explorer dialogue containing the original order content as they were received from the customer </li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Designer</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Archive Test Order </strong>Exports the currently selected order(s)&#160;to a chosen location. Archived orders are typically used for testing and validation </li>
+                    <li><strong>Mark Order For Designer Mode </strong>Sets a flag on the order that results in decaf content being used, with each order designated with a random color</li>
+                    <li><strong>Un-mark Order For Designer </strong>Mode Sets the order back to using its original order content</li>
+                    <li><strong>Product Configuration Browser </strong>Launches the product configuration browser that is used for viewing and managing product configuration files </li>
+                    <li><strong>Export Slate Designer Data </strong>Export an XML&#160;document that is used for generating reports within Jaspersoft Studio</li>
+                    <li><strong>Export Selected Table Data </strong>Exports the currently selected rows to a tab deliniated file</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Proofs</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Mark Order Requires Proof </strong>Sets a flag on the order signifying that a proof should be generated</li>
+                    <li><strong>Create Proof </strong>Creates a proof order of with a single quantity for validation purposes</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>The products tab is typically used for reviewing order information or troubleshooting issues that may arise. For generating batches and releasing work to press, this will most often be handled from the sort groups tab.</p>
+        <h2>Sort Groups Tab</h2>
+        <p>When it comes to the daily operations of most production environments, the vast majority of your time will be spent on the sort groups tab.  The sort groups tab provides several options for batching work to press as well as providing a very informative view for managing your current workload. Sort profiles can be used to dynamically adjusts how  batches are built to accommodate rapidly changing business needs.  Additionally, you have the ability to enable auto-release with the desired auto-release filter for quickly and efficiently releasing work to press.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/sortGroupTab.png" class="img" title="Sort Groups Tab" />
+        </p>
+        <p>By right-clicking on a sort group in the UI, the following actions can be performed.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Root level</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li><strong>Reprocess at Order </strong>Reprocess all of the orders contained in the currently selected sort group as the sort phase of the work flow</li>
+                    <li><strong>Release Many Batches </strong>release a specific number of batches or to release batches older than a specified date</li>
+                    <li><strong>Split Sort Group </strong>Splits the currently selected sort group(s)&#160;by based on the selected criteria</li>
+                    <li><strong>Un-split Sort Group / Merge to Parent</strong> Merges the selected sort group(s)&#160;back to the parent it was split from</li>
+                    <li><strong>Manual Release Next Batch </strong>Releases the next batch in line from the sort group by presenting the batch dialogue to the user so the appropriate destination device can be selected</li>
+                    <li><strong>Release Next Batch </strong>Releases the next batch in the sort group to the appropriate device group</li>
+                    <li><strong>Manual Release All </strong>Releases all of the batches existing in the sort group by presenting the batch dialogue to the user so the appropriate destination device can be selected</li>
+                    <li><strong>Release All </strong>Releases all batches from the sort group to the appropriate device group</li>
+                    <li><strong>Divert to alternate output profile </strong>Displays the divert to alternate output profile dialogue which allows the user to divert all work in the currently selected sort group to an alternate output profile</li>
+                    <li><strong>Clear Filters </strong>Clear all filters that have been applied, ensuring that all rows will be visible</li>
+                    <li><strong>View Sort Group History </strong>Opens the sort group history dialogue for reviewing events specific to the currently selected sort group</li>
+                    <li><strong>View Sort Group Error </strong>Displays a dialogue showing the details of the error on the sort group</li>
+                    <li><strong>View Sort Group Attributes </strong>Displays a web page showing all attributes associated with the currently selected sort group</li>
+                    <li><strong>Export Selected Table Data </strong>Export the currently selected rows to a tab deliniated file</li>
+                    <li><strong>Copy Cell Contents </strong>Right-click on a particular attribute in a cell and copy that information to the Windows clipboard</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2 class="NoPageBreakBefore">The Batches Tab</h2>
+        <p>The batches tab displays all current batches in the system. Each row on the batches tab can be expanded to display the orders contained within that batch. From this screen you can view attributes associated with the batch, review orders contained within the batch, and reprint one or more batches, amongst other activities.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/batchesTab.png" class="img" title="Batches Tab" />
+        </p>
+        <p>By right-clicking on a batch in the UI, the following actions can be performed.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Root level</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p><strong>View Batch History </strong>Opens the batch history dialogue for reviewing the status trail of the batch</p>
+                <p><strong>View Batch History </strong>Performs a reprint on the orders within the selected batch and displays the batch dialogue so the appropriate destination device can be selected</p>
+                <p><strong>Reprint Batch </strong>Performs a reprint of the orders in the batch and displays the batch dialogue so the appropriate destination device can be selected</p>
+                <p><strong>Reprint Batch Single Order per Batch </strong>Reprints each order in the current batch to a new batch and displays the batch dialogue so the appropriate destination device can be selected</p>
+                <p><strong>Divert Batch To Alternate Output </strong>Displays the batch divert dialogue in order to divert the batch to the desired output profile</p>
+                <p><strong>Delete Batch </strong>Deletes the currently selected batch(es)</p>
+                <p><strong>View Batch Attributes </strong>Displays a web page showing all attributes associated with the currently selected batch</p>
+                <p><strong>Copy Error Information </strong>Copies the error information associated with the batch to the Windows clipboard</p>
+                <p><strong>Clear Filters </strong>Clears the currently applied filters to ensure that all rows are visible</p>
+                <p><strong>Export Selected Table Data </strong>Exports the currently selected rows to a tab deliniated file</p>
+                <p><strong>Copy Cell Contents </strong>Allows you to right-click on a particular attribute in a cell and copy that information to the Windows clipboard</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2 class="NoPageBreakBefore">The Press Jobs Tab</h2>
+        <p>The press jobs tab shows detailed information about each job submitted to press, or a defined none location. Jobs submitted to devices that are fully integrated with IPS&#160;will show their status as they move through press workflow. The press jobs tab also provides the ability to reprint a batch. This can be very useful when an exception batch needs only 1 or 2 of the press jobs reprinted instead of the entire set.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/pressJobsTab.png" class="img" title="Press Jobs Tab" />
+        </p>
+        <p>By right-clicking on a press job in the UI, the following actions can be performed.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Root level</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p><strong>Manual Reprint </strong>Reprint orders within the selected batch and displays the batch dialogue so the appropriate destination device can be selected</p>
+                <p><strong>Reprint Batch </strong>reprint of the orders in the batch and automatically sends the output to the appropriate destination device</p>
+                <p><strong>View Press Job PDF </strong>Opens the selected press job in the default PDF&#160;viewer</p>
+                <p><strong>Copy Error Information </strong>Copies the error information associated with the press job to the Windows clipboard</p>
+                <p><strong>Delete </strong>Deletes the currently selected press job(s)</p>
+                <p><strong>Clear Filters </strong>Clears the currently applied filters to ensure that all rows are visible</p>
+                <p><strong>Export Batch Ticket Designer Data </strong>Exports an XML&#160;file which provides a datasource for creating custom batch tickets in iReport</p>
+                <p><strong>View Press Job Attributes </strong>Displays a web page showing all attributes associated with the currently selected press job</p>
+                <p><strong>Export Selected Table Data </strong>Exports the currently selected rows to a tab delineated file</p>
+                <p><strong>Copy Cell Contents </strong>Copies the data from the cell that was right-clicked on to the clipbord</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2 class="NoPageBreakBefore">The Post Press Tab</h2>
+        <p>The Post Press tab provides detailed information on jobs which have been configured for a post press workflow. </p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/postPressTab.jpg" class="img" title="Post press tab" alt="Post press tab" />
+        </p>
+        <h2>The Administration Tab</h2>
+        <p>The administration tab displays information about order injection statistics, injection history and active cluster member information. From here you can see when the last injection took place, view injection history and display that information on a graph. In the event errors occur during order injection, the administration tab will contain a link to the folder containing the errors (for orders that injected via a hotfolder). </p>
+        <p>The Cluster Admin section is broken down in to two parts, cluster members and active tasks. The cluster members section displays a summary of all distributed cores, order injectors and UIs that are active across all servers and workstations within the group. The active tasks section shows the active processes within the cluster, which host they are running from, and the last time the process has executed </p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/administrationTab.png" class="img" title="Administration tab" alt="Administration tab" />
+        </p>
+    </body>
+</html>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>introColorTargets</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Color quality system</h1>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes a color quality feature that will automatically submit a color target to press when a defined threshold has been exceeded. This is accomplished by tracking the number of spreads printed for all of the product components contained within a given product bin. A&#160;product bin is a collection of  products that has been logically grouped together based on customer requirements. Each product bin is configured with a threshold that determines when an automated color target will be sent to press. When submitting a target to press, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will submit the job with the highest priority and send it to the proof tray to be made available ahead of other work currently on press. <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> also provides a way for administrators to manually send a color target to a specific press. A manual target is submitted by selecting the appropriate product bin and press from the Color Quality tab within <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> and clicking the Generate Color Target button. Additionally, each product bin can be configured with a light volume threshold which monitors how much time has passed since the start of shift and submits a target to press if the threshold is exceeded prior to a target threshold occurring. </p>
+        <p class="note">The Infinity Color Quality system is currently integrated and fully supported with the HP&#160;Production Pro and HP&#160;Ultra Digital Front End (DFE). </p>
+        <h2>Color quality counters</h2>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes two methods for counting printed spreads. Each product bin will be configured to use one of the following counter types.</p>
+        <ul>
+            <li>Counter per Press</li>
+            <li>All Presses</li>
+        </ul>
+        <p>A product bin can be configured to track spreads in one of two ways; <strong class="standOutPrimary">Counter per Press </strong>or <strong class="standOutPrimary">All Presses</strong>. With either of these, the purpose of the counter is to track the number of printed spreads associated with a given product bin. The Counter per Press type is made up of the combination of a single product bin and a single press. This means that if you have a single product bin called "InfinityBooks", and this collection of products can be printed on any of the 5 presses within your environment, there will be 5 counters tracking the combination of the product bin and an individual press respectively. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/colorQualityCounters.png" class="img thumbnail" style="margin-top: 10px;margin-bottom: 5px;" title="Color quality counters" alt="Color quality counters" />
+        </p>
+        <p>Note in the example shown above there is only a single product bin (Mag) with each having a different press ID resulting in a total of 5 color quality counters being created. With the All presses counter, every printed spread for the products defined within the product bin will result in the counter incrementing regardless of the press the job was submitted to. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Currentcounter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Signifies the number of times that the trigger has occurred</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Lastcountertargettimestamp</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Displays the last time the counter was incremented</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Lastprintedevent</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The date and time that the printed event occurred for the most recent spread counted within the product bin</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Lastprinteventpressid</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The press ID&#160;of the last device to accumulate a printed spread for the counter</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Permanentcounter" />Permanentcounter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The total number of printed spreads that has occurred for the given product bin. This number will continue to increment for the life of the product bin and does not reset</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Pressid" />Pressid</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The name which identifies the device that the target was submitted to. This is configured within the mappings configuration file and will be discussed later in this chapter</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Productbinid" />Productbinid</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The name of the product bin the counter is associated with</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Startofshifttimestamp" />Startofshifttimestamp</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The most recent date and time when the start of shift button was clicked</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Triggercounter" />Triggercounter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The total number of times the trigger has fired</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p class="note">The product bin counter the job was submitted to will increment by a value of 1 for each spread printed. It is important to understand that if the job does not show as printed within <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />, the counter will not increment. This can occur if printed status cannot be obtained from the DFE. If this occurs, you can use the <strong class="standOutPrimary">Mark Press Job as Printed </strong>option from the right-click menu on the press jobs tab to manually mark the job as printed until the print status issue has been resolved.</p>
+        <h2>Resetting counters</h2>
+        <p>Administrators can perform a reset on any of the counters defined in the system. This action will reset the value for current counter back to 0. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Reset counter" />Reset counter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Click the <strong class="standOutPrimary">Reset Counters </strong>button on the Color Quality tab</li>
+                    <li>Select the desired counter from the drop down list</li>
+                    <li>Click the <strong class="standOutPrimary">Clear </strong>button</li>
+                    <li>Click <strong class="standOutPrimary">Ok </strong>on the confirmation dialogue</li>
+                    <li>Close the <strong class="standOutPrimary">Clear Counters </strong>dialogue</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Color Quality UI</h2>
+        <p>The Color Quality tab  provides the interface for working with and viewing information specific to color targets. From the Color Quality tab, the following actions can be performed.</p>
+        <ul>
+            <li>Indicate start of shift</li>
+            <li>Generate color target</li>
+            <li>Modify configuration</li>
+            <li>Clear counters</li>
+            <li>View counters</li>
+            <li>View historical events</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/ColorQualitySummary.png" class="img thumbnail" style="margin-top: 10px;margin-bottom: 5px;" title="Color quality summary" alt="Color quality summary" />
+        </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Indicate Start of Shift</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>This will set the start of shift that is used with the light volume threshold. Light volume targets will be discussed later in this chapter.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Generate Color Target" />Generate Color Target</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The Generate Color Target button is used to manually submit a color target to a given press.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Modify Configuration" />Modify Configuration</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Launches the web UI&#160;for configuring automated color targets</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Reset Counters" />Reset Counters</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Provides a way for administrators to reset the value of current counter for one of the defined counters</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="View Current Counters" />View Current Counters</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Clicking this button will display a grid of all current counters.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>
+                    <MadCap:keyword term="Color target history" />Color target history</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The history section of the color quality tab displays information related to color target submission and start of shift. Some of the items that can be found in history include automatic vs. manual submissions, submission success and failure messages, start of shift time stamp, as well as several properties for each.</p>
+                <p>
+                    <img src="../../../Resources/Images/Assets/IPS/ColorQualityHistory.png" class="img thumbnail" title="Color quality history" alt="Color quality history" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Administrative functions</h2>
+        <p>Access to the admin tool and ability to reset counters can be restricted to certain users and / or groups using the access control facilities. The two access control tasks specific to the Color Quality system are <strong class="standOutPrimary">qcsProductionAdmin </strong>and <strong class="standOutPrimary">qcsConfigurationAdmin</strong>. The production admin controls access to the <strong class="standOutPrimary">Reset Counters </strong>button and the configuration admin controls access to the <strong class="standOutPrimary">Configure </strong>button used to modify the Color Quality configuration. The accesscontrol.xml file located in sharedconfig can be modified to restrict or allow specific groups to each task in order to control access as desired. The following example shows both tasks with different domain groups for controlling the permissions allowed to each of these functions.</p>
+        <p class="note">Creation and management of groups for the pusposes of controlling security is up to the customer. Once all groups have been created and members added, Infinity Digital can assist with adjusting the accesscontrol.xml file as required.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/colorQualityAccessControl.png" class="img thumbnail" title="Color quality access control" alt="Color quality access control" />
+        </p>
+    </body>
+</html>

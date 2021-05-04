@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="Getting Started">
+    <TocEntry
+      Title="System overview"
+      Link="/Content/Infinity Production System/A_Getting Started/1_System overview.htm"
+      MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Exploring the workspace"
+      Link="/Content/Infinity Production System/A_Getting Started/2_Exploring the workspace.htm"
+      MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Configuring the Workspace"
+      Link="/Content/Infinity Production System/A_Getting Started/3_Configuring the workspace.htm"
+      MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Basics">
+      <TocEntry
+        Title="Managing orders"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/1_Working with orders.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Creating batches"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/2_Batching from products.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Sort groups"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/3_Batching from sort groups.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Managing batches"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/4_Batches and press jobs.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/4.5_Understanding exception batches.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Using order slices"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/5_Order slice.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/Managing slices.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/6_UI Perspectives.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"></TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/IPS Basics/7_Quick Statistics.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Features">
+    <TocEntry
+      Title="Sort and batch">
+      <TocEntry
+        Title="Order sort basics"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/1_Order sort basics.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Creating sort rules"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/2_Creating sort rules.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Implementing sort rules"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/3_Implementing sort rules.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/3.5_Calculated Fields.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/3.6_ProceedConditions.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Manual device selection"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/4_Manual device selection.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Automatic device selection"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/5_Automatic device selection.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Device groups"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/6_Device groups.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/7_Press Rooms.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Batch naming"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/9_batch naming.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/12_Batch sorting.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Production Intents"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/10_Production Intents.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Release presets"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/11_Release presets.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Presort workflow">
+      <TocEntry
+        Title="Introduction"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/Presort workflow/0_Presort.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Presort profiles"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/Presort workflow/1_Sort rule separation.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Creating presort rules"
+        Link="/Content/Infinity Production System/B_Features/Sorting and Batching/Presort workflow/2_Creating presort rules.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Proof workflow">
+      <TocEntry
+        Title="Understanding the proof workflow"
+        Link="/Content/Infinity Production System/B_Features/Proof workflow/1_Proof workflow.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Configuring the environment"
+        Link="/Content/Infinity Production System/B_Features/Proof workflow/2_Proof configuration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Generating proofs"
+        Link="/Content/Infinity Production System/B_Features/Proof workflow/3_Generating proofs.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Output profiles">
+      <TocEntry
+        Title="Introduction"
+        Link="/Content/Infinity Production System/B_Features/Output profiles/0_Intro.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="What is diverting"
+        Link="/Content/Infinity Production System/B_Features/Output profiles/1_What is diverting.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Output profiles/2_Configuring output profiles.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Output profiles/3_Creating alternate profiles.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/B_Features/Output profiles/4_Diverting orders.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Auto-release"
+      conditions="General.IPS">
+      <TocEntry
+        Title="Auto-Release"
+        Link="/Content/Infinity Production System/B_Features/Auto-release/01_intro.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Auto-release configuration"
+        Link="/Content/Infinity Production System/B_Features/Auto-release/02_Auto-release setup.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Auto-release filters"
+        Link="/Content/Infinity Production System/B_Features/Auto-release/03_Creating and using filters.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Color targets"
+      conditions="General.CJP">
+      <TocEntry
+        Title="The basics"
+        Link="/Content/Infinity Production System/B_Features/Automatic Color Targets/1_introColorTargets.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Product bins"
+        Link="/Content/Infinity Production System/B_Features/Automatic Color Targets/2_colorQualityConfiguration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Submitting targets"
+        Link="/Content/Infinity Production System/B_Features/Automatic Color Targets/3_Color target submission.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Troubleshooting"
+        Link="/Content/Infinity Production System/B_Features/Automatic Color Targets/4_QuickRefTroubleshooting.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Order decorators">
+      <TocEntry
+        Title="Decorator basics"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/01_Working with decorators.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Creating a decorator"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/2_Creating a decorator.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Troubleshooting"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/03_Troubleshooting.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Scripted decorators">
+      <TocEntry
+        Title="Introduction"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/Scripted decorators/Introduction.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Scripted Decorator API"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/Scripted decorators/Scripted Decorator API.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Scripted decorator fundementals"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/Scripted decorators/Scripted decorator fundementals.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Decorator walk-through"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/Scripted decorators/Decorator walk-through.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"></TocEntry>
+      <TocEntry
+        Title="Troubleshooting and tips"
+        Link="/Content/Infinity Production System/B_Features/Order decorators/Scripted decorators/Troubleshooting and tips.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Postpress workflow">
+      <TocEntry
+        Title="Introduction"
+        Link="/Content/Infinity Production System/B_Features/Postpress workflow/0_Introduction.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Configuring post-press"
+        Link="/Content/Infinity Production System/B_Features/Postpress workflow/1_Postpress configuration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Defining the data format"
+        Link="/Content/Infinity Production System/B_Features/Postpress workflow/2_Defining the data format.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Post-press user interface"
+        Link="/Content/Infinity Production System/B_Features/Postpress workflow/4_Post-press user interface.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Advanced Features">
+    <TocEntry
+      Title="Controlling access"
+      Link="/Content/Infinity Production System/D_Advanced features/Controlling Access.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Multi-site configuration"
+      Link="/Content/Infinity Production System/D_Advanced features/Multi-site Configuration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="Copy count optimization (CCO)"
+      Link="/Content/Infinity Production System/D_Advanced features/Copy Count Optimization CCO.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="More">
+      <TocEntry
+        Title="No print products"
+        Link="/Content/Infinity Production System/D_Advanced features/More/No Print Products.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/D_Advanced features/More/Dynamic Press Job Options.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/D_Advanced features/More/Content sized batch ticket.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Integration">
+    <TocEntry
+      Title="DFE">
+      <TocEntry
+        Title="EFI Fiery"
+        Link="/Content/Infinity Production System/E_Integrations/DFE/EFI Fiery.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="Horizon SmartStacker">
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/0_Overview.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/1_Imposition.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"></TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/2_Laycrimp layouts.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/4_Designer mode.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Next steps.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Guided walk-through">
+        <TocEntry
+          Title="Introduction"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/00_Introduction.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="Preparation"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/0_Preparation.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="System configuration"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/1_System configuration.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="Building the laycrimp"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/2_Building the laycrimp.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="Adding a finishing plan"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/3_Adding a finishing plan.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="Updating the imposition"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/4_Updating the imposition.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <TocEntry
+          Title="Creating the batch ticket"
+          Link="/Content/Infinity Production System/E_Integrations/Horizon SmartStacker/Guided walk-through/5_Creating the batch ticket.htm"
+          MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="Infinity OS Print">
+      <TocEntry
+        Title="Installation and setup"
+        Link="/Content/Infinity Production System/E_Integrations/Infinity OS Print/01_Installation and setup.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="IPS configuration"
+        Link="/Content/Infinity Production System/E_Integrations/Infinity OS Print/02_IPS configuration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="OS Print web UI"
+        Link="/Content/Infinity Production System/E_Integrations/Infinity OS Print/03_OS Print Web UI.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Infinity OS Print/04_Creating new devices.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/Infinity OS Print/05_Custom Print Modes.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="SDK Workflow Events">
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/1_Introduction.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/2_SystemConfiguration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/3_BuildTemplates.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/4_SDKEventCoreConfiguration.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/6_SystemCleanup.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/5_TemplateExamples.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/Infinity Production System/E_Integrations/SDK Workflow Events/7_Tips and best practices.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+    <TocEntry
+      Title="EPM">
+      <TocEntry
+        Title="Enhanced Productivity Mode"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/01_Enhanced Productivity Mode.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Skipping EPM evaluation"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/02_Suppressing prebatch components.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="EPM diagnostics"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/03_EPM diagnostics.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="EPM integration"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/04_EPM integration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="EPM batch workflow"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/05_EPM batch workflow.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Ticket template for EPM results"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/06_EPM ticket templates.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="Custom EPM evaluations"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/07_Custom EPM evaluations.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="EPM remakes"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/077_EPM remakes.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="EPM eStop"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/08_EPM eStop.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+      <TocEntry
+        Title="IPSEPM system configuration"
+        Link="/Content/Infinity Production System/E_Integrations/EPM/09_IPSEPM system configuration.htm"
+        MadCap:generatedToc="true" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    </TocEntry>
+  </TocEntry>
+  <TocEntry
+    Title="Template Development">
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/Infinity Production System/F_Template Developers/Thumbnail stamping.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/Infinity Production System/F_Template Developers/Order level thumbnails.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/Infinity Production System/F_Template Developers/Fit Policy.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/Infinity Production System/F_Template Developers/Scripted Stamps.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+  </TocEntry>
+</CatapultToc>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Configure the post press workflow</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Postpress configuration</h1>
+        <p>In order to configure a post press workflow, the following tasks must be completed.</p>
+        <ul>
+            <li>Create a matcher</li>
+            <li>Create a decorator</li>
+            <li>Define the finishing device formatting data</li>
+        </ul>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;Matcher</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The matcher is used to identify press jobs containing the batch component to be sent to the post-press workflow.  </p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;matcherdef&gt;
+	&lt;andmatcher&gt;
+		&lt;matcher compareto="683" comparator="equals" 
+		compareattribute="productType" comparelevel="order"/&gt;
+		&lt;matcher compareto="bookblock" comparator="equals" 
+		compareattribute="batchComponentName" comparelevel="order"/&gt;
+	&lt;/andmatcher&gt;
+&lt;/matcherdef&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;Decorator</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>A&#160;decorator will be used to apply 4 new key attributes to the press job.</p>
+                <ul>
+                    <li>workflowId</li>
+                    <li>pressJobDataExportFormat</li>
+                    <li>finishingDevice</li>
+                    <li>finishingDeviceInputHotfolder</li>
+                </ul>
+                <ul>
+                    <li><strong>WorkflowId </strong>with a value of <code>IDFPostPressExportPressDataAndSubmitToFinishing</code>, initiates the process for submitting the job to the post press workflow</li>
+                    <li><strong>pressJobDataExportFormat </strong>specifies a value that corresponds to the name of the layout file located in the <code>sharedconfig\VDP\dataexport </code>folder. The value specified in the decorator should not include the <code>.dataexport.xml</code> portion of the filename</li>
+                    <li><strong>finishingDevice </strong>specifies a name for the finishing device being used</li>
+                    <li><strong>finishingDeviceInputHotfolder </strong>specifies the UNC&#160;path where the Infinity software should export the file to. This is the location where downstream finishing equipment will retrieve the file from</li>
+                </ul><pre><code class="language-xml">&lt;decorator&gt;
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;PostPressTest&lt;/matcher&gt;
+	&lt;!-- Run level to determine execution --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+	&lt;!-- Applies to the specified context --&gt;
+	&lt;workflowContext&gt;postpress&lt;/workflowContext&gt;
+	&lt;!-- Applies to the specified level --&gt;
+	&lt;objectContext&gt;pressJob&lt;/objectContext&gt;
+	&lt;!-- Applies to objects when match is found --&gt;
+	&lt;attributes&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;workflowId&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;IDFPostPressExportPressDataAndSubmitToFinishing&lt;/value&gt;
+		&lt;/attribute&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;pressJobDataExportFormat&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;inserter1&lt;/value&gt;
+		&lt;/attribute&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;finishingDevice&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;inserter1&lt;/value&gt;
+		&lt;/attribute&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;finishingDeviceInputHotfolder&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;\localhost\idf\finishing\inserter1\input&lt;/value&gt;
+		&lt;/attribute&gt;
+	&lt;/attributes&gt;
+	&lt;!-- Aplies to objects when no match is found --&gt;
+	&lt;onNoMatchAttributes&gt;
+	&lt;/onNoMatchAttributes&gt;
+&lt;/decorator&gt;</code></pre>
+                <p class="note">All information specified in a decorator for workflow context, object context, as well as attribute names and values are case sensitive. If the case for one of these attributes does not match, the new attributes will not be applied.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+    </body>
+</html>

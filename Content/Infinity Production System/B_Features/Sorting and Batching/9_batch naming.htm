@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Batch naming</title>
+        <link href="../../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Modifying batch and press job names</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> allows you to define the attributes used that will make up the batch name, and at the same time, format the values as needed. Additionally, you can define the attributes that will be used for generating the press job names resulting from the generated batches. The configuration for press job naming can be done globally, or on a product-by-product basis for a given batch component within the product's batch definition. </p>
+        <h2>Use custom batch names</h2>
+        <ol>
+            <li>Browser to the <code>sharedconfig </code>folder for the environment requiring the change</li>
+            <li>Locate and open the <code>autobatch.config.xml </code>file</li>
+            <li>Include the attributes in the order to be displayed within the <strong class="standOutPrimary">batchIDAttributes</strong> section of the configuration file, separated by commas</li>
+            <li>Define any required string formatting within the <strong class="standOutPrimary">batchIDFormatString </strong>section of the configuration file</li>
+            <li><strong class="standOutPrimary">Save </strong>and close the <code>autobatch.config.xml</code> file</li>
+            <li>Restart all <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> DCore services</li>
+        </ol>
+        <p>An example of a formatted batch ID&#160;usng the station ID&#160;and generatedBatchId attributes is shown below.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/batchIDScreenshot.png" class="img " title="Batch ID screen shot" alt="Batch ID screen shot" />
+        </p>
+        <p class="note">The first portion of the batch ID&#160;has been padded to two digits, while the remainder following the hyphen has been padded to 6 digits.</p>
+        <h2>Custom press job naming</h2>
+        <p>Similar to batch names, press job names can be customized as well. Press job naming can be configured globally using the naming strategy attributed defined within the <code>batch.config.xml&#160;</code>file, or for a given component within a batch definition by using an attribute of the same name. .</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Use custom press job names</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Open the <code>batch.config.xml </code>file located in the sharedconfig folder</li>
+                    <li>Locate the <strong class="standOutPrimary">defaultBatchComponentNamingStrategy</strong> section of the configuration file</li>
+                    <li>Include all of the attributes that will be used for the press job name within the <strong class="standOutPrimary">defaultBatchComponentNamingStrategy</strong> tags</li>
+                    <li>Save and close the file</li>
+                </ol>
+                <p>Job names can be as simple or complex as needed. Typically, each attribute will be separated by a hyphen or underscore and will include items such as the batch ID, batch component name, and product type. An example press job naming strategy is shown below.</p>
+                <p>
+                    <img src="../../../Resources/Images/Assets/IPS/namingStrategyGlobal.png" class="img " title="Naming strategy global" alt="Naming strategy global" />
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Batch component level configuration</h3>
+        <p>If you need to have certain products use a different naming strategy that has been defined for the system default, you can do this by adding the naming strategy attribute to the batch component for one or more products. </p>
+        <h4>Component specific job naming</h4>
+        <ol>
+            <li>Open the batch definition which contains the batch component that should use the custom naming strategy</li>
+            <li>On the batch component line, add the attribute <span class="SetOffFirstLevel">namingstrategy </span>with the desired values. </li>
+            <li>Save and close the file</li>
+        </ol>
+        <p class="note">When using a custom naming strategies, the press job name defined within the batch component section of the batch definition will override the settings defined at the global level. Also note that naming strategies defined at either level can use statically entered text and are not limited to batch attributes. </p>
+        <p>An example batch component custom naming strategy is shown below. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/namingStrategyCustom.png" class="img " title="Custom naming strategy" alt="Custom naming strategy" />
+        </p>
+    </body>
+</html>

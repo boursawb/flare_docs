@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Presort at analyze</title>
+        <link href="../../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Presort at analyze" />Presort</h1>
+        <p>Presort is an operation performed on an order before reaching the final sort phase of the workflow. During presort, both sort rules and matchers will be honored, as well as the ability to match on a mix of order and product level attributes. The result of presort is a set of new attributes on the order that can be used by subsequent steps in the workflow or by order decorators. Presort can occur at the following three phases of the order workflow.</p>
+        <ul>
+            <li>Inject</li>
+            <li>Analyze</li>
+            <li>Prebatch</li>
+        </ul>
+        <p>Each presort phase will result in 4 new order attributes with a default value of <strong>wildcard</strong>. The four attributes generated for the analyze presort phase are shown below.</p>
+        <ul>
+            <li><code>analyzePreSort Id</code>
+            </li>
+            <li><code>analyzePreSort Rule<![CDATA[	]]></code>
+            </li>
+            <li><![CDATA[
+]]><code>analyzePreSort Rule Group</code></li>
+            <li><![CDATA[
+]]><code>analyzePresortRule</code></li>
+        </ul>
+        <p>A&#160;value of <strong>wildcard </strong>indicates that either no analyze presort rules yet exist, or the order did not match any of the defined analyze presort rules. A&#160;very basic rule of thumb for determining if presort will be required is to ask the following question.</p>
+        <p><strong class="standOutPrimary">Do I&#160;need to identify orders based on the values of both order and product level attributes?</strong>
+        </p>
+        <p>If the answer to this question is yes, then presort will likely be required.</p>
+    </body>
+</html>

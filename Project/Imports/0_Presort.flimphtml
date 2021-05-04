@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-31T14:34:56.2146612-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/0_Presort.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/0_Presort.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/1_Sort rule separation.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/1_Sort rule separation.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/2_Creating presort rules.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F4_Presort/2_Creating presort rules.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_Presort.htm"
+      TimeStamp="5/31/2018 2:34:53 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_Sort rule separation.htm"
+      TimeStamp="5/31/2018 2:34:53 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_Creating presort rules.htm"
+      TimeStamp="5/31/2018 2:34:53 PM" />
+    <Url
+      Source="../TOCs/0_Presort.fltoc"
+      TimeStamp="5/31/2018 2:34:56 PM" />
+  </GeneratedFiles>
+</HtmlImport>

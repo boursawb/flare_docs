@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="General.IPS">
+    <head><title>Auto release</title>
+        <link href="../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Auto release" />Auto release</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> has the ability to automatically release work based on rules you define. The auto-release feature relies on device groups for determining which device jobs will be submitted to. As orders arrive, batches will build in the appropriate sort group and then release once the criteria has been met. Auto-release can be enabled or disabled as needed and can also incorporate the use of filters to only release items you have specified. In order to use the auto-release feature, the following conditions must be met.</p>
+        <ul>
+            <li>Auto-release must be enabled</li>
+            <li>Auto-batch must be enabled on the sort group</li>
+            <li>A&#160;valid release criteria must exist</li>
+        </ul>
+        <p>It is important to understand that the <MadCap:keyword term="release criteria" />release criteria simply defines when a batch will be released, not how much work will be released. The amount of work is simply the current batch at the point when the release criteria is met. Using the <code>autobatch true/false </code>attribute within the release criteria, you can selectively choose which groups will be configured to auto-release. When there is a mix of auto-release and manual release sort groups, the UI&#160;experience will change to show which groups are auto-release enabled vs. those that are not. Manual release groups will show blue text and a blue bar for estimated spreads, where auto-release groups will display black text and a green estimated spreads bar. When auto-release is enabled, you have the ability to include an auto-release filter to narrow the scope of groups that can be released automatically.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/autoReleaseManualUI.jpg" class="img thumbnail" style="margin-top: 10px;margin-bottom: 10px;" title="Auto-release manual" alt="Auto-release manual" />
+        </p>
+        <p>When working in an auto-release environment, it is recommended to enable the following UI&#160;columns on the sort groups tab.</p>
+        <ul>
+            <li>
+                <MadCap:keyword term="Can Auto Release" />Can Auto Release</li>
+            <li>
+                <MadCap:keyword term="Cannot Auto Release Reason" />Cannot Auto Release Reason</li>
+            <li>
+                <MadCap:keyword term="Release Criteria" />Release Criteria</li>
+        </ul>
+        <h2>Configuring auto-release</h2>
+        <p>Before <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can automatically release work to press, there are a few configurations that must occur. The following diagram illustrates the basic steps required for enabling auto-release.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/autoReleaseFlow.png" class="img thumbnail" title="Auto release flow" alt="Auto release flow" />
+        </p>
+        <p>Each sort rule defined can include a release criteria. The release criteria specifies a matcher that contains the criteria for releasing the next batch from the sort group once the criteria is met. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Create the matcher</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Launch the Order Sort Configuration utility</li>
+                    <li>Click the <strong class="standOutPrimary">Create new matcher </strong>link in the Matcher actions section</li>
+                    <li>Specify a name for the new matcher</li>
+                    <li>In the <strong class="standOutPrimary">Attribute </strong>drop-down, select the attribute that will be used</li>
+                    <li>Select the appropriate operand in the <strong class="standOutPrimary">is</strong> drop-down</li>
+                    <li>Enter the value which satisfies the release criteria you wish to use</li>
+                    <li>Click <strong class="standOutPrimary">Ok </strong>to save the matcher</li>
+                </ol>
+                <p class="ExampleHead">Example</p>
+                <p class="Example">Assume we are attempting to automatically release the next batch any time the total number of batches in a sort group exceeds 1. For the steps above, you would create a matcher called <strong class="standOutPrimary">TotalBatchesGT1</strong>, specify an attribute of <strong class="standOutPrimary">Total Batches</strong>, use the <strong class="standOutPrimary">&gt;=</strong> operand in the <strong class="standOutPrimary">Is&#160;</strong>drop-down and set the value to 1. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Create the release criteria</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Connect to the master core host and open the following location -<code> \\localhost\idf\sharedconfig\order\releasecriteria</code></li>
+                    <li>Edit any of the existing release criteria at that location using Notepad++&#160;or other installed text / XML&#160;editor</li>
+                    <li>Change the <strong class="standOutPrimary">description </strong>to Total Batches</li>
+                    <li>Change the <strong class="standOutPrimary">matcher </strong>to the name of the matcher previously created</li>
+                    <li>Verify that the <strong class="standOutPrimary">autobatchenabled </strong>attribute is set to true</li>
+                    <li>Save the release criteria with a new name (Save As)&#160;</li>
+                </ol>
+                <p>The name of the release criteria must follow the convention of <code>name.releasecriteria.xml</code>. Failing to include .<code>releasecriteria.xml </code>in the name will result in the criteria failing to be used.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Enabling sort groups for auto-release</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Identify each sort group that will use uto-release</li>
+                    <li>Set the value of the <span class="SetOffFirstLevel">releaseCriteria </span>attribute in each sort group XML&#160;to the desired release criteria</li>
+                    <li>Save the sort group XML</li>
+                </ol>
+                <p>For a sort group called Books, the attribute <strong class="standOutPrimary">releaseCriteria </strong>would be modified, setting the value to <strong class="standOutPrimary">totalBatchesGT1 </strong>to match the name of the release criteria previously built. If the <strong class="standOutPrimary">releaseCriteria </strong>attribute does not exist in the sort group, it must be added.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Enabling auto-release</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Navigate to the sort groups tab within the <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> UI</li>
+                    <li>Click the button to <strong class="standOutPrimary">turn auto-release on</strong></li>
+                    <li>Select the options to <strong class="standOutPrimary">turn on auto-release </strong>and specify a filter (if required)</li>
+                    <li>Click <strong class="standOutPrimary">Ok</strong></li>
+                </ol>
+                <p>The following image illustrates the steps for enabling auto-release.</p>
+                <p>
+                    <img src="../../Resources/Images/Assets/IPS/autoReleaseEnable.jpg" class="img thumbnail" title="Enable auto release" alt="Enable auto release" />
+                </p>
+                <p>To disable auto-release, simply click the button on the sort groups tab to turn auto-release off.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example XML</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <h2>Matcher - Total batches &gt;= 1</h2><pre><code class="language-xml">&lt;sortrule&gt;
+	&lt;ormatcher&gt;
+		&lt;matcher comparelevel="order" 
+			 compareattribute="Total Batches" 
+			 comparator="gt" 
+			 compareto="1"&gt;&lt;/matcher&gt;
+	&lt;/ormatcher&gt;
+&lt;/sortrule&gt;</code></pre>
+                <h2>Sort Group - Photobooks</h2><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;sortgroup releaseCriteria="TotalBatchesGT1" /&gt;</code></pre>
+                <h2>Release Criteria - TotalBatchesGT1</h2><pre><code class="language-xml">&lt;releasecriteria description="system default" 
+		  matcher="totalBatchesGT1" 
+		  autoBatchEnabled="false"&gt;
+&lt;/releasecriteria&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

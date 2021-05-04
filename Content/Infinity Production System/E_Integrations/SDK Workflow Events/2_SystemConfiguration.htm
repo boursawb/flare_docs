@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>System configuration</title>
+    </head>
+    <body>
+        <h1>System configuration</h1>
+        <p>To enable the SDK&#160;event workflow, the <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> system configuration must be updated. The process will involve updating the workflow event and job status plugin configurations.</p>
+        <h2>Update workflow event plugin</h2>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location</li>
+            <li>Open the <code>worflowevents.plugins.xml </code>file located in the root of <code>sharedconfig</code></li>
+            <li>Add the following entry to the <code>pluginClassNames </code>section</li>
+        </ol>
+        <p><pre><code class="language-xml">&lt;!-- SDK --&gt;
+&lt;string&gt;com.infdig.idf.sdk.SDKWorkflowEventsBridgePlugin&lt;/string&gt;
+</code></pre>
+        </p>
+        <h2>Update the job status plugin</h2>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location</li>
+            <li>Open the <code>dfejobstatus.plugins.xml </code>file located in the root of sharedconfig</li>
+            <li>Add the following entry to the <code>pluginClassNames </code>section</li>
+        </ol>
+        <p><pre><code class="language-xml">&lt;string&gt;com.infdig.idf.sdk.SDKWorkflowEventsBridgePlugin&lt;/string&gt;</code></pre>
+        </p>
+        <h2>Restart services</h2>
+        <p>Once the new plugin updates have been saved, all distributed core services (DCore)&#160;will need to be restarted.</p>
+    </body>
+</html>

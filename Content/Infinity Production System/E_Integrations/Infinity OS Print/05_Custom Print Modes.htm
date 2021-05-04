@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link href="../../../Resources/TableStyles/PatternedRows.css" rel="stylesheet" MadCap:stylesheetType="table" /><title>Custom Print Modes</title>
+    </head>
+    <body>
+        <h1>Custom Print Modes</h1>
+        <p>From the OS&#160;Print web interface, you can create custom print modes for submitting jobs to a Scodix device. A&#160;custom print mode consists of the following attributes.</p>
+        <ul>
+            <li><strong class="standOutPrimary">Print Mode Name </strong>The identifier for the print mode used in the submit job dialog</li>
+            <li><strong class="standOutPrimary">TIFF X/Y Resolution </strong>The values for the X and Y&#160;resolution of the TIFF</li>
+            <li><strong class="standOutPrimary">SJD Print Mode Id Override </strong>An override for the print mode id that is placed into the SCODIX job definition format file (SJD).  In this example, FOIL53ALIAS would show up in the SJD file instead of FOIL53. If no value is provided the Print Mode Name is used instead.</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/OSPCustomPrintModeDialog.png" />
+        </p>
+        <h2>Built-in print modes</h2>
+        <p>Infinity OS&#160;Print includes the following built-n print modes.</p>
+        <table style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/PatternedRows.css');" class="TableStyle-PatternedRows" cellspacing="0">
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <col class="TableStyle-PatternedRows-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows"><strong>Print Mode Name</strong>
+                    </td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows"><strong>SJD Value</strong>
+                    </td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows"><strong>Horizontal Resolution</strong>
+                    </td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows"><strong>Vertical Resolution</strong>
+                    </td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Sense 50</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">SENSE 50</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">508</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Sense 70</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">SENSE 70</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">846.67</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Sense 100</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">SENSE 100</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">1270</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Foil 15</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">FOIL 15</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">1016</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Foil 20</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">FOIL 20</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">1270</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Foil 25</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">FOIL 25</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">1693.33</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Foil 40</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">FOIL 40</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">508</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Foil 41</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">FOIL 41</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">1016</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Foil 50</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">FOIL 50</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">635</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Foil 51</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">FOIL 51</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">1270</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">Foil 60</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">FOIL 60</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-DarkerRows">846.67</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-LightRows">
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">Foil 61</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">FOIL 61</td>
+                    <td class="TableStyle-PatternedRows-BodyE-Regular-LightRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyD-Regular-LightRows">1693.33</td>
+                </tr>
+                <tr class="TableStyle-PatternedRows-Body-DarkerRows">
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-DarkerRows">Foil 80</td>
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-DarkerRows">FOIL 80</td>
+                    <td class="TableStyle-PatternedRows-BodyB-Regular-DarkerRows">450</td>
+                    <td class="TableStyle-PatternedRows-BodyA-Regular-DarkerRows">1270</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="Note">Any modifications to system generated print modes will be lost following a restart of the OS&#160;Print service. If the built in print modes do not meet your requirements, a custom print mode should be created.</p>
+        <h3>Adjusting built-in print modes</h3>
+        <p>In situations where the values for a built-in print mode must be changed, a new print mode will need to be created that uses an alias that matches the desired print mode name, with adjustments being made in the newly created print mode. For example, if the required print mode is Foil 50 but the vertical resolution required is 1270 instead of 635, a new print mode would need to be created with the desired vertical resolution and an alias name matching the required print mode name. To create a custom version of a built-in print mode, follow the steps shown below.</p>
+        <ol>
+            <li>Identify the print mode to be used (i.e. Foil 50)</li>
+            <li>Click <strong class="standOutPrimary">Scodix Print Modes </strong>under Settings within the OS&#160;Print web UI</li>
+            <li>Click the <strong class="standOutPrimary">Create </strong>button in the upper right corner</li>
+            <li>Enter a new name for the print mode (i.e. Foil 50V2</li>
+            <li>Enter the required values for horizontal and vertical resolution</li>
+            <li>Enter the desired print mode name for the alias (i.e. Foil 50)</li>
+            <li>Save the new print mode</li>
+        </ol>
+        <h2>Creating a custom print mode</h2>
+        <p>To create a Scodix custom print mode, follow the steps shown below.</p>
+        <ol>
+            <li>Open Chrome and browse to the host running the OS&#160;Print service - <strong class="standOutPrimary">http://&lt;yourHost&gt;:9300</strong></li>
+            <li>Click <strong class="standOutPrimary">Scodix Print Modes </strong>under <strong class="standOutPrimary">Settings</strong></li>
+            <li>Click the <strong class="standOutPrimary">Create </strong>button in the upper right corner </li>
+            <li>Enter the value for <strong class="standOutPrimary">Print Mode Name</strong></li>
+            <li>Enter the value for <strong class="standOutPrimary">TIFF&#160;X&#160;resolution</strong></li>
+            <li>Enter the value for <strong class="standOutPrimary">TIFF&#160;Y&#160;resolution</strong></li>
+            <li>OPTIONAL - Enter the value for the <strong class="standOutPrimary">SJD&#160;Print Mode ID Override</strong></li>
+            <li>Save the new print mode</li>
+        </ol>
+        <p>The newly created print mode should display in the UI (example shown below)</p>
+        <p>
+            <img src="../../../Resources/Images/OSPCreatePrintMode.png" />
+        </p>
+        <h2>Edit / Clone an existing print mode</h2>
+        <p>To create a new print mode from an existing, or modify one or more values of a custom print mode, follow the steps shown below.</p>
+        <ol>
+            <li>Click either the <strong class="standOutPrimary">EDIT&#160;</strong>or <strong class="standOutPrimary">CLONE&#160;</strong>buttons to the right of the print mode</li>
+            <li>If editing an existing print mode, make the required changes and click save</li>
+            <li>If cloning a print mode, provide a new print mode name, make any necessary changes, and click save</li>
+        </ol>
+        <h2>Delete a custom print mode</h2>
+        <p>To delete an existing print mode, follow the steps shown below.</p>
+        <ol>
+            <li>Click <strong class="standOutPrimary">Scodix print modes </strong>under the <strong class="standOutPrimary">Settings </strong>menu</li>
+            <li>Check the box for the print mode(s)&#160;to be deleted</li>
+            <li>Click the <strong class="standOutPrimary">DELETE&#160;</strong>button in the upper right corner</li>
+        </ol>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Creating sort rules</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Creating sort rules</h1>
+        <p>The <strong class="standOutPrimary">Sort Rule Configuration Tool </strong>can be used to create and manage rules defined in the system. The left window pane allows you to filter the view to only the items you wish to see and the right window pane provides the ability to create each of the different order sort components. When working with sort rules, keep the following in mind.</p>
+        <ul>
+            <li>Orders can only have one rule assigned to them</li>
+            <li>Rules are applied in order, as defined by the active sort profile</li>
+            <li>Only one sort profile can be active at any given time</li>
+            <li>Sort rules group orders together</li>
+            <li>Split by lists divide sort groups following a sort rule match</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/sortruleinterface.jpg" class="img " title="Sort rule configuration tool" alt="Sort rule configuration tool" />
+        </p>
+        <h2>Sort rule configuration wizard</h2>
+        <p>Rules can be created manually, or by using the Create New Sort Rule wizard. The following steps will guide you through the process of creating a new sort rule using the wizard.</p>
+        <h3>Creating a new rule</h3>
+        <ol>
+            <li>Launch the Sort Rule Configuration management console</li>
+            <li>In the <strong class="standOutPrimary">Actions </strong>pane, click the link to <strong class="standOutPrimary">Create New Sort Rule</strong></li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/createnewsortrule.jpg" class="img " style="mc-float: center;" title="Create sort rule" alt="Create sort rule" />
+        </p>
+        <ol>
+            <li value="3">Click <strong class="standOutPrimary">Next </strong>on the initial overview screen</li>
+            <li>Specify a unique and meaningful rule name and click <strong class="standOutPrimary">Next</strong></li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/createnewsortrule_name.jpg" class="img " title="Sort rule name" alt="Sort rule name" />
+        </p>
+        <ol>
+            <li value="5">Choose the appropriate sort group from the drop-down and click <strong class="standOutPrimary">Next</strong>. If no sort groups currently exist or a new group is required, click the link to <strong class="standOutPrimary">create a new sort group</strong>.</li>
+        </ol>
+        <ol>
+            <li value="6">Specify the name of the new sort group and click <strong class="standOutPrimary">Ok</strong>.</li>
+            <li>
+                <p>Select the appropriate matchers and click <strong class="standOutPrimary">Next</strong>. If no matcher exist, or a new matcher is required, click the link to <strong class="standOutPrimary">create a new matcher</strong></p>
+            </li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/createnewsortrule_matcher.jpg" class="img " title="Create matcher" alt="Create matcher" />
+        </p>
+        <ol>
+            <li value="8">Provide a unique and descriptive name for the new matcher</li>
+            <li>Select either <strong class="standOutPrimary">Order</strong> or <strong class="standOutPrimary">Product</strong> from the drop-down list based on the types of attributes required. If you are unsure which level to select, you use the view order attributes web page on the products tab for one of the orders and determine which level should be used</li>
+            <li>Select the attribute from the drop-down list to match on</li>
+            <li>Select the desired operator</li>
+            <li>Specify the desired value</li>
+            <li>After being returned to the wizard, click the + to add the newly created matcher to the rule</li>
+            <li>Check the box next to the desired matcher(s) and click <strong class="standOutPrimary">ok</strong></li>
+            <li>Click <span class="standOutPrimary">Next </span>to continue to the Split by list screen</li>
+            <li>Select the appropriate <strong class="standOutPrimary">split by list </strong>from the drop-down menu and click <strong class="standOutPrimary">Next</strong>. To create a new split by list, click the Create a new split on attribute list link</li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/createnewsortrule_splitby.jpg" class="img " title="Create split by list" alt="Create split by list" />
+        </p>
+        <ol>
+            <li value="17">If a new split by list will be created, follow the steps below. If you are using an existing split by list, continue from step 21.</li>
+            <li>Provide a unique and descriptive split by list name</li>
+            <li>Add as many split by list attributes as desired and click <strong class="standOutPrimary">Ok</strong></li>
+            <li>Select the <strong class="standOutPrimary">split by list </strong>created in the previous step and click <strong class="standOutPrimary">Next</strong></li>
+            <li>Click <strong class="standOutPrimary">Finish</strong></li>
+        </ol>
+        <p class="note">The purpose of sort groups is to provide a level of organization and grouping for the sort rules created. Additionally, sort groups specify the release criteria that will be used when auto-release has been enabled.</p>
+    </body>
+</html>

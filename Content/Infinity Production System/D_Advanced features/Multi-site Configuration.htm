@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Facility ID</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Facility ID</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes a feature that allows an administrator to designate which product configurations are applicable to a given site by defining one or more facility IDs. <MadCap:keyword term="Facility ID" />Facility IDs can be used to differentiate multiple environments at a single location, sites at geographically disparate locations, or a combination of the two. In many cases, a site will consist of multiple environments, production and stage. Using facility IDs, the environment can be configured such that all product configurations will be accessible when working in the stage environment, but only products defined with an appropriate facility ID&#160;will show up for the production team. One of the key benefits of facility IDs from the product template developer's perspective is that a single set of product configurations can be maintained while still allowing for very specific behavior within a given environment, or at a specific site. When configuring facility IDs at multiple sites, templates can be built to accommodate various devices and finishing equipment that exist at one location, with those options not applicable to the other site. </p>
+        <p>For most production environments, there will be a single facility ID&#160;defined within the system configuration. A&#160;typical production scenario might include a west division site and east division site, having a facility ID&#160;of west and east respectively. The same product configuration files can be used at each location by specifying the appropriate facility ID&#160;within the batch and prebatch components that are applicable to the given site. For example, the west division site may consist of all HP&#160;Indigo presses, while the east division site uses Kodak. The components defined in the prebatch and batch definitions can be configured with the appropriate facility ID&#160;to ensure that all jobs are created for the appropriate output device and that only the options specific to the given site are displayed within the batch dialog, preventing unnecessary product template duplication. </p>
+        <h2>Configuring facility IDs</h2>
+        <p>It is important to keep the following key concepts in mind when configuring and working with Facility IDs.</p>
+        <ul>
+            <li>If a site does not have any facility IDs defined within the system configuration, all product configurations will be available.</li>
+            <li>If a product configuration does not specify a facility ID that matches one of the system configured facility IDs, it will be available in that environment.</li>
+        </ul>
+        <h3>System configuration</h3>
+        <p>Each environment can be configured to use one or more facility IDs. To setup an environment to use a facility ID, follow the steps shown below.</p>
+        <ol>
+            <li>Browse to the <strong class="standOutPrimary">sharedconfig </strong>location and open the<code> FacilityConfig.xml</code> file. If this file does not exist, create it</li>
+            <li>Add or update the facility IDs as required</li>
+        </ol>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:facility ID XML</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+  &lt;FacilityConfig&gt;
+    &lt;facilityids&gt;
+      &lt;facilityid id="West"/&gt;
+    &lt;/facilityids&gt;
+  &lt;/FacilityConfig&gt;</code></pre>
+                <p>Using this configuration, the system will register and use any batch or prebatch component that meets the following conditions.</p>
+                <ul>
+                    <li>A&#160;facility ID&#160;has been specified for the batch or prebatch components that match the system facility ID</li>
+                    <li>The component has not been configured to use a specific facility ID</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Updating products to use Facility ID</h3>
+        <p>Once the system configuration is complete, batch and prebatch components can be updated to use the desired facility ID. Using the previous example, if a batch or prebatch component is valid at both sites, east and west, there is no need to specify a facility ID. If however, the east division batches the given product to Indigo presses while the west division batches the same product to Kodak presses, the product templates could be configured as follows.</p>
+        <ul>
+            <li>Duplicate the batch components in the batch definition </li>
+            <li>For the first batch component, add a facility ID of west and set the destination type to Kodak</li>
+            <li>For the second batch component, add a facility ID&#160;of east and set the destination type to Indigo</li>
+        </ul>
+        <p>When batching this product at the west division site, the system will only see and use the batch component that contains the facility ID&#160;of west. When batching the product from the east division site, only the option to submit the job to the Indigo will be available.</p>
+        <p>The following code snippet can be used in both prebatch and batch definitions for adding the required facility IDs.</p><pre><code class="language-xml">&lt;facilityids&gt;
+	 &lt;facilityid id="west"&gt;&lt;/facilityid&gt;
+&lt;/facilityids&gt;</code></pre>
+        <p>The <code>facilityids </code>element is added to the desired prebatch component(s)&#160;for a prebatch definition and to the given batch component(s)&#160;for a batch definition.</p>
+        <p class="note">Multiple facility IDs can be applied to a given component as required.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Pre-batch definition snippet</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>The use of a facility ID&#160;in both prebatch and batch components is shown in the following examples.</p><pre><code class="language-xml">&lt;idfprebatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="idfprebatch.xsd" id="infdig-wrapcoverbook"&gt;
+	&lt;prebatchcomponents&gt;
+		&lt;prebatchcomponent name="book" 
+		splitrange="3-n" 
+		layout="infdig-wrapcoverbook-book_PREBATCH-LAYOUT"&gt;
+			&lt;facilityids&gt;
+				&lt;facilityid id="west"/&gt;
+				&lt;facilityid id="east"/&gt;
+			&lt;/facilityids&gt;...</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Batch definition snippet</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;!-- Production Intent Indigo2UPHead2Head --&gt;
+&lt;batchcomponent piCompName="BookBlock" imposition="2UP-HEAD2HEAD-EYEMARKS-BK" 
+		 destinationtype="indigo" 
+		 piSelectedInManualRelease="false" piName="Indigo2UPHead2Head"&gt;
+	&lt;facilityids&gt;
+		&lt;facilityid id="Beltsville"/&gt;
+		&lt;facilityid id="Phoenix"/&gt;
+	&lt;/facilityids&gt;...</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>

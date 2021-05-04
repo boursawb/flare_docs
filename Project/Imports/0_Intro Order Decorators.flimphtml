@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-30T15:25:04.5293976-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/0_Intro Order Decorators.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/0_Intro Order Decorators.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/1_Introduction to decorators.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/1_Introduction to decorators.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/2_Creating a decorator.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/2_Creating a decorator.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/3_Troubleshooting decorators.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/F3_OrderDecorators/3_Troubleshooting decorators.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/0_Intro Order Decorators.htm"
+      TimeStamp="5/30/2018 3:25:01 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/1_Introduction to decorators.htm"
+      TimeStamp="5/30/2018 3:25:01 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/2_Creating a decorator.htm"
+      TimeStamp="5/30/2018 3:25:01 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/3_Troubleshooting decorators.htm"
+      TimeStamp="5/30/2018 3:25:01 PM" />
+    <Url
+      Source="../TOCs/0_Intro Order Decorators.fltoc"
+      TimeStamp="5/30/2018 3:25:04 PM" />
+  </GeneratedFiles>
+</HtmlImport>

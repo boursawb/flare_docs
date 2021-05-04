@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Defining the data format</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Defining the data format</h1>
+        <p>The format of the data exported from the post-press solution is defined using the template found in the <code>sharedconfig\vdp\dataexport </code>folder. This template defines the columns of data that will exist in the exported CSV&#160;file. Each column will include a header and an expression that uses the velocity syntax for performing calculations on the values as required. An example template used for a card / envelope product where the post-press data was submitted to an envelope inserter is shown below.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;vdpexport&gt;
+	&lt;delimiterChar&gt;,&lt;/delimiterChar&gt;
+	&lt;columns&gt;
+		&lt;!-- The exclamation point after the dollar sign means 'suppress 
+		the variable if null'. This is nice if you don't want $ output --&gt;
+		&lt;column&gt;
+			&lt;header&gt;LineItemID&lt;/header&gt;
+			&lt;expression&gt;$!data.LineItemID&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;StatusDateTime&lt;/header&gt;
+			&lt;expression&gt;$!DateFormatUtils.format($date, 
+			"yyyy/dd/MM HH:mm:ss")&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;Order Number&lt;/header&gt;
+			&lt;expression&gt;$!data.get("Order Number")&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;Barcode Info&lt;/header&gt;
+			&lt;expression&gt;$!data.LineItemID*$!data.OLDistID*$formatter.format
+			('%06d', $data.DistLinNumber)&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;SKU&lt;/header&gt;
+			&lt;expression&gt;$!data.SKU&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;SenCompanyName&lt;/header&gt;
+			&lt;expression&gt;$!data.SenCompanyName&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;SenNamePrefix&lt;/header&gt;
+			&lt;expression&gt;$!data.SenNamePrefix&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;SenFirstName&lt;/header&gt;
+			&lt;expression&gt;$!data.SenFirstName&lt;/expression&gt;
+		&lt;/column&gt;
+		&lt;column&gt;
+			&lt;header&gt;SenLastName&lt;/header&gt;
+			&lt;expression&gt;$!data.SenLastName&lt;/expression&gt;
+		&lt;/column&gt;
+….continue with more columns, then end the xml tags
+	&lt;/columns&gt;
+&lt;/vdpexport&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p class="note">The only supported format for the data export at this time is CSV. </p>
+    </body>
+</html>

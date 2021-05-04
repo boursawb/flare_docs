@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultVariableSet>
+  <Variable
+    Comment=""
+    Name="CompanyName"
+    EvaluatedDefinition="Infinity Digital, LLC">Infinity Digital, LLC</Variable>
+  <Variable
+    Comment=""
+    Name="PhoneNumber"
+    EvaluatedDefinition="800 625 0599">800 625 0599</Variable>
+  <Variable
+    Name="StreetAddress"
+    Comment=""
+    Definition="Some text"
+    OriginalName="StreetAddress"
+    EvaluatedDefinition="233 Lasalle Dr.">233 Lasalle Dr.</Variable>
+  <Variable
+    Name="ProductName"
+    Comment=""
+    OriginalName="ProductName"
+    EvaluatedDefinition="Infinity Production System (IPS)">Infinity Production System (IPS)</Variable>
+  <Variable
+    Name="Fax"
+    Comment=""
+    OriginalName="Fax">Fax 123-987-654</Variable>
+  <Variable
+    Name="CityStateZip"
+    Comment=""
+    Definition="Some text"
+    EvaluatedDefinition="Carrols WA, 98888">Carrols WA, 98888</Variable>
+  <Variable
+    Name="Year"
+    Comment=""
+    Type="DateTime"
+    LastUpdated="2016-02-16T18:02:51.1357833-08:00"
+    EvaluatedDefinition="yyyy">yyyy</Variable>
+  <Variable
+    Name="Email"
+    Comment=""
+    EvaluatedDefinition="help@infdig.com">help@infdig.com</Variable>
+  <Variable
+    Name="Instagram"
+    Comment=""
+    EvaluatedDefinition="https://www.instagram.com">https://www.instagram.com</Variable>
+  <Variable
+    Name="LinkedIn"
+    Comment=""
+    EvaluatedDefinition="https://www.linkedin.com/company/69797">https://www.linkedin.com/company/69797</Variable>
+  <Variable
+    Name="Facebook"
+    Comment=""
+    EvaluatedDefinition="http://www.facebook.com/madcapdocteam">http://www.facebook.com/madcapdocteam</Variable>
+  <Variable
+    Name="Twitter"
+    Comment=""
+    EvaluatedDefinition="https://twitter.com/#!/MadCapDocTeam">https://twitter.com/#!/MadCapDocTeam</Variable>
+  <Variable
+    Name="CallToAction"
+    Comment=""
+    EvaluatedDefinition="http://infdig.com/support">http://infdig.com/support</Variable>
+  <Variable
+    Name="CJPshortName"
+    Comment=""
+    EvaluatedDefinition="CJP">CJP</Variable>
+  <Variable
+    Name="IPSshortName"
+    Comment=""
+    EvaluatedDefinition="IPS">IPS</Variable>
+</CatapultVariableSet>

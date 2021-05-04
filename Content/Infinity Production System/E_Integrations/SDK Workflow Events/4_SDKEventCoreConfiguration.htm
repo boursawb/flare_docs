@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>SDK event configuration</title>
+    </head>
+    <body>
+        <h1>SDK event configuration</h1>
+        <p>The main SDK&#160;event configuration includes sections for configuring one or more sink locations and a section where each event to monitor will be defined. Each event will reference the sink and template to use when the event is triggered. To complete the event configuration, follow the steps shown below.</p>
+        <ol>
+            <li>Browse to the <code>sharedconfig </code>location and open the <code>sdkconfig.xml </code>file. If the file does not exist, create a new file and past in the code from the sample shown below</li>
+            <li>For each sink created, provide a unique value for <code>id</code> to identify the sink. A&#160;good candidate might be the folder name or something similar. </li>
+            <li>Specify the <strong class="standOutPrimary">Type </strong>to use (only type available as of v11.5 is file)</li>
+            <li>Provide a value for <strong class="standOutPrimary">FileNamePattern </strong>(i.e. %id%_%state%_%timestamp%.xml)</li>
+            <li>Create a new <strong class="standOutPrimary">Event </strong>element within the Events element for the first event</li>
+            <li>Include the <strong class="standOutPrimary">Sink </strong>that should be used by this event</li>
+            <li>Include the <strong class="standOutPrimary">State </strong>applicable to the event</li>
+            <li>Include the <strong class="standOutPrimary">TemplateName </strong>this event should use</li>
+            <li>Add additional events as required</li>
+            <li>Save and close the configuration file</li>
+        </ol>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;SDKConfig&gt;
+	&lt;Sinks&gt;
+		&lt;Sink&gt;
+			&lt;id&gt;default&lt;/id&gt;
+			&lt;Type&gt;file&lt;/Type&gt;
+			&lt;FileNamePattern&gt;%id%_%state%_%timestamp%.xml&lt;/FileNamePattern&gt;
+			&lt;FileSystemDirectory&gt;\\%IDF_CORE_MASTER_HOST%\idf\sdkevents&lt;/FileSystemDirectory&gt;
+			&lt;FileSystemRetentionTime&gt;48h&lt;/FileSystemRetentionTime&gt;
+			&lt;FileSystemRetentionPollInterval&gt;1h&lt;/FileSystemRetentionPollInterval&gt;
+		&lt;/Sink&gt;
+	&lt;/Sinks&gt;
+    &lt;Events&gt;
+        &lt;Event&gt;
+            &lt;State&gt;Order Analyze start&lt;/State&gt;
+            &lt;Sink&gt;default&lt;/Sink&gt;
+            &lt;TemplateName&gt;orderEvent.xml&lt;/TemplateName&gt;
+        &lt;/Event&gt;
+		&lt;Event&gt;
+            &lt;State&gt;Batch Content start&lt;/State&gt;
+            &lt;Sink&gt;default&lt;/Sink&gt;
+            &lt;TemplateName&gt;batchEvent.xml&lt;/TemplateName&gt;
+        &lt;/Event&gt;
+		&lt;Event&gt;
+            &lt;State&gt;Press Job printing end&lt;/State&gt;
+            &lt;Sink&gt;default&lt;/Sink&gt;
+            &lt;TemplateName&gt;pressJobEvent.xml&lt;/TemplateName&gt;
+        &lt;/Event&gt;
+	&lt;/Events&gt;
+&lt;/SDKConfig&gt;</code></pre>
+        </p>
+        <p class="Note">For each of the events listed above, it is important to understand the role that is played by the value specified for the &lt;State&gt; element. This value determines the context of the associated template. For example, if the state is set to Order Analyze start, the context of the object within the template specified will be that of an order. This means that <code>$data.id</code> will refer to the order ID, not a batch or press job ID. </p>
+    </body>
+</html>

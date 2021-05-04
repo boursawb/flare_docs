@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Scripted decorator fundementals</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Scripted decorator fundamentals" />Scripted decorator fundamentals</h1>
+        <p>Building and working with scripted decorators does not require extensive knowledge of JavaScript to be successful. A&#160;basic understanding of the language and a solid understanding of the API&#160;will be enough to accomplish most tasks. Becoming proficient with the items shown below will guarantee your success when working with scripted decorators.</p>
+        <ul>
+            <li>Recognizing the differences between standard and scripted decorators</li>
+            <li>Understanding object context and how it's used</li>
+            <li>Using <code>getDynamicAttributes()</code>&#160;for creating new attributes and retrieving the values of existing attributes</li>
+            <li>Using the built in API methods for traversing the object hierarchy</li>
+            <li>Using <code>getDynamicAttributes()</code>&#160;as a way to debug your code</li>
+            <li>Familiarity with basic for loops, conditional code blocks, and basic logic operations in JavaScript</li>
+        </ul>
+        <h2>Decorator differences</h2>
+        <p>The primary difference between standard and scripted decorators (in their structure), is that the &lt;attributes&gt;&#160;element in the standard decorator is replaced with a &lt;script&gt;&#160;element. The &lt;script&gt;&#160;element includes a [CDATA] section to encapsulate the JavaScript code to prevent any XML&#160;parsing errors from occurring. All elements and attributes above the &lt;script&gt;&#160;tag will be included in both decorator types. </p>
+        <h2>Object context</h2>
+        <p>The object context defines where you are at. If the <code>&lt;objectContext&gt;</code>&#160;element is set to <code>batch </code>within your decorator, then the <code>decorate </code>method (this is the first and only method you are required to implement) must be passed <code>batch</code>. This means that any attributes you attempt to work with using <code>getDynamicAttributes()</code> will be batch level attributes. The object context also denotes which level of the batch / order structure you can decorate at. Continuing our example having a context of batch, the only attributes that will be saved once the decorator completes are batch level attributes. When using a for loop to traverse the object hierarchy, your context will change to the object directly below, in this case, items. </p>
+        <h2>Using getDynamicAttributes()</h2>
+        <p>Every object (<code>batch, order, lineItem, component</code>) includes the <code>getDynamicAttributes()&#160;</code>method. This method includes one accessor method <code>get()</code>, for retrieving dynamic attributes and their values, and one mutator method <code>put() </code>for creating new dynamic attributes. When using <code>getDynamicAttributes()</code>, it must start with an object context and include one of the get / put methods as previously described.</p>
+        <ul style="list-style-type: square;">
+            <li><code>batch.getDynamicAttributes().get()</code>
+            </li>
+            <li><code>batch.getDynamicAttributes().put()</code>
+            </li>
+        </ul>
+        <p>The get()&#160;method is used to retrieve the value of an existing dynamic attribute. This method takes a single String parameter matching the attribute name exactly as displays on the View Order Attributes web page (Products tab). When retrieving the value of a dynamic attribute it will either be used as a parameter to some other part of your code, or stored to a variable. The following example shows storing batchid to a new variable called myBatchId.</p>
+        <p><code>var myBatchId = batch.getDynamicAttributes().get('batchid');</code>
+        </p>
+        <p>The put()&#160;method is used to create a new dynamic attribute or to modify the value of an existing dynamic attribute. This method takes two parameters with the first being of type String, specifying the name you wish to us, followed by desired value. The data type used for the new attribute will be determined by the individual creating it. The following example shows the creation of a new attribute called qtyWithWaste.</p>
+        <p><code>order.getDynamicAttributes().put('qtyWithWaste', myQtyWithWaste);</code>
+        </p>
+        <p>The logic to determine the value for myQtyWithWaste would be determined prior to the execution of this method.</p>
+        <h2>Traversing the object hierarchy</h2>
+        <p>The power of dynamic attributes results form the ability to inspect, manipulate, and perform operations against values of attributes at any level of the order / batch structure. For example, a decorator that starts with an object context of batch can include code that allows you to inspect each order contained in the batch, each item contained in each order and each component contained in each item. The type of operations performed is completely up to the individual creating the decorator and their knowledge of the JavaScript language. The process for traversing down the object hierarchy is the same regardless of which object you start at. The following example shows the process for starting at batch and moving down to the component level.</p>
+        <p>&#160;</p>
+        <p><pre><code class="language-js">function decorate(batch) {
+	batch.getOrders().forEach(function(order) {
+		// Your code
+		order.getItems().forEach(function(item) {
+			// your code
+			item.getComponents().forEach(function(comp) {
+				// Your code here
+			})
+		})
+	})
+}</code></pre>
+        </p>
+        <h3>Code review</h3>
+        <p>In the above code, we start with an object context of batch and use a for loop to iterate through all orders contained within the batch. The line ends with the creation of a new context that now allows access to the getItems()&#160;method. Similar to the previous for loop, this part of the code will iterate through all items contained within the current order. This for loop results in the creation of a new object (item) that allows objects at the component level to be accessed. The above code is basically boiler plate code that can be reused any time there is a need to traverse from one object level to the next (moving downward). You do not have to use all three loops as shown above. If the object context of the decorator is lineItem and you only need to inspect the component level, then a single for loop as demonstrated by the last one in the above code example would be used.</p>
+        <h2>Debugging your code</h2>
+        <p>The object.getDynamicAttributes().get()&#160;method can be used at specific points in your code to identify the values of specific attributes. For example, if you are trying to determine the exact productType that is getting read by a line of code, add a get()&#160;method to pull the value at that point in time and save it to a variable that will display in history. Similarly, the put()&#160;method can be used to add attributes to let you know if a particular branch or code block was executed. For example, when using an IF&#160;block to see if some condition has been made and cannot determine if you are inside the block or not, use the put method to add a new dynamic attribute such as insideIfBoock with a value of true, then confirm the attribute shows up with the expected value in history.</p>
+        <h2>JavaScript basics</h2>
+        <p>If you are not familiar with JavaScript, review some basic online resources, such as W3Schools. Understanding variables, data types, logic structures, and basic programming concepts will greatly contribute to your success when creating scripted decorators.</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Ticket template for EPM results</title>
+    </head>
+    <body>
+        <h1>EPM ticket templates</h1>
+        <p>To successfully print using EPM, the job will call on a specific ticket template defined on the DFE. Every batch component that is a potential candidate to print EPM must have the following set page device entries included in its <code>pagedevicesettings </code>section. If these entries do not exist, the component will not print using EPM. </p>
+        <ul>
+            <li>&lt;setpagedevice value="3colors" key="<strong>EPM_TicketTemplate</strong>"/&gt;</li>
+            <li>&lt;setpagedevice value="2colors" key="<strong>EPM_BW_TicketTemplate</strong>"/&gt;</li>
+        </ul>
+        <p>Ticket templates can vary per batch component and are applied only when an EPM&#160;or EPM&#160;BW&#160;job is submitted to press. For batch components where EPM&#160;does not apply, not adding these <code>setpagedevice </code>lines prevents EPM&#160;from being used for that component. For example, omitting the EPM&#160;set page device entries would make sense for the envelope component of a greeting card product, or any component sent to a device that doesn't support EPM.</p>
+        <h2>Existing ticket template</h2>
+        <p>A&#160;batch component may already be configured to use a particular ticket template, as defined by the <code>HCMSSetup </code>page device setting. To make this component eligible for EPM, two additional templates must be created. One that includes all settings required for the component and EPM&#160;3 color printing, and one that includes all settings for the component and EPM&#160;BW printing. The two new templates will be referenced in the EPM <code>setpagedeive </code>entries. For example, if a batch component is currently configured to call on a ticket template named KZWCover, and now may need to support EPM&#160;3 color and EPM 2 color printing, the following actions are required.</p>
+        <ol>
+            <li>Make a copy of the existing ticket template with the name <strong class="standOutPrimary">KZWCover_3color</strong></li>
+            <li>Include any additional settings in the template required for EPM&#160;3 color printing</li>
+            <li>Make a second copy of the <strong class="standOutPrimary">KZWCover </strong>template with the name <strong class="standOutPrimary">KZWCover_2color</strong></li>
+            <li>Include any additional settings in the template required for EPM&#160;2&#160;color printing</li>
+            <li>Add the <code>setpagedevice </code>entry for <strong class="standOutPrimary">EPM_TicketTemplate </strong>and specify a value of <strong class="standOutPrimary">KZWCover_3color</strong></li>
+            <li>Add the <code>setpagedevice </code>entry for <strong class="standOutPrimary">EPM_BW_TicketTemplate </strong>and specify a value of <strong class="standOutPrimary">KZWCover_2color</strong></li>
+            <li>No changes are required for the <code>HCMSSetup setpagedevice </code>entry</li>
+        </ol>
+        <p>Depending on the results of the EPM&#160;evaluation for the order(s)&#160;contained in the batch, the appropriate template will be applied when submitting the job to press. </p>
+        <h2>Press job option (PJO)&#160;template override</h2>
+        <p>When a ticket template is dynamically applied using the custom job options feature, consideration must be given to the logic used by the decorator to ensure the preferred template is used. If the result of the EPM&#160;order evaluation, along with the properties defined in the batch definition for a given batch component indicate EPM&#160;3 color to be used, it is possible for an existing custom decorator that applies a press job option (PJO) for the HCMSSetup <code>setpagedevice </code>to inadvertently set the wrong ticket template when submitting the job to press. The following steps can mitigate this type of situation from occurring.</p>
+        <ol>
+            <li>Replace the current decorator with a new scripted decorator</li>
+            <li>Ensure the criteria used for matching will result true for both EPM&#160;and non-EPM&#160;versions of the desired orders</li>
+            <li>Create two new versions of the ticket templates for EPM&#160;and EPM&#160;BW, as described in the previous section</li>
+            <li>Include the necessary logic to determine which of the three ticket templates should be used (EPM 3 color, EPM 2 color, or the template specified in the original PJO&#160;decorator</li>
+        </ol>
+        <p class="Note">This is just one approach that could be used to resolve this situation. The goal is to ensure that the desired ticket is used based on the EPM&#160;evaluation of the batch.</p>
+    </body>
+</html>

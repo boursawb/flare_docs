@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link href="../../Resources/TableStyles/Standard.css" rel="stylesheet" MadCap:stylesheetType="table" /><title>0_Copy count optimization (CCO)</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Copy count optimization" />Copy count optimization (CCO)</h1>
+        <p>Copy count optimization, or <MadCap:keyword term="CCO" />CCO, is a press job optimization feature that greatly reduces rip times for jobs submitted to press. This is accomplished by only sending a single copy of the content to be printed along with the number of copies to print. To illustrate how CCO works, consider the following before/after example.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/ccoSample1.png" class="img " title="CCO example" alt="CCO example" />
+        </p>
+        <p>This would produce the following net results.</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Regular" />
+            <col class="TableStyle-Standard-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1"><b>Before</b>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1"><b>After</b>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">11 JPG files flattened by IPS</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1">4 JPG files flattened by IPS</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">11 JPG files loaded by Netgate</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1">4 JPG files loaded by Netgate</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">11 JPG files in Netgate job ticket</td>
+                    <td class="TableStyle-Standard-BodyA-Regular-Row1">4 JPG files in Netgate job ticket with quantity increate</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Understanding CCO</h2>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes 3 attributes for configuring copy count optimization. All legacy options related to optimization have been replaced with the following. Different order types will benefit from the various CCO types available, so it is important to select the one that is applicable for the work being produced. Not doing so can result in undesirable output. Additional details will be provided later for updating an existing environment to use these settings. The options required for setting up copy count optimization include the following.</p>
+        <p><strong>ccoEnable</strong>
+        </p>
+        <p> Enable or disable copy count optimization for a given batch component. Valid values are true or false</p>
+        <p><strong>ccoType</strong>
+        </p>
+        <p>Defines the type of copy count optimization that should occur. Valid options are defined in the table shown below</p>
+        <p><strong>ccoQuantity</strong>
+        </p>
+        <p>Specifies how many up a product is imposed</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Regular" />
+            <col class="TableStyle-Standard-Column-Regular" style="width: 189px;" />
+            <col class="TableStyle-Standard-Column-Regular" />
+            <col style="width: 72px;" class="TableStyle-Standard-Column-Regular" />
+            <col class="TableStyle-Standard-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1" style="font-weight: bold;"><a name="ccoTypeTable"></a>
+                        ccoType</td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1" style="font-weight: bold;">Description</td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1" style="font-weight: bold;">Type of work</td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1" style="font-weight: bold;">nUP supported</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1" style="font-weight: bold;">Advanced DFE&#160;Required</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">singleItem</td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">The simplest form of cco. Multiple copies of a line item, single order batches. Quantity is set at the job level.</td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">Single line item batches, multiple up.  </td>
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">Y</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1">N</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">sequentialAdvanced</td>
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">Batches of content with multiple line items and varying quantities running 1 up. Sequential copies of the same file are optimized to a single copy and a quantity page range is required. Job quantity is set at the spread level of the PDF.</td>
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">Prints, books, anything that runs one up in batches of &gt; 1.</td>
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">N</td>
+                    <td class="TableStyle-Standard-BodyA-Regular-Row1">Y</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>When working with copy count optimization, it is important to understand that <strong class="standOutPrimary">advanced </strong>refers to the ability to apply quantity at a page level, instead of the job level. Only some DFE/DFE versions are capable of advanced optimization and as of the current release, include the following.  </p>
+        <ul>
+            <li>Ultra 4.6 and above</li>
+            <li>Netgate DFE w/ IPS v10.3 and above</li>
+        </ul>
+        <p class="note">Using advanced CCO with a DFE that does not support the advanced configuration will result in undesirable output.</p>
+        <h2>Setting up copy count optimization</h2>
+        <p>The following steps show how to configure a batch component to use press copy count optimization.</p>
+        <ol>
+            <li>Identify the batch definition containing the batch component requiring optimization</li>
+            <li>Add the attribute <code>ccoEnable=”true”</code> to the batch component</li>
+            <li>Use the table <MadCap:xref href="#ccoTypeTable">"ccoType" on page 1</MadCap:xref> to identify the appropriate <strong class="standOutPrimary">ccoType </strong>and add that to the batch component. For example, <strong class="standOutPrimary">ccoType=”sequentialAdvanced”</strong></li>
+            <li>If required, add the attribute <strong class="standOutPrimary">ccoQuantity=”nup” </strong>and set the value for <strong class="standOutPrimary">nUP </strong>as required
+</li>
+        </ol>
+        <p>A sample batch definition for a Netgate DFE is shown below.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/ccoSampleNetgate.png" class="img " title="CCO on Netgate" alt="CCO on Netgate" />
+        </p>
+        <p>One additional configuration requirement when using advanced copy count optimization with Netgate will be to ensure the latest version of the Netgate template is used. The name of the latest version of the netgate template is <code>PrintSeqCCO.txt.vm </code>and resides in <code>&lt;sharedConfig&gt;\DFE\Netgate Templates</code>. </p>
+        <p class="note">If you do not have a copy of this file in your release, contact Infinity Digital Support for assistance in obtaining one.</p>
+        <p>
+            <MadCap:conditionalText MadCap:conditions="General.IPS">For CCO&#160;to succeed, the order content must be received by the batching system with quantity intact. The line item collapse feature (slate per order), does not leave quantity intact. It combines line items together and quantity is lost in the process. To allow copy count optimization for orders that were previously marked as slate per order, a new attribute has been added to the batch definition. This attribute is called <code>oncePerAttribute
+</code>This setting resides in the prebatch components order. It directs the batcher to include an item only when the attribute changes. For example, to have a slate only once per order, use the setting <code>oncePerAttribute=”orderid”</code>. This will ensure that the slate is only included once per order regardless of how many line items exist in the order, and allows <code>slateperorder </code>to be turned off. This keeps quantity intact, which allows CCO to be enabled. If you are using CCO with a product defined as slateperorder, and would like to use CCO, using <code>oncePerAttribute=”ordered” </code>will be required. </MadCap:conditionalText>
+        </p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/ccoOncePerAttribute.png" class="img " MadCap:conditions="General.IPS" title="CCO once per attribute" alt="CCO once per attribute" />
+        </p>
+        <h2>Updating to CCO&#160;</h2>
+        <p>The following steps will explain how to update an environment currently using the legacy copy count optimization settings. Using an advanced text editor, perform the following search and replaces on all batch definitions using press copy count optimization.</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Regular" />
+            <col class="TableStyle-Standard-Column-Regular" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1" style="font-weight: bold;">Search for</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1" style="font-weight: bold;">Replace with</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyE-Regular-Row1">usepresscopycountoptimization</td>
+                    <td class="TableStyle-Standard-BodyD-Regular-Row1">ccoEnable</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Row1">
+                    <td class="TableStyle-Standard-BodyB-Regular-Row1">presscopycountoptimizationPdfQuantity</td>
+                    <td class="TableStyle-Standard-BodyA-Regular-Row1">ccoQuantity</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

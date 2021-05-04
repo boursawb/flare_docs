@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>OS Print web UI</title>
+    </head>
+    <body>
+        <h1>OS Print web UI</h1>
+        <p>Management and administration of OS&#160;Print is done through a web user interface. From here you can configure OS Print, create and configure devices, update license information, as well as view and manage jobs currently in the system. The web UI can be accessed browsing to <code>http://&lt;yourHost&gt;:9300</code> where <code>&lt;yourHost&gt;</code>&#160;is the name of the server that the OS&#160;Print Service was installed on. </p>
+        <p class="Note">The recommended / supported browser for accessing the Infinity OS&#160;Print application is Google Chrome.</p>
+        <p>When opening the OS Print web UI, you will see a screen similar to the following.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/osPrintWebMain.png" title="OS Print Web UI" alt="OS Print Web UI" class="img" />
+        </p>
+        <p>From the Dashboard, you can perform the following actions.</p>
+        <ul>
+            <li>Create Job </li>
+            <li>Devices</li>
+            <li>Jobs</li>
+            <li>Settings</li>
+            <li>About</li>
+        </ul>
+        <h2>Create Job</h2>
+        <p>The create job screen allows you to manually submit a job via the OS&#160;Print web interface. To manually submit a job, follow the steps shown below.</p>
+        <ol>
+            <li>Select a device from the <strong class="standOutPrimary">Devices </strong>drop-down list</li>
+            <li>Click on the <strong class="standOutPrimary">hotspot </strong>and browse to the file(s)&#160;to upload</li>
+            <li>Select the <strong class="standOutPrimary">Settings </strong>and <strong class="standOutPrimary">Advanced </strong>tabs and make any required adjustments (Not all devices will have settings to change)</li>
+            <li>Click the <strong class="standOutPrimary">Save </strong>button</li>
+        </ol>
+        <h2>Devices</h2>
+        <p>From the Devices page you can view, edit, create, and delete OS&#160;Print devices. Any existing devices will be displayed as soon as the Devices page loads. To create a new device, simply click the Create button in the upper right corner of the page. To edit a device, click on the device from the Device List. To delete an existing device, click the device to edit it, then click the trash can icon located in the upper right corner of the page. Fro detailed information on how to configure a new device, see <MadCap:xref href="04_Creating new devices.htm">Creating a new device</MadCap:xref></p>
+        <h2>Jobs</h2>
+        <p>The jobs page displays all jobs currently in the system. From here you can see when the job was received, how long it took to rip, and the current status. Clicking on a job will take you to the job details which displays additional information about the job that can be used for detailed troubleshooting and analysis. Once a job has completed processing, it will be automatically removed from the jobs list following the configured retention time. In most environments, it is recommended to set the <strong class="standOutPrimary">Delete jobs older than&#160;</strong>to 4h (4 hours).</p>
+        <h2>Settings</h2>
+        <p>All OS&#160;Print system level configurations will be made within the Settings menu. From here you will configure the following system parameters.</p>
+        <ul>
+            <li>Job storage local path</li>
+            <li>Job storage UNC&#160;path</li>
+            <li>Delete jobs older than</li>
+            <li>Rip pool worker size</li>
+        </ul>
+        <p>For detailed information regarding the configuration of OS&#160;Print, see <MadCap:xref href="01_Installation and setup.htm">Installation and setup</MadCap:xref></p>
+        <h2>About</h2>
+        <p>Here you will find a brief description of OS&#160;Print, along with the version number for the instance of OS&#160;Print that is currently installed. This is also where you will go to view or update the license used by OS&#160;Print.</p>
+    </body>
+</html>

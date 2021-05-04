@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Configuring IPS to use output profiles</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Configuring output profiles</h1>
+        <p>Before orders can be diverted, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> must be configured to utilize output profiles. </p>
+        <h2>Update sharedconfig</h2>
+        <ol>
+            <li>Connect to the master core host server (database server)</li>
+            <li>Open the <strong class="standOutPrimary">sharedconfig </strong>location</li>
+            <li>If one does not exist, create a new folder called <strong class="standOutPrimary">outputprofile</strong></li>
+            <li>Create a sub-folder within outputprofile called <MadCap:keyword term="outputprofiledef" /><strong class="standOutPrimary">outputprofiledef</strong></li>
+            <li>Create a new XML&#160;file within the outputprofiledef sub-folder</li>
+            <p>The name given to the output profile will be the name you see when performing a divert action. Make sure each output profile created has an extension of .<strong class="standOutPrimary">outputprofiledef.xml</strong>. For example - myProfile.outputprofiledef.xml</p>
+            <li>Edit the newly created profile and add the following contents to it</li>
+            <p><strong class="standOutPrimary">&lt;outputprofile&gt;&lt;/outputprofile&gt;</strong>
+            </p>
+            <li>Close and save the file</li>
+        </ol>
+        <p>&#160;</p>
+        <p>After creating the new file and folders, your sharedconfig location should look like this.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/outputProfileConfig1.jpg" class="img " title="Output profile configuration" alt="Output profile configuration" />
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

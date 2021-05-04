@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title></title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Auto-release configuration</h1>
+        <p>Before setting up or modifying any auto-release criteria, it is recommended to enable the <strong class="standOutPrimary">Sort Rule</strong>, <strong class="standOutPrimary">Sort RuleGroup </strong>and <strong class="standOutPrimary">Release Criteria </strong>columns on the sort groups to assist during the configuration process. The following flow shows an overview of the steps required for configuring auto-release within IPS.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/autoReleaseFlow.png" style="width: 623px;height: 72px;" class="img" title="Auto-release flow" alt="Auto-release flow" />
+        </p>
+        <p class="note">The release criterion only specifies when the next batch is to be released, not how much work will be released. You can think of the release criteria as an operator standing by ready to select the "Release next batch"&#160;function.</p>
+        <p>We will use an example to illustrate releasing a batch when the total batches for a sort group exceeds 1.&#160; This will prevent multiple batches of work sitting idle and will ensure that each batched released is full.&#160; Whenever possible, it is recommended to use the order sort configuration utility to prevent errors that can occur when manually creating and editing XML files.&#160; Please note that some manual XML editing will be required to complete the auto-release configuration process.&#160; </p>
+        <h2>Matcher attributes</h2>
+        <p>Not all attributes you may wish to use when building matchers for auto-release will be available in the Order Batch Sort Utility. All of the attributes shown below, including any attributes you have added to the system roll-down configuration, can be used.</p>
+        <ul>
+            <li>Estimated Pages</li>
+            <li>Estimated Sheets</li>
+            <li>Estimated Spreads</li>
+            <li>Estimated Waste Pages</li>
+            <li>Estimated Waste Percent</li>
+            <li>Estimated Waste Spreads</li>
+            <li>Manual Release Only</li>
+            <li>Next Batch Estimated Pages</li>
+            <li>Next Batch Estimated Spreads</li>
+            <li>Next Batch Estimated Waste Pages</li>
+            <li>Next Batch Estimated Waste Percent</li>
+            <li>Next Batch Estimated Waste Spreads</li>
+            <li>Remake</li>
+            <li>Sort Order</li>
+            <li>Sort Rule</li>
+            <li>Total Batches</li>
+            <li>Total Orders</li>
+            <li>Total Spreads All Buckets</li>
+        </ul>
+        <p class="Note">This is not an exhaustive list and can grow as improvements are made to the software and custom attributes are added.</p>
+        <h2>Configuration walk-through</h2>
+        <ol start="1" class="ol_1">
+            <li class="ListParagraph">Launch the Order Sort Configuration utility </li>
+            <li class="ListParagraph">Click the <strong class="standOutPrimary">Create new matcher</strong> link in the Matcher actions section</li>
+            <li class="ListParagraph">Specify a name of <strong class="standOutPrimary">Total Batches</strong></li>
+            <li class="ListParagraph">In the Attribute drop-down, type in <strong class="standOutPrimary">Total Batches</strong> (with the space between total and batches)</li>
+            <li class="ListParagraph">Select the <strong class="standOutPrimary">&gt; </strong>symbol in the <strong class="standOutPrimary">is </strong>drop-down</li>
+            <li class="ListParagraph">Enter 1 in the value files</li>
+            <li class="ListParagraph">Click <strong class="standOutPrimary">ok</strong> to save your changes and create the new matcher and minimize / close the Order Sort Configuration utility</li>
+            <li class="ListParagraph">Browse to <strong class="standOutPrimary">\\&lt;yourMasterCoreHostServer\idf\sharedconfig\ordersort\releasecriteria</strong> and edit any of the existing release criteria XML files showing in the folder</li>
+            <li class="ListParagraph">Set the <strong class="standOutPrimary">description= </strong>to <strong class="standOutPrimary">Total Batches</strong></li>
+            <li class="ListParagraph">Set the <strong class="standOutPrimary">matcher= </strong>to <strong class="standOutPrimary">Total Batches</strong></li>
+            <li class="ListParagraph">Verify that <strong class="standOutPrimary">autoBatchEnabled= </strong>is set to <strong class="standOutPrimary">True</strong></li>
+            <li class="ListParagraph">Perform a Save As on the file and name it <strong class="standOutPrimary">totalBatches.releasecriteria.xml</strong></li>
+            <li class="ListParagraph">Edit each sort group the new release criteria applies to and change the <strong class="standOutPrimary">releaseCriteria= </strong>to <strong class="standOutPrimary">Total Batches</strong></li>
+            <li class="ListParagraph">Return to the IPS application and go to the sort groups tab</li>
+            <li class="ListParagraph">Scan the <strong class="standOutPrimary">Sort Rule Group </strong>column for the groups that were modified and verify that the <strong class="standOutPrimary">Release Criteria </strong>column shows the appropriate release criteria</li>
+        </ol>
+        <p class="note">If the release criteria column (possibly others) fails to display information, there is an error in one of the sort rule configuration files.&#160; It is important to note that all attributes and file names in the sort rule configuration process are space / case sensitive.&#160; A second indicator that an error exists within the sort rule configuration present as no batches displayed when expanding a sort group</p>
+        <p>If the configuration was successful, you will see the new release criteria show up in the Release Criteria column on the sort groups tab.</p>
+        <ol start="16" class="ol_1">
+            <li class="ListParagraph">Enable Auto-Release within the IPS software</li>
+            <li class="ListParagraph">Enable Auto-Release functionality on the sort groups tab by clicking the <strong class="standOutPrimary">Turn On Auto Release</strong> button</li>
+            <li class="ListParagraph">Select the radio button to turn on Auto Release</li>
+            <li class="ListParagraph">Select the radio button to turn off auto-release filter</li>
+            <li class="ListParagraph">Click <strong class="standOutPrimary">ok</strong> to enable auto-releas</li>
+        </ol>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Installation and setup</title>
+    </head>
+    <body>
+        <h1>Installation and setup</h1>
+        <p>The Infinity Digital OS&#160;Print service can be installed by running the current release of the self-extracting installer. Once the installer completes, you will be able to access the OS&#160;Print web interface by clicking the launcher icon from the Windows start menu, or opening a web browser and pointing it to <code>http://yourHost:9300</code>, where <code>yourHost </code>is the name of the server where the OS&#160;Print Service was installed. Each feature of OS&#160;Print requires that you have a valid license installed before that feature can be used. The features included in the current release of OS&#160;Print are shown below.</p>
+        <ul>
+            <li>OS&#160;Local Print Device</li>
+            <li>Scodix Foil Device</li>
+            <li>JPG&#160;Hotfolder Device</li>
+        </ul>
+        <h2>Installation</h2>
+        <ol>
+            <li>Obtain the latest release of the OS&#160;Print Services installed from Infinity Digital</li>
+            <li>Copy the installer to the server that will run the OS&#160;Print service</li>
+            <li>Double-click on the installer package</li>
+            <li>Accept all defaults</li>
+            <li>Complete the installation</li>
+            <li>Open the <strong class="standOutPrimary">Windows services </strong>applet and stop <strong class="standOutPrimary">Infinity - OS&#160;Print Service</strong></li>
+            <li>Double-click the service to open the properties</li>
+            <li>Click the <strong class="standOutPrimary">Log on </strong>tab </li>
+            <li>Select <strong class="standOutPrimary">This Account </strong>and specify an account that the OS&#160;Print Service will use. Make sure this account has sufficient privileges to write to the osprint staging location, device staging locations, and final output locations as discussed in the configuration section.</li>
+        </ol>
+        <h2>Installing dependencies</h2>
+        <p>The OS&#160;Print service provides two methods for rendering content submitted to one of the previously mentioned devices. </p>
+        <h3>Ghost Script</h3>
+        <p>Ghostscript is an interpreter for PostScript™ and Portable Document Format (PDF) files. The print quality of the rendered output is sufficient for related content and batch time additional spreads but may not be suitable for customer content if submitted to a Windows print device.</p>
+        <h4>Download and installation</h4>
+        <ol>
+            <li>Open a web browser to http://ghostscript.com/download/gsdnld.html and click the link to download the Windows 64 bit edition</li>
+            <li>Save the file to the Windows desktop</li>
+            <li>Double-click the file to launch the installation wizard</li>
+            <li>Accept all defaults during the installation</li>
+        </ol>
+        <h3>Adobe Rip</h3>
+        <p>This option converts PDF files to a format suitable for sending to Windows print devices. If content sent to a Windows printer requires a high resolution output, it may be necessary to use this option instead of Ghostscript for rendering the output.</p>
+        <h4>Download and installation</h4>
+        <ol>
+            <li>After acquiring a license, contact Infinity Digital Support to have PDF2IMG&#160;installed in your environment.</li>
+        </ol>
+        <p class="Note">The use of PDF2IMG&#160;will incur additional licensing fees.</p>
+        <h2>OS&#160;Print system configuration</h2>
+        <ol>
+            <li>Log in to the machine where the OS&#160;Print service was installed</li>
+            <li>Identify a drive with sufficient space to hold the OS&#160;Print staging folder</li>
+            <li>Create a new folder on the drive identified in the previous step called <strong class="standOutPrimary">osprint</strong></li>
+            <li>Right-click on the folder, click <strong class="standOutPrimary">Sharing</strong>, click <strong class="standOutPrimary">Advanced Sharing</strong>, check the box to <strong class="standOutPrimary">Share this folder </strong>and leave the default share name of <strong class="standOutPrimary">osprint</strong></li>
+            <li>Click the <strong class="standOutPrimary">Permissions </strong>button and add the account the OS&#160;Print service was configured to use with Change permissions (minimum), preferably Full Control</li>
+            <li>Create a new folder within the osprint folder previously created called <strong class="standOutPrimary">staging</strong></li>
+            <li>Launch a web browser and point it to <strong class="standOutPrimary">localhost:9300</strong></li>
+            <li>In the left navigation menu, click <strong class="standOutPrimary">Settings</strong></li>
+            <li>Click <strong class="standOutPrimary">System </strong>within the <strong class="standOutPrimary">Settings list</strong></li>
+            <li>For <strong class="standOutPrimary">job storage local path</strong>, enter the full path to the staging folder created above (i.e. \\&lt;yourHost&gt;\osprint\staging)</li>
+            <li>For <strong class="standOutPrimary">job storage UNC&#160;path</strong>, enter the same UNC&#160;path as shown in the previous step (\\&lt;yourHost&gt;\osprint\staging)</li>
+            <li>Set the value for <strong class="standOutPrimary">Delete jobs older than </strong>to <strong class="standOutPrimary">1h</strong> (This is how long you would like completed jobs to remain in the OS&#160;Print web interface)</li>
+            <li>Leave the default <strong class="standOutPrimary">(2)</strong>&#160;for <strong class="standOutPrimary">Rip pool worker size</strong></li>
+            <li>Click the <strong class="standOutPrimary">Save </strong>button to apply the changes</li>
+        </ol>
+        <h2>Device licensing</h2>
+        <p>Before you can create or use any OS&#160;Print devices, a valid license must be loaded via the web interface. If you have purchased a license for OS&#160;Print but have not yet received it, contact Infinity Digital Support for further assistance. If you have received your license, it can be loaded by following the steps shown below.</p>
+        <ol>
+            <li>Click <strong class="standOutPrimary">About </strong>in the left navigation menu of the OS&#160;Print web interface</li>
+            <li>Click on <strong class="standOutPrimary">License </strong>at the top of the screen</li>
+            <li>Click the <strong class="standOutPrimary">Load License </strong>link</li>
+            <li>Paste in the license key you received via email</li>
+            <li>Click the <strong class="standOutPrimary">Apply </strong>button in the lower right corner of the browser</li>
+        </ol>
+        <p>If successful, you will be presented with a page that shows your company information, along with the features provided by your license.</p>
+    </body>
+</html>

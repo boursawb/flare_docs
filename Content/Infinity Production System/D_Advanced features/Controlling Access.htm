@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Access control</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Access control</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes an access control feature that allows administrators to limit the abilities of specific users in the UI&#160;based on Active Directory group membership. Actions within the UI&#160;are controlled by specifying a value for their authentication type, which aligns with one of the defined task name entries in the access control file. Each section for a given task name can include one or more active directory groups. For each group that exists, the users contained within that group will have the ability to perform the actions associated with that task. </p>
+        <p class="note">As it is possible to define a unique authentication type for each UI&#160;function, doing so is strongly discouraged. Similar actions should be grouped together with each action sharing the same value for authentication type. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;Controlling Reprocess At...</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ul>
+                    <li>Reprocess at Order Analyze</li>
+                    <li>Reprocess at Order VDP&#160;Merge</li>
+                    <li>Reprocess at Order Prebatch</li>
+                    <li>Reprocess at Order Sort</li>
+                </ul>
+                <p>Each of these could be configured with a unique authentication type where each one has an associated entry in the access control file. However, this would result in a solution that would be difficult to manage and maintain over time. A&#160;better solution would be to specify an authentication type for all reprocess actions of <strong class="standOutPrimary">Reprocess</strong>, or something similar, and assign this value to all actions mentioned above. For UI&#160;actions that should be available to everyone, the authentication type should not be set (left empty). </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Access control requirements</h2>
+        <p>The following actions must be taken to implement access control.</p>
+        <ul>
+            <li>Identify groups of <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> actions that will use the same authentication type</li>
+            <li>Modify the dynamic menu XML&#160;files to use the new authentication types</li>
+            <li>Update the access control file to include the authentication type created</li>
+        </ul>
+        <h3>Identify groups of actions</h3>
+        <p>To identify an authentication type for a given group of actions, one approach is to click through the various menu actions that exist on each tab of the UI&#160;and logically group them together into key tasks. As a starting point, all actions within the UI&#160;can be logically grouped in to 5 major categories.</p>
+        <ul>
+            <li><strong>Ability to delete </strong>This would include deleting orders from the products tab, batches from the batches tab, and press jobs from the press jobs tab</li>
+            <li><strong>Ability to reprocess </strong>This would include all reprocess options tht exist on the products tab</li>
+            <li><strong>Ability to batch </strong>This would include the ability to create batches from the products tab (including Proof batches), all release options from the sort groups tab, as well as all reprint options from the batches and press jobs tabs</li>
+            <li><strong>Ability to divert </strong>This would include the ability to divert work to an alternate output profile from the products, sort, and batches tabs</li>
+            <li><strong>Designer </strong>This would include the ability to launch configuration browser, convert orders to designer mode, and export banner/slate designer data</li>
+        </ul>
+        <p>All other actions within the UI&#160;for viewing or copying attributes would be available to all users.</p>
+        <h3>Modify dynamic menus</h3>
+        <p>Once all UI actions have been grouped into their desired authentication types, each action within the dynamic menu files can be updated to use the appropriate value. The dynamic menu XML&#160;files can be found at the following location.</p>
+        <p><code>\\&lt;yourServer\IDF\sharedconfig\ui\dynamicmenus</code>
+        </p>
+        <p>A configuration XML&#160;file will exist for each unique context menu found in the Infinity software. The following snippet shows two reprocess actions from the Products tab context menu and their associated values for task authentication.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/taskAuthSnippet.png" title="Task auth" alt="Task auth" class="img " />
+        </p>
+        <p>The task autoentication <code>taskAuth=</code> for each reprocess action has been set to <code>reprocessorder</code>. The matching task name defined in the access control file will include the AD&#160;groups that have permission to perform this action.</p>
+        <h3>Updating the access control file</h3>
+        <p>The access control file is located in the root of the <code>sharedconfig </code>folder on the master core host server (DB server). A&#160;sample of an access control file that directly maps to the UI&#160;reprocess actions previously mentioned is shown below.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/accessControlXml.png" class="img " title="Access control file" alt="Access control file" />
+        </p>
+        <p>This access control file indicates that all users belonging to the IPS&#160;Admins and IPS Users AD&#160;groups will have the ability to reprocess orders. Users belonging to other AD groups, IPS&#160;Training for example, would not have access to the reprocess actions within the UI.</p>
+        <p class="note">There are a few system level tasks not defined within the dynamic menus. One example of this is the ability to override an invalid divert operation. These tasks will typically be included in the default access control file and can be managed in the same way as other user defined tasks.</p>
+    </body>
+</html>

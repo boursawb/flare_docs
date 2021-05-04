@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Creating a new device</title>
+    </head>
+    <body>
+        <h1>Creating a new device</h1>
+        <p>OS&#160;Print currently supports the following three device types.</p>
+        <ul>
+            <li>OS&#160;local printer </li>
+            <li>JPG&#160;hotfolder</li>
+            <li>Scodix foil</li>
+        </ul>
+        <p>.In order to create a new device in OS&#160;Print, you must have a license that supports that device. For instance, if your license only covers OS&#160;local printer and JPG hotfolder, you will not be able to create a new Scodix foil device until the license is updated. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Setting up an OS&#160;local printer device</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Before creating the device within OS&#160;Print, you will need to install the printer on the server that OS&#160;Print is running on. You should also confirm that you can print to the device from a Windows application such as Notepad before attempting to configure the printer to be used by OS&#160;Print. </p>
+                <h2>Adding the device</h2>
+                <ol>
+                    <li>Click <strong class="standOutPrimary">Devices </strong>from the OS&#160;Print Dashboard</li>
+                    <li>Click <strong class="standOutPrimary">Create </strong>in the upper right corner of the page</li>
+                    <li>In the <strong class="standOutPrimary">Type </strong>drop-down, select <strong class="standOutPrimary">OS&#160;Local</strong></li>
+                    <li>In the <strong class="standOutPrimary">Name </strong>drop-down, select the name of the printer being setup</li>
+                    <li>Click <strong class="standOutPrimary">Save</strong></li>
+                </ol>
+                <p>Once the device has been created, it will display on the main Devices page in the device list.</p>
+                <h2>Submitting jobs from <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /></h2>
+                <p>There are two methods for submitting content to a Windows printer from <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. </p>
+                <ul>
+                    <li>Separate batch component</li>
+                    <li>Near line additional spread of an existing batch component</li>
+                </ul>
+                <h3>Separate batch component</h3>
+                <p>Using this method, customer content, and additional batch spreads such as batch tickets, travel sheets or batch manifests can be submitted to a Windows network printer. You will be able to select the desired destination for the component on the create batch dialogue during the batch creation process. One additional requirement for using this method will be to create a blank prebatch component that can be fed into the batch definition.</p>
+                <h4>Creating a blank prebatch component</h4>
+                <ol>
+                    <li>Open the prebatch component for the product requiring the additional batch spread</li>
+                    <li>Add a new prebatch component to the product using the starter code shown below</li>
+                </ol>
+                <p><pre><code language="xml">&lt;prebatchcomponent name="BatchTraavelSheet"
+componenttype="BatchTraavelSheet"
+blank="true"
+source="BatchTravelSheet"
+splitrange="1"
+layout="NO-STAMP-LAYOUT"
+duplex="false"
+autosizewidthoverride="864"
+autosizeheightoverride="1296"/&gt;</code></pre>
+                </p>
+                <ol start="3">
+                    <li>Make sure the blank attribute is set to true</li>
+                    <li>Change the name, source, and componenttype as needed</li>
+                    <li>Change the width and height overrides to meet your requirements</li>
+                </ol>
+                <h4>Create the batch component</h4>
+                <ol>
+                    <li>Open the batch definition for the product that will use the additional spread</li>
+                    <li>Paste in the following starter code as a new batch component</li>
+                    <li>Ensure that the attributes duplex, tumble, and renderer exist and add any additional settings desired that are supported by your device</li>
+                </ol>
+                <p><pre><code language="xml">&lt;batchcomponent imposition="NOIMPOSITION" destinationtype="osprintservice"
+name="batchticket" splitRange="0"&gt;
+&lt;mediamappings/&gt;
+&lt;prebatchcomponentsorder&gt;
+&lt;prebatchcomponent name="BatchTraavelSheet" copyrange="1"/&gt;
+&lt;/prebatchcomponentsorder&gt;
+&lt;additionalspreads&gt;
+&lt;/additionalspreads&gt;
+&lt;presssettings&gt;
+&lt;pagedevicesettings&gt;
+&lt;setpagedevice key="duplex" value="false" /&gt;
+&lt;setpagedevice key="tumble" value="false" /&gt;
+&lt;setpagedevice key="color" value="true" /&gt;
+&lt;setpagedevice key="renderer" value="gs" /&gt;
+&lt;!--&lt;setpagedevice key="renderer" value="adobe" /&gt;--&gt;
+&lt;/pagedevicesettings&gt;
+&lt;additionalps&gt;
+&lt;/additionalps&gt;
+&lt;/presssettings&gt;
+&lt;/batchcomponent&gt;</code></pre>
+                </p>
+                <h3>Near line additional spread</h3>
+                <p>Nearline additional spreads provide a way to automatically submit additional batch content such as a travel batch sheet to a Windows printer.  Keep in mind that items submitted in this manner will not be included in spread calculations and will not display as an option on the batch dialogue or on the press jobs tab within <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. To configure a near line additional spread to be sent to a Windows printer, follow the steps shown below.</p>
+                <ol>
+                    <li>Identify the batch component that the near line batch ticket will be associated with</li>
+                    <li>Add an additional spread to this batch component (use the examples from above as aguide)</li>
+                    <li>Ensure the additional spread includes the inline="false" attribute</li>
+                    <li>Determine if the near line batch ticket will be sent to a specific DFE and device or to a device group and modify the additional spread accordingly</li>
+                    <li>Specify an appropriate name for the additional spread</li>
+                    <li>Specify the appropriate batch ticket relatedcontenturi and batch ticket type relatedcontenttype</li>
+                    <li>If using device group selection, specify the appropriate deviceGroupMode (standard, remake, priority)</li>
+                    <li>Save the batch definition</li>
+                </ol>
+                <h4>Near line additional spread example - DFE&#160;and Device</h4>
+                <p><pre><code language="xml">&lt;spread inline="false" name="BatchTravelSheet" layout="A4-LANDSCAPE" dfe="osprintservice1"
+device="Foxit Reader PDF Printer" relatedcontenturi="travelf_batchticket_8X10" relatedcontenttype="
+IDFBatchTicketV2"/&gt;</code></pre>
+                </p>
+                <h4>Near line additional spread example - Device group</h4>
+                <p><pre><code language="xml">&lt;spread inline="false" name="BatchTravelSheet" layout="A4-LANDSCAPE" deviceGroupp="
+osprintservice-default" deviceGroupMode="standard" relatedcontenturi=travelf_batchticket_
+8X10" relatedcontenttype="IDFBatchTicketV2"/&gt;</code></pre>
+                    <p class="Note">In order to validate that the additional spread was sent as expected, the locatin specified by the DFE/device settings will need to be checked. In the case of the OS Print Local device, you will need to check the physical printer or in the associated network print queue for the job.</p>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Setting up a Scodix Foil device</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <h2>Creating the device</h2>
+                <p>Submitting a job to a Scodix Foil device will extract the images from the PDF and convert them to TIFF files, placing them into the defined output folder along with the associated SJD&#160;file for the job. To setup a new Scodix Foil device, follow the steps shown below.</p>
+                <ol>
+                    <li>Click <strong class="standOutPrimary">Devices </strong>in the side menu</li>
+                    <li>Click <strong class="standOutPrimary">Create </strong>or the <strong class="standOutPrimary">+ </strong>icon to create a new device</li>
+                    <li>Select <strong class="standOutPrimary">Scodix Foil </strong>from the drop down</li>
+                    <li>Enter a name (i.e. scodix1)</li>
+                    <li>Enter a path for the output folder (i.e. \\&lt;yourServer&gt;\idf\scodix\output</li>
+                    <li>Enter a path for the scodix staging folder (i.e. \\&lt;yourServer\idf\scodix\staging</li>
+                    <li>Save device</li>
+                </ol>
+                <p class="Note">When configuring the output folder and device staging folder, make sure they both exist on the same server \ share. For example, create a new share called scodix on server1, then create the output and staging folders within \\server1\scodix. </p>
+                <h3>Capture device settings for the batch definition</h3>
+                <ol>
+                    <li>Click <strong class="standOutPrimary">Create job </strong>in the side menu</li>
+                    <li>Select the Scodix device previously selected (***You will need to select it twice***)</li>
+                    <li>Click the <strong class="standOutPrimary">Settings </strong>tab at the top</li>
+                    <li>Update settings as required</li>
+                    <li>Click the <strong class="standOutPrimary">Advanced </strong>tab at the top</li>
+                    <li>Add any values to the parameters displayed</li>
+                    <li>Once all changes have been made, click the <strong class="standOutPrimary">Copy Settings </strong>link</li>
+                </ol>
+                <p class="Note">Clicking the <strong>Copy Settings </strong>link will copy the device information to the Windows clipboard, which can then be pasted into the &lt;pagedevicesettings&gt; section of the required batch definition(s).</p>
+                <p>A&#160;batch definition snippet showing the pagedevicesettings section with the scodix device options is shown below.</p>
+                <p><pre><code language="xml">&lt;pagedevicesettings&gt;
+	&lt;setpagedevice key="scodixPrintMode" value="FOIL 50" /&gt;
+	&lt;setpagedevice key="scodixEnhancement_1" value="gold_foil" /&gt;
+	&lt;setpagedevice key="scodixjobUID" value="%batchUID%-A-" /&gt;
+	&lt;setpagedevice key="scodixUseOpa" value="true" /&gt;
+	&lt;setpagedevice key="scodixAutomaticOpa" value="true" /&gt;
+	&lt;setpagedevice key="scodixdestDirName" value="%id%%productBatchSequenceNumberPadded2%%productBatchComponentNumberPadded2%%productBatchCountPadded2%%exceptionBatchCountPadded2%%exceptionBatchNumberPadded2%" /&gt;
+&lt;/pagedevicesettings&gt;</code></pre>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Setting up a JPG&#160;Hotfolder device</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <h2>Creating the device</h2>
+                <p>Submitting a job to a JPG Hotfolder device will extract the images from the PDF and convert them to JPG&#160;files, placing them into the configured output location. To setup a new JPG&#160;Hotfolder device, follow the steps shown below.</p>
+                <ol>
+                    <li>Launch the OS&#160;Print web interface by pointing your browser to <code>http://&lt;yourHost&gt;:9300</code> where &lt;yourHost&gt; is the name of the server that OS&#160;Print is running on</li>
+                    <li>Click <strong class="standOutPrimary">Devices </strong>in the drawer menu. If the menu is currently collapsed, click the <strong class="standOutPrimary">Printer Icon </strong>to open the devices window. To expand the drawer menu, click the <strong class="standOutPrimary">hamburger </strong>menu in the top left corner of the screen, then click <strong class="standOutPrimary">Devices</strong></li>
+                    <li>Click the <strong class="standOutPrimary">Create </strong>button in the upper right corner of the page</li>
+                    <li>Select <strong class="standOutPrimary">Hotfolder </strong>in the <strong class="standOutPrimary">Type </strong>drop-down list</li>
+                    <li>Type a name for the new hotfolder (i.e. JPG-HF-1)</li>
+                    <li>Enter the network path where the device staging folder will be located</li>
+                    <li>Enter the network path to the desired output location. <strong>The device staging location and final output location should always exist on the same server / share</strong></li>
+                    <li>Enter the network path for the <strong class="standOutPrimary">Printing Started Feedback Folder</strong></li>
+                    <li>Enter the network path for the <strong class="standOutPrimary">Printing End Feedback Folder</strong></li>
+                    <li>Enter the network path for the <strong class="standOutPrimary">Printing Error Feedback Folder</strong></li>
+                    <li>Click <strong class="standOutPrimary">Save</strong></li>
+                </ol>
+                <p><strong>Sample hotfolder configuration</strong>
+                </p>
+                <p>
+                    <img src="../../../Resources/Images/Assets/IPS/jpgHFSample.jpg" title="JPG Hotfolder Sample" alt="JPG Hotfolder Sample" class="img" />
+                </p>
+                <h3>JPG&#160;Hotfolder status folders</h3>
+                <p>The printing, printing end, and printing error status folders provide an integration point for customers that results in the job status being displayed in <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. Depending on which folder the job is moved / copied into, the corresponding status will be sent to <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> and displayed via the 4th status light for the job on the press jobs tab. For example, once the job starts printing on the device, the folder containing the job can be copied / moved to the printingStarted folder. If the job completes successfully, the folder should be moved to the printingEnd folder. In the event of an error during printing, the folder should be moved to the printingError folder. The status displayed in <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will reflect the last folder the job was moved to.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+    </body>
+</html>

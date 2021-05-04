@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Release presets</title>
+        <link href="../../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Release Presets</h1>
+        <p>If your system has been configured for auto-release, or you release batches based on the current device group configuration, it may be necessary to specify which components of a given product should be released to press. By default, every component defined within a product is submitted to press when using these release options. In a situation where one or more components should be excluded from the batch, a release preset can be defined to identify batch component exclusions, as well as production intent defaults. Release presets simply provide a way to tell the system which batch components to include during the batching process and provide a way to define a default intent when more than one intent has been built for a given component. <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> has been designed to allow for multiple release preset profiles which can be selected as needed to accommodate changes in the production environment. The active release preset can be viewed on the sort groups tab. To change the active release preset, click the button to launch the Release Preset Web UI. Only one release preset profile can be active at any given time.</p>
+        <p>
+            <img src="../../../Resources/Images/LaunchProdAdminButton.png" />
+        </p>
+        <h2>Understanding release presets</h2>
+        <p>Before adding any presets to the Infinity system, it is important to have a basic understanding of the following key terms.</p>
+        <ul>
+            <li><strong>Release Preset </strong>This defines a single entry within the release preset configuration file. A&#160;Release Preset is specific to a single product type and will include one or more selections for the product</li>
+            <li><strong>Product Type</strong> This defines a specific product within the system. A&#160;typical product might be an 8x10-Story-Book, or 3x5-Post-Card. Only a single product type can be included in a given preset</li>
+            <li><strong>Selection </strong>One or more selections will exist within each release preset. A&#160;selection represents a single component within a product. The 8x10 book example, may have 3 components - book, cover, and wrap. Each of these components will result in their own selection within a release preset. Each selection will include the batch component name, the production intent to release, if defined, and a flag indicating if the selection should be released during the batching process.</li>
+        </ul>
+        <p class="note">As it is important to understand these terms and key concepts, much of this information is hidden from the administrator when using the <strong class="standOutPrimary">IPS Production Admin </strong>web interface for configuring release presets. When there is a need to work with the XML&#160;configuration files directly, understanding how presets are defined and what each of these terms mean becomes more important. </p>
+        <h2>Configuring release presets</h2>
+        <p>Management of release presets is done through the <strong class="standOutPrimary">IPS&#160;Production Admin </strong>web interface. The web UI&#160;can be accessed by clicking the button on the sort groups tab of the <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> UI. From the home page, the following actions can be performed.</p>
+        <ul>
+            <li>Select the active release preset default</li>
+            <li>Display and manage all presets</li>
+            <li>Modify component selections</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/ProductionAdminHome.png" style="width: 1110px;height: 403px;" title="Production Admin Home" alt="Production Admin Home" class="img" />
+        </p>
+        <h3>Setting the active preset</h3>
+        <ol>
+            <li>Expand the top level <strong class="standOutPrimary">Release Presets </strong>menu if not already</li>
+            <li>Click on <strong class="standOutPrimary">Active Release Preset</strong></li>
+            <li>Click the <strong class="standOutPrimary">EDIT </strong>button to the right of the active release preset</li>
+            <li>Select the desired release preset from the drop-down list</li>
+            <li>Click <strong class="standOutPrimary">Save</strong></li>
+        </ol>
+        <h3>Managing presets</h3>
+        <ol>
+            <li>Click <strong class="standOutPrimary">Release Presets </strong>in the menu</li>
+            <li>Click the <strong class="standOutPrimary">EDIT </strong>button to the right of the preset</li>
+            <li>Make the necessary changes to the preset</li>
+            <li>Click the <strong class="standOutPrimary">Save </strong>button to commit any changes</li>
+        </ol>
+        <p>The following actions are available within the Edit screen.</p>
+        <ul>
+            <li>Provide a description for the preset</li>
+            <li>View/edit the release preset selections</li>
+            <li>Clone the release preset</li>
+            <li>Delete the preset</li>
+        </ul>
+        <h3>Modify component selections</h3>
+        <p>The Component Selections page allows you to change the default intent for a product's batch component.  From this screen you can perform the following actions.</p>
+        <ul>
+            <li>Filter the list by selecting a specific release preset from the drop-down menu</li>
+            <li>Filter the list by specifying a key word in the search field</li>
+            <li>Export the list of release presets to a .csv formatted file</li>
+            <li>Edit a product to change or exclude a particular production intent from a component</li>
+        </ul>
+        <p>To change or exclude a production intent from a batch component, follow the steps shown below.</p>
+        <ol>
+            <li>Click the EDIT&#160;to the right of the batch component</li>
+            <li>Select the appropriate production intent from the drop down list, or alternatively click the X&#160;to exclude the production intent</li>
+            <li>Click Save</li>
+        </ol>
+        <p>
+            <img src="../../../Resources/Images/ProdAdminChangeIntent.png" />
+        </p>
+    </body>
+</html>

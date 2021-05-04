@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Device groups</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Device groups" />Device groups</h1>
+        <p>Device groups are a key component of the Infinity software and are used by several features throughout the system. As the name implies, device groups allow <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> to submit jobs to a group of devices. Device groups can be associated with a specific product, to all products that reside in a given sort group or, to all products that have a specific destination type. Primarily, device groups come into play when any of the following are true.</p>
+        <ul>
+            <li>Normal release options are used from sort groups tab</li>
+            <li>Normal reprint options are used from the batches tab</li>
+            <li>A&#160;requirement exists for manual device restrictions</li>
+            <li>Auto-release has been enabled</li>
+        </ul>
+        <p class="note">A non-manual release (sometimes called a normal release) does not present any device selection to the user and instead relies on predefined device groups to automatically chose a destination. Device groups are created and stored in the <strong class="standOutPrimary">DFE\devicegroups </strong>sub-folder of the <strong class="standOutPrimary">sharedconfig </strong>directory on the master core host. There is no limit to the number of device groups that can be created. A&#160;device group can exist for all features previous mentioned, or any combination there of. For example, it is possible to create a device group simply for the purposes of restricting which devices an operator can choose when performing a manual batching operation. </p>
+        <h2>Batch release hierarchy</h2>
+        <p>When a normal release action is performed, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> must determine where to submit the job based on the current device group configuration. In order to determine the appropriate destination device, the following hierarchy is used.</p>
+        <ul>
+            <li><strong>Product Level </strong>- Check to see if the batch component being released has a device group specified in its batch definition. If it does, submit the job as defined by the device group configuration<ul><li><strong>Sort Group </strong>- Check for the existence of a device group which matches the name of the sort group associated with the batch component. If a match is found, submit the job as defined by the device group configuration <ul><li><strong>Device Type </strong>- Submit the job via the device group associated with the destination type defined in the batch definition for the batch component. This is commonly referred to as the default destination type</li></ul></li></ul></li>
+        </ul>
+        <h3>Example - Batch release</h3>
+        <p class="Example">Assume a batch is released from the sort groups containing a single book order. The book has 2 components, cover and book block. The batch component for the book block includes the attribute <code>deviceGroup="10x10Books"</code> and the cover component, which resides in the same batch definition, has no device group specified. Assuming the batch definition has a destination type of Indigo, this will result in the book block being submitted to a device defined in the <strong class="standOutPrimary">10x10Books </strong>device group and the cover going to one of the devices defined in the <strong class="standOutPrimary">Indigo-default</strong> device group.</p>
+        <p class="note">If the system fails to find an appropriate default device group, the job submission will fail when using a normal (non-manual)&#160;release action.</p>
+        <h2><a name="configuringDeviceGroups"></a>
+            Configuring device groups</h2>
+        <p>A device group is an XML&#160;configuration file which follows the naming convention of groupName.devicegroup.xml. The exception to this is when creating a device group for a default device or for a specific sort group, where the format of the name changes slightly. The following examples show the naming convention for the three levels of device groups that exist within <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" />. </p>
+        <ul>
+            <li><strong>10x10book.devicegroups.xml </strong>(product specific, defined at the batch component level of a batch definition)</li>
+            <li><strong>booksgroup-indigo-default.devicegroups.xml </strong>(sort group specific)</li>
+            <li><strong>indigo-default.devicegroups.xml </strong>(device specific)</li>
+        </ul>
+        <h3>Device group parameters</h3>
+        <ul>
+            <li><strong>Description </strong>- Provide a description for the device group</li>
+            <li><strong>Device Type </strong>- The destination type associated with the device group (i.e. indigo, kodaknexpress, etc.)</li>
+            <li><strong>Priority device section </strong>- A&#160;collection of devices that priority jobs will be submitted to</li>
+            <li><strong>Remake device section </strong>- A&#160;collection of devices that remake jobs will be submitted to</li>
+            <li><strong>Standard device section </strong>- A&#160;collection of devices that standard jobs will be submitted to</li>
+            <li><strong>Manual device section </strong>- This section is used to restrict the devices displayed to the operator when executing one of the manual batching operations. For additional information on manual device restrictions, see the topic located here. <MadCap:xref href="../_Working/1_Manual device selection.htm">"Manual device selection" on page&#160;1</MadCap:xref></li>
+        </ul>
+        <p>Each device group section will contain one or more DFE / device pairs that refer to an actual destination within one of the DFE&#160;configuration files. For example, the standard section of a device group may include an entry which specifies a DFE&#160;of Ultra5 and a device of Books. When <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> attempts to submit a job to this location it will identify a DFE&#160;configuration file with a host name of Ultra5 and then search for a device within that file with the name Books. The job will then be submitted to the path specified for that device. The following example shows a device group configuration file and the associated DFE&#160;configuration it will use.</p>
+        <h3>Example device group XML</h3>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/deviceGroupXML.jpg" class="img " title="Device group XML" alt="Device group XML" />
+        </p>
+        <h3>DFE&#160;configuration XML</h3>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/DFEConfiguration2XML.jpg" class="img " title="DFE configuration XML" alt="DFE configuration XML" />
+        </p>
+        <p>The device group configuration file is linked to the DFE&#160;configuration via the following two parameters.</p>
+        <ul>
+            <li>The value specified for <strong class="standOutPrimary">dfe </strong>within the device group configuration file must match the <strong class="standOutPrimary">hostname </strong>entry at the top of the DFE&#160;configuration file within the main DFE&#160;section</li>
+            <li>The value specified for <strong class="standOutPrimary">device </strong>within the device group configuration file must match <strong class="standOutPrimary">hostname </strong>entry for each device listed within the <strong class="standOutPrimary">devices </strong>section of the DFE&#160;configuration file</li>
+        </ul>
+        <p>If there is a mismatch between these parameters as described above, submitting batches via automatic device selection will fail.</p>
+        <h3>Creating a new device group</h3>
+        <ol>
+            <li>Validate that a batch can be manually submitted to the device that will be used</li>
+            <li>Determine at which level the device group will function at (product, sort group or device)</li>
+            <li>Create a new device group XML, or copy an existing to modify and ensure the device group has been appropriately named as described here <MadCap:xref href="#configuringDeviceGroups">"Configuring device groups" on page&#160;1</MadCap:xref></li>
+            <li>Add or modify the standard, remake and priority and manual sections to the device group XML&#160;as required</li>
+            <li>Add one or more DFE / Device pair entries to each of the sections included in the device group configuration file</li>
+            <li>Save the device group file </li>
+        </ol>
+        <h3>Troubleshooting device groups</h3>
+        <p>The most common issue that occurs with device groups is a mismatch between  the host name specified in the device group configuration file and the host name specified at the top of the DFE&#160;configuration file. When this situation occurs, you will receive an error similar to the following.</p>
+        <p><code>The device group references a DFE&#160;but that DFE&#160;cannot be found in the system.</code>
+        </p>
+        <p>A&#160;similar issue can occur when a device group references the appropriate DFE but calls on a device that is not found within the DFE&#160;configuration file. When these types of issue occur, the following list can be used to assist in the troubleshooting process.</p>
+        <ol>
+            <li>Verify the device group name (the XML&#160;file)&#160;follows the appropriate naming convention</li>
+            <li>Verify the device type specified in the device group configuration file is correct</li>
+            <li>Ensure the value specified for the dfe attribute within the device group XML&#160;file matches the value of the hostname attribute in the top portion of the DFE&#160;configuration file</li>
+            <li>Verify the value for the attribute device within the device group configuration file matches the hostname entry for each device you wish to use in the DFE&#160;configuration file</li>
+        </ol>
+        <p class="note">All attribute names and values are space / case sensitive, including the file name of the device group XML&#160;file. If there is a mismatch at any level between the device group and DFE&#160;configuration file, device selection will fail.</p>
+    </body>
+</html>

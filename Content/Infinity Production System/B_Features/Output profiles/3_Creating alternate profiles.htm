@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Setting up alternate output profile products</title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Creating alternate profiles</h1>
+        <p>Once you have built the output profile definition, you are ready to identify products that will use the new output profile. A&#160;product can have as many output profiles defined as needed. A&#160;product will be defined as an alternate output profile if its prebatch and batch definitions contain the <strong class="standOutPrimary">outputprofileid </strong>attribute. In order to successfully divert a product to one of its alternate output profiles, the following four conditions must be met.</p>
+        <ul>
+            <li>The batch and prebatch definitions for the product requiring the alternate profile must be copied to new files with names different from the originals. </li>
+            <li>The batch and prebatch definitions for the alternate profile must include the outputprofileid attribute</li>
+            <li>The value in the outputprofileid attribute must match exactly between the batch and prebatch definitions</li>
+            <li>An output profile definition must be created with its name matching the value of the output profile ID&#160;specified in the batch and prebatch definitions</li>
+        </ul>
+        <h2>Creating a new output profile</h2>
+        <p>Creating an alternate output profile for a specific product involves the following actions.</p>
+        <h3>Duplicate the product</h3>
+        <ol>
+            <li>Open the batch definition for the identified product in an XML editor such as Notepad++</li>
+            <li>Add the attribute <strong class="standOutPrimary">outputprofileid="yourProfile"</strong>&#160;to the IDFBatch section of the batch definition</li>
+            <li>Perform a Save As on the file and append <strong class="standOutPrimary">_yourProfile</strong> to the end of the file name prior to the .XML&#160;extension</li>
+            <li>Add the attribute <strong class="standOutPrimary">outputprofileid="yourProfile"</strong>&#160;to the IDFPrebatch section of the prebatch definition</li>
+            <li>Perform a Save As on the file and append <strong class="standOutPrimary">_yourProfile</strong> to the end of the file name prior to the .XML&#160;extension</li>
+        </ol>
+        <h3>Create the output profile definition</h3>
+        <ol>
+            <li>Browse to the <strong class="standOutPrimary">sharedconfig\outputprofile\outputprofiledef</strong> folder on the master core host (database server)</li>
+            <li>Create a new definition with the name <strong class="standOutPrimary">yourProfile</strong>.outputprofiledef.xml</li>
+            <li>Open the file and put the <strong class="standOutPrimary">&lt;outputprofile&gt;&lt;/outputprofile&gt;</strong> tags in it</li>
+            <li>Close and save the file</li>
+        </ol>
+        <h3>Viewing alternate output profiles in the <MadCap:keyword term="configuration browser" />configuration browser</h3>
+        <p>Once the new output profile has been created for the product, it is a good idea to view the new product in the configuration browser. From here, you will be able to see the default profile for the product and also validate that the new profile was created successfully. </p>
+        <h3>View in Config Browser</h3>
+        <ol>
+            <li>View product in configuration browser</li>
+            <li>Locate the product on the Products tab of the UI</li>
+            <li>Right-click on the product and select Product Configuration Browser</li>
+            <p>
+                <img src="../../../Resources/Images/Assets/IPS/outputProfileConfigBrowser.jpg" class="img " title="Output profile configuration browser" alt="Output profile configuration browser" />
+            </p>
+        </ol>
+        <p class="note">Alternate output profile products will show up in the configuration browser with their output profile ID&#160;in parentheses to the right of the product name.</p>
+        <p>&#160;</p>
+    </body>
+</html>

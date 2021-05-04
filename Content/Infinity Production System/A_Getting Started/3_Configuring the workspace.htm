@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:ignoredWords="columnA;columnB;columnC" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title></title>
+        <link href="../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Configuring the Workspace </h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> provides several options for configuring the workspace to meet your needs. Depending on your role within the organization, the workspace can be setup to show information that is most applicable to your job duties.</p>
+        <p>
+            <img src="../../Resources/Images/Assets/IPS/configureWorkspace.png" title="Configure workspace" alt="Configure workspace" class="img" />
+        </p>
+        <h2>Adjusting Columns</h2>
+        <p>One of the main areas of customization within IPS&#160;is determining which attributes (columns)&#160;will display on a given tab. From any tab, you can add, remove, re-size and reposition columns as needed.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Moving columns</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Locate the column to be moved</li>
+                    <li>Click and hold while dragging the column to the new position</li>
+                    <li>Let up on the mouse button to complete the action</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Add new columns</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>There are two methods for adding new columns to the UI. Columns can either be added one at a time or multiple columns can be added by using the customize columns feature.</p>
+                <p><span class="SetOffSecondLevel">Add single column</span>
+                </p>
+                <ol>
+                    <li>Change to the tab where the new column should be added</li>
+                    <li>Right-click on any column</li>
+                    <li>Locate the column from the list and select it</li>
+                </ol>
+                <p class="note">The list of available attributes will extend far beyond the size of the screen. There is a small arrow at the bottom of the list that when hovered over, will scroll the list down.</p>
+                <p><span class="SetOffSecondLevel">Add multiple columns</span>
+                </p>
+                <ol>
+                    <li>Change to the tab where the new column should be added</li>
+                    <li>Right-click on any column</li>
+                    <li>Select the <strong class="standOutPrimary">Customize columns...</strong> in the top section of the menu</li>
+                    <li>In the selection dialogue, check the box next to each column that should be included in the view</li>
+                    <li>Click <strong class="StandOutPrimary">OK </strong>to save the changes and close the dialogue</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Remove columns</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Change to the tab where the new column should be added</li>
+                    <li>Right-click on the column to be removed</li>
+                    <li>Select the <strong class="standOutPrimary">Hide This Column </strong>option at the top of the menu</li>
+                </ol>
+                <p class="note">Multiple columns can be removed un-checking the box next to the items which should be removed from view.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Sorting columns</h2>
+        <p>The column data in the user interface can either be unsorted (how they arrived in the system), sorted ascending or sorted descending. How the information sorts depends on the data type of the information the column contains. For example, if a column contains a 7 digit number but the data type for that column is of type string, when sorted, the column will sort alphabetically, not numerically. Additionally, IPS allows you to perform a multi-column sort by clicking each column in the desired order while holding the CTRL&#160;key down. The order of the grouped columns will be indicated by a small number on the column header.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Sorting columns</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Click the column header to initially sort the column ascending</li>
+                    <li>If descending order is preferred, click the column header once more</li>
+                    <li>To return the column to an unsorted order, click the column header a third time</li>
+                    <li>To sort multiple columns together, while holding down the CTRL&#160;key, click column A, then column B followed by column C, etc. </li>
+                </ol>
+                <p class="note">A&#160;triangle in the corner of the column header indicates the sort currently applied to the column. A&#160;triangle pointing up indicates ascending sort order, and a downward pointing triangle indicates descending. When multiple columns have been CTRL+clicked, and superscript number will show on the column to indicate its ranking. </p>
+                <p class="note">Example - Sorting multiple columns</p>
+                <p class="note">Assume you have the columns Created, Received, and Updated in your UI. If you wanted to sort all of the data first by Created, then by Updated, and finally by Received, you would hodl the CTRL&#160;key down and then click each of the column headers in the order previously mentioned. This will result in a superscript 1 on the Created column, a 2 on the Updated column, and finally a 3 on the Received column.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Resizing columns</h2>
+        <p>Any column in the UI&#160;can be re-sized to ensure all data is visible. Columns can either be re-sized manually or automatically. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Manual resizing</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Hover the mouse over the vertical line on the right hand side of the column to be re-sized</li>
+                    <li>Wait for the horizontal double-arrows to display and then hold down the mouse button and drag to the right</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Automatic resizing</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Right-click on any column header</li>
+                    <li>Select either the <strong class="standOutPrimary">Re-size this column</strong> or <strong class="standOutPrimary">Re-size all columns</strong> option from the top of the menu</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2 class="NoPageBreakBefore">Filtering column data</h2>
+        <p> IPS&#160;provides the ability to filter the UI&#160;to display only data that you are interested in. This can be useful when only needing to see a very specific set of information. For example, it may be desirable to display only orders for a given customer, only specific products, or simply display orders that have encountered an error and need immediate attention. Filtering a column in the UI&#160;allows you to display only rows with a given value. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Filtering a column</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Hover the mouse over the right side of the column to display the filter icon </li>
+                    <li>Click the filter icon and select the specific item from the drop-down list to filter by</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Creating a custom filter</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li style="page-break-before: always;">Hover the mouse over the right side of the column to display the filter icon</li>
+                    <li>Click the filter icon and select Custom... from the list</li>
+                    <li>Select the condition to be included in the filter</li>
+                    <li>Select the value (if applicable)&#160;for the condition</li>
+                    <li>Click OK to apply the filter to the column</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+    </body>
+</html>

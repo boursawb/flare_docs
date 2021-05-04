@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Proceed Conditions</title>
+    </head>
+    <body>
+        <h1>Proceed Conditions</h1>
+        <p>By specifying a set of user defined criteria, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> can be configured to warn users during a release action when the sort group is not ready to be released. One example of a proceed condition is the check that occurs between <strong class="standOutPrimary">totalOrdersInBatch </strong>to <strong class="standOutPrimary">expectedOrdersInBatch </strong>during the release of a diverted batch. If the value for total orders does not equal expected orders during the release process, <MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> will display a detailed warning to the user, along with options to either cancel the operation or proceed despite the warning. Sort groups that fail to meet the criteria defined in a proceed condition will display orange, prompting the user to either correct the issue or accept the condition as/is during a release action.</p>
+        <h2>Creating a proceed condition</h2>
+        <p>Proceed conditions are driven by criteria defined in <code>matchers </code>and an associated <code>proceed condition </code>file. Any number of proceed conditions can be created and are located in <code>.\sharedconfig\ordersort\proceedcondition</code>. Each matcher created for a proceed condition will reside in the standard matcher location,<code> .\sharedconfig\ordersort\matcher</code>. Each proceed condition XML file will contain the following.</p>
+        <ul>
+            <li><strong>Description </strong>Brief description of the proceed description's goal</li>
+            <li><strong>Reason </strong>An explanation of why the condition has been envoked</li>
+            <li><strong>Action </strong>This will always specify the value <strong class="standOutPrimary">releaseFromSortGroup</strong></li>
+            <li><strong>Applies to matcher </strong>The matcher that identifies the sort group the condition applies to</li>
+            <li><strong>Proceed matcher </strong>Specifies the condition to test to see if the release can proceed</li>
+            <li><strong>Override consequences </strong>A list of consequences that could apply if the release is overridden</li>
+        </ul>
+        <p>To create a new proceed condition, follow the steps shown below.</p>
+        <ol>
+            <li>Browse to <code>.\sharedconfig\ordersort\proceedcondition</code> and copy one of the existing proceed condition files to a new name</li>
+            <li>Update the <strong class="standOutPrimary">Description </strong>and <strong class="standOutPrimary">Reason </strong>as required</li>
+            <li>Ensure that <strong class="standOutPrimary">Action </strong>is set to <strong class="standOutPrimary">releaseFromSortGroup</strong></li>
+            <li>Create the <strong class="standOutPrimary">appliesToMatcher </strong>and specify the matcher name in the proceed conditional XML</li>
+            <li>Create the <strong class="standOutPrimary">proceedMatcher </strong>and specify the matcher name in the proceed condition XML</li>
+            <li>Include any <strong class="standOutPrimary">Override Consequences </strong>deemed necessary</li>
+            <li>Save the file and exit</li>
+        </ol>
+        <p>The following example demonstrates how to warn users if the current batch contains less than 100 spreads when attempting to release from a sort group consisting of 8.5x11 Calendars.</p>
+        <h3>Proceed Condition XML</h3>
+        <p><pre><code class="language-xml">&lt;proceedCondition
+    description="Prevent release of batches with less than 100 spreads"
+    reason="Cannot release from sort group unless total spreads is greater than 100"
+    action="releaseFromSortGroup"
+    &gt;
+    &lt;!-- Only apply this condition to objects that match this condition.
+         Matchers can be complex nested and/or conditions --&gt;
+    &lt;appliesToMatcher matcherid="proCon_11x85Cal" /&gt;
+
+    &lt;!-- The condition to test to see if one can proceed.
+         This is an 'And' list, all matchers must be valid to proceed. --&gt;
+    &lt;proceedMatcher matcherid="proCon_minSpread50" /&gt;
+
+    &lt;!-- A list of consequences that could apply if the matcher is overridden.
+         Used to provide feedback to the user...  --&gt;
+    &lt;overrideConsequences&gt;
+        &lt;consequence&gt;May result in excessive waste&lt;/consequence&gt;
+    &lt;/overrideConsequences&gt;
+&lt;/proceedCondition&gt;</code></pre>
+        </p>
+        <h3>Applies to matcher</h3>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;matcherdef&gt;
+    &lt;andmatcher&gt;
+        &lt;matcher compareto="11x8.5 - CALENDAR" comparator="equals" 
+		compareattribute="sortRule" comparelevel="order"/&gt;
+    &lt;/andmatcher&gt;
+&lt;/matcherdef&gt;</code></pre>
+        </p>
+        <h3>Proceed matcher</h3>
+        <p><pre><code class="language-xml">&lt;sortrule&gt;
+	&lt;ormatcher&gt;
+		&lt;matcher comparelevel="order" compareattribute="Estimated Spreads" 
+		comparator="gte" compareto="100"&gt;&lt;/matcher&gt;
+	&lt;/ormatcher&gt;
+&lt;/sortrule&gt;</code></pre>
+        </p>
+        <p class="Note">When building a matcher, you can compare an attribute against a fixed value, or against another attribute. For example, a common matcher would be to match if <code>totalOrders </code>= 10. However, instead of matching against a fixed value of 10, you could instead match against the attribute <code>expectedOrders</code>.</p>
+        <p>An example of one such matcher is used for the batch divert proceed condition, shown below.</p>
+        <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;matcherdef&gt;
+    &lt;andmatcher&gt;
+        &lt;matcher compareto="%Total Orders%" comparator="equals" 
+		compareattribute="expectedOrderCountInBatch" comparelevel="order"/&gt;
+    &lt;/andmatcher&gt;
+&lt;/matcherdef&gt;</code></pre>
+        </p>
+    </body>
+</html>

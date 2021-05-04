@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-05-31T16:42:18.3266023-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Calculated Fields/Calculated Fields.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Calculated Fields/Calculated Fields.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/NoPrint Products/No Print Products.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/NoPrint Products/No Print Products.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Access Control/Access control.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Access Control/Access control.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Fit Policy/Fit Policy.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Fit Policy/Fit Policy.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Facility ID/Facility ID.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Facility ID/Facility ID.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Calculated Fields.htm"
+      TimeStamp="5/31/2018 4:42:08 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/No Print Products.htm"
+      TimeStamp="5/31/2018 4:42:08 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Access control.htm"
+      TimeStamp="5/31/2018 4:42:08 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Fit Policy.htm"
+      TimeStamp="5/31/2018 4:42:08 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Facility ID.htm"
+      TimeStamp="5/31/2018 4:42:09 PM" />
+    <Url
+      Source="../TOCs/Calculated Fields.fltoc"
+      TimeStamp="5/31/2018 4:42:18 PM" />
+  </GeneratedFiles>
+</HtmlImport>

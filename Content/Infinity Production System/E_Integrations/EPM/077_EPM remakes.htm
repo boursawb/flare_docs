@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>EPM remakes</title>
+    </head>
+    <body>
+        <h1>EPM remakes</h1>
+        <p>When a remake batch is generated for one or more EPM enabled orders, the EPM disposition specified for the remake batch must match the disposition of the original orders being remade.  This will ensure that the remake items match the same color gamut as other items in the original order, previously printed.  Remake orders do not get evaluated for EPM compatibility through the normal workflow.  For a remake order to evaluate as EPM, the order must inject with <code>EPM_Eval </code>with a value of <code>true </code>and <code>EPM_EvalResultRemakeOverride </code>dynamic attribute, with a value matching one of the following.</p>
+        <ul>
+            <li>EPM</li>
+            <li>EPM_BW</li>
+        </ul>
+        <p class="Note">Given that items contained within a remake batch are controlled by the remake tray ID, it is important that only orders that have the same value for EPM exist in the same remake batch.  If a remake batch is created that results in a mix of EPM dispositions across the orders contained, the batch will fail.</p>
+    </body>
+</html>

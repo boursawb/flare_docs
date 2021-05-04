@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Production Intents</title>
+        <link href="../../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Production Intents" />Production Intents</h1>
+        <p>Production intents allow for multiple versions of one or more product components to be available during the initial batch release process. This is accomplished without any real-time changes to product templates, and does not require diverting the order or sort group to an alternate output profile. Products can be built such that all required variations of each product component can be generated ahead of time, making them available the first time they are released to press. With production intents, the product template developer can create any number of prebatch and batch components for a given product, and the press operator can release the most appropriate version based on current production needs. To better understand how production intents can be used, consider the following example.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>A local printing company has 5 presses on the production floor. One of the products they print is a 12x12 photo book. The primary method for producing this product is to send it to the their HP Indigo 10000, 4UP. If the 10K is not available, there needs to be a way to submit this work to a different press. Prior to production intents, the customer would have created an alternate output profile for each of the different ways to produce the product as a whole, taking in to consideration the device each component should be submitted to. By using production intents, the customer can now simply create additional versions of the batch components, or intents, that can be batched based on the current production requirements.</p>
+                <p>Assume the customer has the following 5 presses.</p>
+                <ul>
+                    <li>1 HP Indigo 10000</li>
+                    <li>1 HP Indigo 7500</li>
+                    <li>2 Kodak Nexpress</li>
+                    <li>1 Xeikon Press</li>
+                </ul>
+                <p>The batch definition could be built out using production intents that would result in something similar to the following.</p>
+                <ul>
+                    <li>Component text - HP10K - Intent 1 - default</li>
+                    <li>Component text - HP7500 - Intent 2</li>
+                    <li>Component text - Kodak - Intent 3</li>
+                    <li>Component cover - Xeikon - Intent 1 - default</li>
+                    <li>Component cover - HP7500 - Intent 2</li>
+                    <li>Component cover - Kodak - Intent 3</li>
+                </ul>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>The above example represents the options that a press operator would have available to them via the batch dialog when releasing this product to press. Only one version of a component can be manually released and defined as the default. The default intent will be used when releasing batches via device group selection, or when using auto-release.</p>
+        <p>To further this example, the prebatch definition for the 12x12 book product could include as many components as needed to be available for any of the intents defined within the batch definition. For example, the prebatch might include prebatch components for the text, cover, dustjacket, wrap, and bookmark. Any combination of these prebatch components could then be included in the prebatch components order of any defined production intent or standard batch component. During the initial processing of the order, all prebatch components are built, making all variations of the product components available at batch time. </p>
+        <p class="note">A&#160;key system attribute associated with a batch component is <code>productBatchComponentNumber</code>. This attribute signifies the position of a batch component defined within the batch definition. For example, the first batch component listed would have a value of 1, the second a value of 2, and so on. With the use of production intents, it is required to specify this attribute along with the appropriate value based on the position of the component. For each production intent of the same type (text, cover, wrap), the value will be the same. If four production itnents exist for the text component, they will all have the same value for productBatchComponentNumber. If all four text components are listed first in the batch definition, before any other component, the value would be 1. It is recommended to keep all intents for a given component grouped together within the batch definition. </p>
+        <h2>Converting a component to a production intent</h2>
+        <p>Converting a batch component to a production intent is accomplished by duplicating the component in question and making the necessary changes to that component. It can also involve modifying or adding additional prebatch components in the prebatch definition for the product that can then be used in the new production intents built within the associated batch definition. Before converting a batch component to a production intent, you must be aware of the following attributes and their intended use. </p>
+        <ul>
+            <li><strong>piName </strong>This is the unique identifier of the component and the value that will display in the batch dialog</li>
+            <li><strong>piCompName </strong>This is the name that specifies what the component is and will be duplicated across all components of this type</li>
+            <li><strong>productBatchComponentNumber </strong>This is the numeric value of each comonent type that specifies the position of the component within the batch definition. Given three text components, three cover components, and three wrap components, where each set is listed in the order specified here in the batch definition, the value for all text components would be 1, covers would be 2, and wraps would be 3.</li>
+        </ul>
+        <p>Converting the default component</p>
+        <p>The process for converting a default batch component to a production intent is accomplished by performing the following steps.</p>
+        <ol>
+            <li>Add a new attribute to the batch component called <strong class="standOutPrimary">piName </strong>and provide the value that should display in the batch dialog for this intent</li>
+            <li>Modify the <strong class="standOutPrimary">name= </strong>attribute of the batch component to be <strong class="standOutPrimary">piCompName</strong>, leaving the value unchanged</li>
+            <li>Add the attribute <strong class="standOutPrimary">productBatchComponentNumber </strong>to the batch component and set the appropriate value</li>
+        </ol>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Duplicating the intent</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Once a default batch component has been converted to a production intent, one or more copies of that component will be made to account for each variant of the component. </p>
+                <ol>
+                    <li>Locate the starting and ending tags of the component to be duplicated</li>
+                    <li>Highlight the entire component beginning with the starting tag and ending with the closing tag</li>
+                    <li>Copy the highlighted selection to the clipboard</li>
+                    <li>Make some additional space below the component that was just copied</li>
+                    <li>Paste in the copy of the component at this location</li>
+                    <li>Update the value for <strong class="standOutPrimary">piName </strong>for the componentt that has just been added that clearly describes this intent</li>
+                    <li>Make any necessary changes to the batch component such as imposition, items in prebatch components order, layout used by the imposition, etc., specific to this intent</li>
+                    <li>Update the <strong class="standOutPrimary">productBatchComponentNumber </strong>as necessary. There should be no need to update this given it was copied from an existing intent of the same type (both text components, for example)</li>
+                    <li>Save the batch definition</li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>Both regular batch components, meaning those that have not been converted to production intents, and production intents can exist within the same batch definition. For example, it is possible to have 4 intents defined for the text component of a product but leave the cover component unchanged.</p>
+        <h2>Production intent example</h2>
+        <p>The following batch definition has been upgraded to use production intents for the text component, while leaving the cover component as a standard batch component. The batch components have been collapsed in the XML&#160;editor to focus on the portion of the components pertenant to production intents.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/batchDefExamplePi.png" class="img thumbnail" title="Batch definition example for production intent" alt="Batch definition example for production intent" />
+        </p>
+        <h2>Manual release actions</h2>
+        <p>When manually releasing batches, the operator will be required to select the intent to use, the device to submit the job to, and decide if any of the components should be excluded from the batch. Only one version, or intent, of a batch component can be release at a time from the batch dialog. Excluding a component from the batch is accomplished by removing the check displayed at the end of the component. When a component has been excluded, all intents for that component are excluded from the batch. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/piBatchDialog.png" class="img thumbnail" title="Production intent batch dialog" alt="Production intent batch dialog" />
+        </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Manually releasing an intent</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Perform a create batch or manual release action from the UI</li>
+                    <li>Select the desired intent for each component </li>
+                    <li>Select the desired destination for each component</li>
+                    <li>Remove the check for any components that shoudl not be included in the batch</li>
+                    <li>Click OK&#160;to create the batch</li>
+                </ol>
+                <p>&#160;</p>
+                <p class="note">When performing a manual release operation, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will use the value for <code>maxspreads </code>defined at the component level (production intent). If <code>maxspreads </code>has not been specified for the component, the <code>maxspread </code>defined for the batch definition will be used. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>Production intent attributes</h2>
+        <p>With the inclusion of production intents in the Infinity software, the attributes used for batch component names and job naming have changed. When using the attribute <code>batchCompId</code> for instance, as part of a job naming strategy, or as a stamp within a batch layout, the value will differ between a standard batch component name and one that has been converted to a production intent. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>If a layout has a text stamp that uses the attribute %batchCompId% for a regular batch component, i.e. one that has not been converted to a production intent, the value of the stamp will simply display what has been specified for name="&lt;value&gt;"&#160;in the batch definition. If however, the same attribute is used with a component that has been defined as a production intent, the system will display the name with an appended __pi__ in the name. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>To accomodate an environment that uses a mix of standard batch components along with production intents, the following attributes can be used.</p>
+        <ul>
+            <li><strong>batchCompIdFriendly </strong>This attribute will produce the value of name= when a regular batch component is in play and the value of <code>piCompName= </code>when a poroduction intent is in play. In both cases, the name will not include the appended __pi__&#160;in the name</li>
+            <li><strong>productionIntentName </strong>This attribute will produce the value of <code>piName= </code>from the production intent</li>
+            <li><strong>productionIntentComponentName </strong>This attribute will produce the value of <code>piCompName= </code>from the production intent</li>
+        </ul>
+        <p>Using <code>batchCompId </code>with a batch component that has not been converted to a production intent will continue to display the value for <code>name= </code>as it always has.</p>
+        <p class="note">If an environment will use production intents, it is recommended to change any naming strategies, stamps, and reports that use <code>batchCompId </code>to instead use <code>batchCompIdFriendly</code>. This will ensure that the values for batch component name will continue to be as expected for both regular batch components and those that have been converted to production intents.</p>
+        <h2>Device group selection and auto-release</h2>
+        <p>When using production intents, each component within the product will need to have a default set to ensure the desired output is generated when using automatic device selection or auto-release. The process for setting a default component can be found in <MadCap:xref href="../_Working/Release presets.htm">Release Presets</MadCap:xref>. </p>
+    </body>
+</html>

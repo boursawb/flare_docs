@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Content sized batch ticket</title>
+        <link href="../../../Resources/Stylesheets/Copy of MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Content sized batch ticket" />Content sized batch ticket</h1>
+        <p>In most cases, a batch ticket will be sized to fit the entire spread, regardless of the signature size of the output being generated. However, in some cases, it may be desirable to constrain the size of the batch ticket to the size of the signatures being imposed. This can be useful for solutions which automatically cut the output but still require a batch ticket to be included on the stack. Content sized batch tickets can be configured to arrive on the top or bottom of the stack, as required by finishing processes. </p>
+        <h2>Including a <MadCap:keyword term="content sized batch ticket" />content sized batch ticket</h2>
+        <p>To add a content sized batch ticket, add the following XML&#160;to the desired batch component requiring the batch ticket.</p><pre><code class="language-xml">&lt;AdditionalContent&gt;
+	&lt;Content&gt;
+		&lt;ContentType&gt;IDFBatchTicketV2&lt;/ContentType&gt;
+		&lt;ContentUri&gt;IDBookBatchTicket&lt;/ContentUri&gt;
+		&lt;Duplex&gt;true&lt;/Duplex&gt;
+		&lt;ReverseOrder&gt;true&lt;/ReverseOrder&gt;
+		&lt;Width&gt;860&lt;/Width&gt;
+		&lt;Height&gt;612&lt;/Height&gt;
+		&lt;InsertFirst&gt;false&lt;/InsertFirst&gt;
+	&lt;/Content&gt;
+&lt;/AdditionalContent&gt;</code></pre>
+        <p>Additional content elements can be included within the additional content. For example, it may be desired to include 1 batch ticket at the front of the stack and 1 at the batch. Or, possibly include more than one batch ticket at the end of the job. </p>
+        <p><strong>ContentType </strong>- Defines the type of related content being used</p>
+        <p><strong>ContentUri </strong>- Defines the unique identifier of a file</p>
+        <p><strong>Duplex </strong>- If true, will pad to an even number of pages</p>
+        <p><strong>ReverseOrder </strong>- If true, will add the file to the imposition in reverse order</p>
+        <p><strong>Width </strong>- Width of the component in points. This must match the width of the actual output</p>
+        <p><strong>Height </strong>- Height of the component in points. This must match the height of the actual output</p>
+        <p><strong>InsertFirst </strong>- If true, the batch ticket will be inserted before the content specified in the prebatch components order section of the batch component. If false, the batch ticket will be inserted at the end. An example of a content sized batch ticket is shown below.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/contentSizedBatchTicket.png" class="img" title="Content sized batch ticket" alt="Content sized batch ticket" />
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

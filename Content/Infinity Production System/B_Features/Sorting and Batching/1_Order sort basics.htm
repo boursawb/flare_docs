@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Order sort basics</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Order sort basics</h1>
+        <p>Every order that is received by IPS&#160;will be evaluated against a set of rules in order to logically group orders for the purposes of batching. This ensures that meaningful and consistent batches of work will be created for submitting to press. As each order is evaluated and a match is found, the order will filter into a batch contained in the sort rule group. Once a batch reaches capacity it will be closed and a new batch within the sort rule group will be created for any additional orders that arrive matching the same rule. </p>
+        <p>Every rule will have an associated matcher that includes the criteria used for evaluating orders. Following a match, the order is then further evaluated to determine if any additional sorting should occur. This second and in some cases third or fourth level of sorting is handled by using a <strong class="standOutPrimary">split by list</strong>. A&#160;split by list takes all orders that have been identified by the matcher and divide them up based on the attributes contained within the list. To better illustrate how this works, consider the following example.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Order Sort Example</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p class="Example">ABC&#160;Corp will be printing multiple types of greeting cards for their customer. Their customer will be sending them a selection of folded and flat cards and will arrive in three different sizes. ABC's customer that will be sending these orders in is named CardME. We need to build a sort rule that will identify these orders and get them sorted in to optimal batches. We will create a sort rule with a matcher that is simply looking for any order with a customer name of "CardME". This will group all of our CardME&#160;orders together, not yet in to optimal batches since we cannot have different product types or sizes in the same batch. We will then create a new split by list which separates all of the cards by product type and product size. This will result in one sort group being generated for each unique combination of product type and product size for the CardME&#160;products.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>Before creating our first rule, it is important to have a good understanding of the following orders sort terms.</p>
+        <p> <strong>Sort rule </strong>Rules are applied to orders during the order sort process with the goal of finding a rule that matches the order. Orders that are sorted in to the same rule can be batched together.</p>
+        <p> <strong>Matchers</strong> Compare order attributes against rule attributes to check for a rule match during the order sorting process. </p>
+        <p> <strong>Split by lists</strong> Follow the matching process to further separate orders that otherwise would match via the previously defined matchers. </p>
+        <p> <strong>Sort Profiles</strong> Organize sort rules into an ordered list. Sort rules are then applied during the matching process in the order defined within the sort profile. The order is then sorted into the first rule that matches. </p>
+        <p>The following diagram outlines the basic steps required for creating a new sort rule in the IDF system.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/sortruleflow.jpg" title="Sort rule flow" alt="Sort rule flow" class="img " />
+        </p>
+    </body>
+</html>

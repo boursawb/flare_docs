@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>No Print Products</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="No Print Products" />No Print Products</h1>
+        <p> No print products are items contained within an order, but are not generated as part of the printed output. Examples of no print products include a ribbon bookmark, decorative box, or blank envelopes that ship with a printed card. Products which have been defined as no print will receive special treatment during the order injection process. These products will carry a <code>noPrint </code>attribute and will be excluded from all workflow steps responsible for generating printable output. This means that a product which has been defined as <strong class="standOutPrimary">No Print </strong>will not be included in the analyze, prebatch or batch steps of the workflow. The <code>noPrint </code>attribute is displayed on the products tab and can be used for filtering the UI&#160;to display either print or no print items. When working with no print products, it is important to keep the following in mind:</p>
+        <ul>
+            <li>No print products will not be displayed on the batch release dialogue</li>
+            <li>No print products will not produce a press job</li>
+            <li>No print product data will be available for banner and batch ticket creation</li>
+        </ul>
+        <h2>Configuring a product as No Print</h2>
+        <p>No print products are configured by adding their product code to a matcher. This special matcher is executed at order inject time. If a match is found, the product will be decorated with a new <code>noPrint</code>attribute. For information on working with order decorators, refer to <MadCap:xref href="../../B_Features/Order decorators/01_Working with decorators.htm">Order Decorators</MadCap:xref>. </p>
+        <h3>Creating the decorator</h3>
+        <ol>
+            <li>Browse to the <strong class="standOutPrimary">sharedconfig </strong>location on the master core host and open the ordersort folder</li>
+            <li>Within ordersort, open the <strong class="standOutPrimary">decorator </strong>folder. If the decorator folder does not exist, create it</li>
+            <li>Edit the <strong class="standOutPrimary">noPrint.decorator.xml </strong>configuration file. If the file doesn't exist, create it. The file name can be anything, but must be in the form of <code>name.decorator.xml</code></li>
+            <li>Set the <strong class="standOutPrimary">matcher </strong>to <strong class="standOutPrimary">noPrint</strong></li>
+            <li>Set the <strong class="standOutPrimary">rulLevel </strong>to <strong class="standOutPrimary">1</strong></li>
+            <li>Set the <strong class="standOutPrimary">workflowContext </strong>to <strong class="standOutPrimary">inject</strong></li>
+            <li>Set the <strong class="standOutPrimary">objectContext </strong>to <strong class="standOutPrimary">lineItem</strong></li>
+            <li>Set the key for the new attribute to <strong class="standOutPrimary">noPrint</strong></li>
+            <li>Set the <strong class="standOutPrimary">type </strong>to <strong class="standOutPrimary">boolean</strong></li>
+            <li>Set the <strong class="standOutPrimary">value </strong>to <strong class="standOutPrimary">true</strong></li>
+        </ol>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;No-print decorator</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;decorator&gt;
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;noPrint&lt;/matcher&gt;
+	&lt;!-- Run early to apply a default --&gt;
+	&lt;runLevel&gt;2&lt;/runLevel&gt;
+	&lt;!-- Applies to the order inject step --&gt;
+	&lt;workflowContext&gt;inject&lt;/workflowContext&gt;
+	&lt;objectContext&gt;lineItem&lt;/objectContext&gt;
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		&lt;attribute&gt;
+			&lt;key&gt;noPrint&lt;/key&gt;
+			&lt;type&gt;boolean&lt;/type&gt;
+			&lt;value&gt;true&lt;/value&gt;
+		&lt;/attribute&gt;
+	&lt;/attributes&gt;
+&lt;/decorator&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h3>Create the matcher</h3>
+        <ol>
+            <li>Browse to the <strong class="standOutPrimary">sharedconfig</strong> location on the master core host and open the <strong class="standOutPrimary">ordersort </strong>folder</li>
+            <li>Open the <strong class="standOutPrimary">matcher </strong>folder</li>
+            <li>Create the matcher that will be used to identify the orders</li>
+            <li>Save the new matcher</li>
+        </ol>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;No-print matcher</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;matcherdef&gt;
+	&lt;ormatcher&gt;
+		&lt;matcher compareto="569" comparator="equals" comparelevel="order" compareattribute="productType"/&gt;
+		&lt;matcher compareto="2" comparator="equals" comparelevel="order" compareattribute="productType"/&gt;
+		&lt;matcher compareto="3" comparator="equals" comparelevel="order" compareattribute="productType"/&gt;
+		&lt;matcher compareto="4" comparator="equals" comparelevel="order" compareattribute="productType"/&gt;
+	&lt;/ormatcher&gt;
+&lt;/matcherdef&gt;</code></pre>
+                <p class="note">The matcher will contain an entry for each product type (product code)&#160;that should receive the 'No Print' attribute. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>No Print batch definitions</h2>
+        <p>All no print products defined in the system will use the same batch definition. The purpose of the batch definition is to ensure that the no print items do not display on the batch dialogue when submitting jobs to press. A&#160;sample No Print batch definition is shown below.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Example:&#160;Batch definition</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;idfbatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="idfbatch.xsd"
+id="NO PRINT PRODUCTS"
+abbreviation="NO PRINT PRODUCTS"
+maxspreads="480"&gt;
+	&lt;additionalids&gt;
+		&lt;additionalid id="ProductName1"/&gt;
+		&lt;!-- Add as many of these lines as you need to cover all no print products --&gt;
+	&lt;/additionalids&gt;
+	&lt;batchcomponent imposition="NO-IMPOSITION" destinationtype="Hotfolder" name="NP" &gt;
+		&lt;mediamappings/&gt;
+	&lt;/batchcomponent&gt;
+&lt;/idfbatch&gt;</code></pre>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p class="note">As new product codes are added to the noPrint matcher, any orders existing in the system containing those products will need to be deleted and re-injected in to the system. </p>
+        <p>The following screen shot illustrates the no print attribute on the products tab of the UI. </p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/noprintUI.jpg" class="img " title="No print" alt="No print" />
+        </p>
+        <p>All products that have been configured as <code>noPrint </code>can be viewed in order history. Order history will also show when a decorator is applied, the decorator name and the attributes that were added to the order. The events found in history include the following:</p>
+        <ul>
+            <li>Step Order Prebatch Skipped Due To noPrint</li>
+            <li>Step Order Analyze Skipped Due To noPrint</li>
+            <li>Attributes Changed</li>
+        </ul>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/noprinttraceEvents.jpg" class="img " title="No Print Trace Events" alt="No Print Trace Events" />
+        </p>
+    </body>
+</html>

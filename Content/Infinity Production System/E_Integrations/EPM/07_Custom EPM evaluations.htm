@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Custom EPM evaluations</title>
+    </head>
+    <body>
+        <h1>Custom EPM evaluation configuration</h1>
+        <p><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /> uses a set of default configurations for the EPM&#160;evaluation process. The configuration file containing these settings is located in <code>sharedconfig\epm\epmclient </code>and is named <code>submitJob.epmclient.xml</code>. In the event the default EPM&#160;evaluation settings are not suitable for a given product or product component, custom settings can be applied.  To customize the settings used for EPM&#160;evaluation, this file can be copied to a new name and modified as necessary. Once saved, the new evaluation settings can be called on from a prebatch component directly, or by using a decorator.</p>
+        <p><strong class="standOutSecondary">Example: Using custom evaluation settings</strong>
+        </p>
+        <p>The production team heard about a new evaluation setting that could speed up the EPM evaluation process for a large number of their products. Upon making this change, the expected results were realized but at the same time, it resulted in significant issues for other products in their workflow. To resolve this issue, the original evaluation configuration file was restored and a copy made with the name <code>customSubmitJob.epmclient.xml </code>that included the new values. Product components that will benefit from this change can now be configured to use the new alternate configuration file.</p>
+        <h2>Calling custom settings from prebatch</h2>
+        <p>The attribute <strong class="standOutPrimary">EPM_EvalJobSubmit_productType_compName </strong>can be added to a prebatch component that points to a custom configuration file for EPM&#160;job evaluations.</p>
+        <ol>
+            <li>Open the <code>submitJob.epmclient.xml </code>file and save it with a new name (i.e. <code>customSubmitJob.epmclient.xml</code>)</li>
+            <li>Add the <code>EPM_EvalJobSubmit_productType_compName </code>attribute to the appropriate component(s) with a value of <code>customSubmitJob</code></li>
+            <li>Save and close the prebatch definition</li>
+        </ol>
+        <p class="Note">Any orders that completed prebatch prior to this change will need to be reprocessed at prebatch before the custom evaluation template will be used. Make sure to only reprocess orders that have not yet been released from sort (not already batched).</p>
+        <h2>Calling custom setting using decorators</h2>
+        <p>If requirements for evaluation settings could potentially change for a given prebatch component, a decorator can be used to dynamically apply the <code>epmJobSubmissionTemplate </code>attribute, specifying the desired configuration file to be used. This type of decorator must meet the following requirements.</p>
+        <ul>
+            <li>The object context must be <strong class="standOutPrimary">lineItem</strong></li>
+            <li>The workflow context must precede EPM&#160;in the Infinity workflow</li>
+            <li>The attribute created must match the form <strong class="standOutPrimary">EPM_EvalJobSubmit_productType_prebatchComponentName</strong></li>
+            <li>Replace <strong class="standOutPrimary">productType </strong>and <strong class="standOutPrimary">prebatchComponentName </strong>portions of the attribute name with the desired values</li>
+            <li>The data type must be <strong class="standOutPrimary">String</strong></li>
+            <li>The value must match the file name of the configuration file to be used (i.e. <code>customSubmitJob </code>- do not include the file extension<code> .empclient.xml</code> in the attribute value)</li>
+        </ul>
+        <p><strong class="standOutSecondary">Example decorator</strong>
+        </p>
+        <p>When the matcher criteria is met, the following decorator dynamically applies the <code>epmJobSubmissionTemplate </code>attribute to the <code>Card</code> component of the <code>5x7GrtCrd</code> product type with a value of <code>customSubmitJob</code>. </p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;decorator&gt;
+
+	&lt;!-- If matcher matches --&gt;
+	&lt;matcher&gt;5x7GrtCrd&lt;/matcher&gt;
+
+	&lt;!-- Run late, after defaults sort code has  been applied --&gt;
+	&lt;runLevel&gt;1&lt;/runLevel&gt;
+
+	&lt;!-- Applies to the order analyze processing --&gt;
+	&lt;workflowContext&gt;analyze&lt;/workflowContext&gt;
+	
+	&lt;!-- Applies to the line item level --&gt;
+	&lt;objectContext&gt;lineItem&lt;/objectContext&gt;
+	
+	&lt;!-- Then apply these attributes to the object --&gt;
+	&lt;attributes&gt;
+		
+		&lt;attribute&gt;
+		
+			&lt;key&gt;EPM_EvalJobSubmit_5x7GrtCrd_Card&lt;/key&gt;
+			&lt;type&gt;string&lt;/type&gt;
+			&lt;value&gt;customSubmitJob&lt;/value&gt;
+			
+		&lt;/attribute&gt;
+				
+	&lt;/attributes&gt;
+	
+&lt;/decorator&gt;</code></pre>
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

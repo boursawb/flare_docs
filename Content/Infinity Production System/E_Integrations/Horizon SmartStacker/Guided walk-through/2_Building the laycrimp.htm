@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Building the laycrimp</title>
+    </head>
+    <body>
+        <h1>Building the laycrimp</h1>
+        <p>To build the laycrimp layout file, we need to provide the sheet size, trim size, and identify two points within each page of the imposition. Both sheet size and trim size are self explanatory. However, the identification of the two points is likely better understood by first looking at what we are trying to accomplish. We are going to identify two locations on each page of the imposition, and we will refer to them by the names <code>Point A</code> and <code>Point B</code>. </p>
+        <p>
+            <img src="../../../../Resources/Images/Assets/IPS/stackerPoints1.png" title="Cut mark placement" alt="Cut mark placement" class="img" />
+        </p>
+        <p>When plotting the points, we will start in column 1, row 1 of our imposition. A standard x, y, coordinates grid will be used for determining all distances. The starting point for the grid will be the lower left corner of the sheet where a positive value for x moves to the right and positive y values move up. We find the values for x and y by determining the distance from the left and bottom edges of the sheet to the two positions (A and B)&#160;described above. To determine the value for x at position A, we find the distance from the left edge of the sheet to the left edge of the page at this location, then add the value of the trim amount. For the value of y at position A, we find the distance from the bottom edge of the sheet to the bottom edge of the page at this location, then add the value of the trim amount. </p>
+        <p>
+            <img src="../../../../Resources/Images/Assets/IPS/stackerPoints2.png" title="XY coordinates" alt="XY coordinates" class="img" />
+        </p>
+        <p>The following illustration shows how the x and y values identified get mapped to the laycrimp layout file. </p>
+        <p>
+            <img src="../../../../Resources/Images/Assets/IPS/stackerPoints3.png" title="XY mapping" alt="XY mapping" class="img" />
+        </p>
+        <p class="Note">Once we have determined the x, y, coordinate values for the first page of our imposition, we will use relative measurements starting from these two points to determine the remaining values.</p>
+        <h2>Laycrimp walk-through</h2>
+        <p>If you have not done so already, this would be a good time to return to the Preparation section to collect the data you will need. It is also recommended to use the included formulas to assist in determining the calculated values that will be used throughout this process.</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 1 - Determine gutter requirements</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>If the distance between adjacent pages of the imposition following trim is not greater than or equal to 4mm (11.339 points), additional space will need to be added to the horizontal and / or vertical gutters to make up the difference. Using our example, the project requirement of a .1"&#160;trim from all sides (7.2 points), exceeds our minimum of 11.339, so no additional space is required. </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 2 - Determine edge distance</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Use the formulas provided in the preparation section to determine the distance from the edge and bottom of the sheet. Given our sheet width of 2160, using the formula provided, the distance from the left edge of the sheet is <strong class="standOutPrimary">43.5</strong> points. Using the formula for determining the distance from the bottom, we get a value of <strong class="standOutPrimary">72 </strong>points.  </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 3 - Create the laycrimp jdf file</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Use the jdf from the following code block to create your new laycrimp layout. Remember to include the .laycrimplayout.jdf extension on the newly created file and save it to <code>\\&lt;server&gt;\idf\sharedconfig\finishing\laycrimplayouts</code>.</p>
+                <p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" standalone="no" ?&gt;
+&lt;JDF Type="ProcessGroup" xsi:type="Product" ID="ID1" Status="Waiting" JobID="job1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.4" xmlns="http://www.CIP4.org/JDFSchema_1_1"&gt;
+    &lt;ResourcePool&gt;
+		&lt;Layout ID="JobLayout" Class="Parameter" PartIDKeys="SignatureName SheetName Side" Status="Available" Automated="true"&gt;
+			&lt;Layout SignatureName="Signature01"&gt;
+				&lt;Layout SheetName="Sheet01" SurfaceContentsBox="0.000000 0.000000 2160.000000 1224.000000"&gt;
+					&lt;Layout Side="Front"&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1593.0 54.0"  TrimSize="504 360" ClipBox="1593.0 54.0 2097.0 414.0" Ord="0"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1593.0 432.0" TrimSize="504 360" ClipBox="1593.0 432.0 2097.0 792.0" Ord="1"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1593.0 810.0" TrimSize="504 360" ClipBox="1593.0 810.0 2097.0 1170.0" Ord="2"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1071.0 54.0"  TrimSize="504 360" ClipBox="1071.0 54.0 1575.0 414.0" Ord="3"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1071.0 432.0" TrimSize="504 360" ClipBox="1071.0 432.0 1575.0 792.0" Ord="4"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 1071.0 810.0" TrimSize="504 360" ClipBox="1071.0 810.0 1575.0 1170.0" Ord="5"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 549.0 54.0"   TrimSize="504 360" ClipBox="549.0 54.0 1053.0 414.0" Ord="6"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 549.0 432.0"  TrimSize="504 360" ClipBox="549.0 432.0 1053.0 792.0" Ord="7"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 549.0 810.0"  TrimSize="504 360" ClipBox="549.0 810.0 1053.0 1170.0" Ord="8"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 27.0 54.0"    TrimSize="504 360" ClipBox="27.0 54.0 531.0 414.0" Ord="9"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 27.0 432.0"   TrimSize="504 360" ClipBox="27.0 432.0 531.0 792.0" Ord="10"/&gt;
+						&lt;ContentObject CTM="1.0 0.0 0.0 1.0 27.0 810.0"   TrimSize="504 360" ClipBox="27.0 810.0 531.0 1170.0" Ord="11"/&gt;
+					&lt;/Layout&gt;
+				&lt;/Layout&gt;
+			&lt;/Layout&gt;
+		&lt;/Layout&gt;
+    &lt;/ResourcePool&gt;
+    &lt;ResourceLinkPool&gt;
+        &lt;LayoutLink rRef="JobLayout" Usage="Input" /&gt;
+    &lt;/ResourceLinkPool&gt;
+&lt;/JDF&gt;</code></pre>
+                    <p class="Note">The values specified in this XML&#160;will need to be modified based on your requirements and calculated values.</p>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 4 - Set values for sheet and trim sizes</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>You will need to specify the width and height of the sheet size that will be used, as well as the width and height of the trim size. </p>
+                <ol>
+                    <li>Locate the attribute named <code>SurfaceContentsBox </code>and set the third and fourth parameters to the width and height of the sheet respectively</li>
+                    <li>Locate the attribute named <code>TrimSize </code>and set the values for the product trim width and product trim height. The first parameter listed specifies the width and the second specifies the height. Make sure to do this for all occurrences of TrimSize, one for each page of the imposition</li>
+                </ol>
+                <p>Based on our requirements, we will specify the values <strong class="standOutPrimary">2160 1224 </strong>for the SurfaceContentsBox (width / height), and values of <strong class="standOutPrimary">504 </strong>x <strong class="standOutPrimary">360 </strong>for all occurrences of TrimSize.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 5 - Plot the points</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>We will start by plotting the first set of points at column 1, row 1. Given that our imposition is in reverse order, we will start in the bottom row of the far right column. In order to find the <strong class="standOutPrimary">x </strong>value for position <strong class="standOutPrimary">A</strong>, take the distance from the left edge, add the full product width multiplied by <strong class="standOutPrimary">3</strong>, and add the trim amount for a single side. Written as an expression, it would look like this.</p>
+                <p><code>Position A X: 43.5 + (518.4 *&#160;3) +&#160;7.2 = 1605.9</code>
+                </p>
+                <p>To determine the value for <strong class="standOutPrimary">y </strong>at position <strong class="standOutPrimary">A</strong>, we need to take the distance from the bottom edge of the sheet and add the trim amount for a single side. Written as an expression, it would look like this.</p>
+                <p><code>Position A Y: 72 +&#160;7.2 = 79.2</code>
+                </p>
+                <p>To determine the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, values for position <strong class="standOutPrimary">B</strong>, we simply need to add the final trim product width and height to the <strong class="standOutPrimary">x </strong>and <strong class="standOutPrimary">y </strong>values obtained in the previous step. The <strong class="standOutPrimary">x </strong>value for position <strong class="standOutPrimary">B </strong>will be determined by taking the <strong class="standOutPrimary">x </strong>value of position <strong class="standOutPrimary">A&#160;</strong>and adding the final product width. Written as an expression, it would look like this.</p>
+                <p><code>Position B X: 1605.9 +&#160;504 = 2109.9</code>
+                </p>
+                <p>The <strong class="standOutPrimary">y </strong>value for position <strong class="standOutPrimary">B </strong>will be determined by taking the <strong class="standOutPrimary">y </strong>value of position <strong class="standOutPrimary">A&#160;</strong>and adding the final product height. Written as an expression, it would look like this.</p>
+                <p><code>Position B Y:&#160;79.2 +&#160;360 = 439.2</code>
+                </p>
+                <p>The star located in the lower left corner of the orange page represents the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, coordinates for position <strong class="standOutPrimary">A </strong>and the star in the upper right corner represent the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, coordinates of position <strong class="standOutPrimary">B</strong>.</p>
+                <p>
+                    <img src="../../../../Resources/Images/Assets/IPS/stackerPoints4.png" title="Plotting points" alt="Plotting points" class="img" />
+                </p>
+                <h2>Fill up and across</h2>
+                <p>The coordinates we've just identified can be used to determine the remaining values required by the laycrimp layout. Once we know the value of <strong class="standOutPrimary">x </strong>at a given position, this gives us the value of <strong class="standOutPrimary">x </strong>at the same position for all remaining rows in the column. For example, we determined that the value of <strong class="standOutPrimary">x </strong>at position <strong class="standOutPrimary">A </strong>for column 1, row 1, was <strong class="standOutPrimary">1605.9</strong>. This gives us the value of <strong class="standOutPrimary">x </strong>for position <strong class="standOutPrimary">A&#160;</strong>at rows 2, and 3 so we can simply set the value to <strong class="standOutPrimary">1605.9</strong>. The same holds true for the value of <strong class="standOutPrimary">y </strong>at a given position. We determined that the value of <strong class="standOutPrimary">y </strong>for position <strong class="standOutPrimary">A&#160;</strong>at column 1, row 1, was <strong class="standOutPrimary">79.2</strong>. This means that the value for <strong class="standOutPrimary">y </strong>at position <strong class="standOutPrimary">A </strong>for columns 2, 3, and 4 will also be <strong class="standOutPrimary">79.2</strong>. The same logic can be applied to the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, coordinates at position <strong class="standOutPrimary">B</strong>.</p>
+                <p>
+                    <img src="../../../../Resources/Images/Assets/IPS/stackerPoints5.png" title="Points" alt="Points" class="img" />
+                </p>
+                <h2>Remaining values are relative</h2>
+                <p>To determine all remaining y values, simply add the full product height, plus the amount specified for the vertical gutter, to the known value of y. For example, we can find all remaining values for y in column 4 by performing the following steps.</p>
+                <ol>
+                    <li>Start with position <strong class="standOutPrimary">A </strong>in column 1, row 1, and note the value for <strong class="standOutPrimary">y </strong>is <strong class="standOutPrimary">79.2</strong></li>
+                    <li>Add the full product height of <strong class="standOutPrimary">374.4 </strong>to <strong class="standOutPrimary">79.2</strong>, plus our gutter of 0 which results in the y value for position <strong class="standOutPrimary">A</strong>&#160;in column 4, row 2 of <strong class="standOutPrimary">453.6</strong></li>
+                    <li>Finally, we take this new <strong class="standOutPrimary">y </strong>value of <strong class="standOutPrimary">453.6 </strong>and add the full product height of <strong class="standOutPrimary">374.4</strong>, plus our gutter of 0 which results in our final <strong class="standOutPrimary">y </strong>value of <strong class="standOutPrimary">828 </strong>for position <strong class="standOutPrimary">A&#160;</strong>in column 4, row 3</li>
+                    <li>Repeat these three steps to determine the <strong class="standOutPrimary">y </strong>value for position <strong class="standOutPrimary">B </strong>for the remaining rows in column 4</li>
+                </ol>
+                <p>The <strong class="standOutPrimary">y </strong>value in position <strong class="standOutPrimary">A&#160;</strong>in all columns of row 2 will be <strong class="standOutPrimary">453.6</strong>, and the y value of position A&#160;for all columns in row 3 will be <strong class="standOutPrimary">828</strong>.</p>
+                <p>
+                    <img src="../../../../Resources/Images/Assets/IPS/stackerPoints6.png" title="Stacker points 6" alt="Stacker points 6" class="img" />
+                </p>
+                <p>The remaining x values will be determined by subtracting the full product width, minus the amount for the horizontal gutter from each x value contained in column 4. This will result in the values for x at all positions in the adjacent column (column 3). For example, we will take the value of x at position A&#160;in column 4, row 1 of 1605.9 and subtract the full product width of 518.4, minus our gutter of 0 and get the value 1087.5. This same value can then be used for the value of x in the same position for rows 2 and 3. Following this pattern, you will be able to fill in the remaining values required to complete the laycrimp layout file.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Step 6 - Populate the laycrimp layout</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Each of the coordinate pairs identified will now be added to the appropriate section of the laycrimp layout file.</p>
+                <ol>
+                    <li>Start with the values identified for the first page of the imposition located at column 1, row 1. </li>
+                    <li>Take the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, values for position <strong class="standOutPrimary">A </strong>and use them for the first set of numbers of the <code>ClipBox </code>attribute of the content object that has an <code>Ord </code>value of 0</li>
+                    <li>Take the <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, values for position <strong class="standOutPrimary">B </strong>and use them for the second set of numbers of the <code>ClipBox </code>attribute of the content object that has an <code>Ord </code>value of 0</li>
+                </ol>
+                <p>The first content object defined in your laycrimp should now look like this.</p>
+                <p><pre><code class="language-xml">&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1585.44 192.6" 	TrimSize="504 360" ClipBox="1605.9 79.2 	2109.9 439.2 " Ord="0"/&gt;</code></pre>
+                    <ol start="4">
+                        <li>Copy the values for <strong class="standOutPrimary">x </strong>and <strong class="standOutPrimary">y </strong>at position <strong class="standOutPrimary">A&#160;</strong>to the <code>CTM&#160;</code>section, replacing the values at that location. The <strong class="standOutPrimary">x</strong>, <strong class="standOutPrimary">y</strong>, coordinates for position <strong class="standOutPrimary">A&#160;</strong>defined in the <code>ClibBox </code>for each of the content objects will simply be copied to the values specified in the <code>CTM&#160;</code>section. Your content object should now look like the one shown below.</li>
+                    </ol>
+                    <p><pre><code class="language-xml">&lt;ContentObject CTM="1.0 0.0 0.0 1.0 	1605.9 79.2" 	TrimSize="504 360" ClipBox="1605.9 79.2 	2109.9 439.2 " Ord="0"/&gt;</code></pre>
+                        <p>Perform this same process for the remaining rows in column 1, then moving on to the remaining columns and rows. The value of the <code>Ord </code>attribute will increment by 1 for each page of the imposition you work through, ending with <code>Ord 11 </code>for the 12UP&#160;imposition. </p>
+                    </p>
+                </p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

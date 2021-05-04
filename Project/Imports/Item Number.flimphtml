@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HtmlImport
+  KeepSourceLinks="true"
+  ProjectName="Balboa"
+  ProjectFolder="Y:\qa\Documentation\ips3.0\IPS\"
+  AutoSync="false"
+  SourceFolders=""
+  ImportResources="false"
+  ImportResourcesLocation="NoImport"
+  ImportTopics="specific"
+  ImportLinkedHtmlFiles="false"
+  LastImport="2018-06-01T12:19:36.1486315-07:00"
+  ImportTopicsLocation="Content/Infinity Production System/B_Features/_Working/">
+  <Files>
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Batch Item Number/Item Number.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Batch Item Number/Item Number.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/PrintWhen Expression/PrintWhen.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/PrintWhen Expression/PrintWhen.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Press Rooms/Press Rooms.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Press Rooms/Press Rooms.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Near Line Batch Tickets/NearLine Batch Ticket.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Near Line Batch Tickets/NearLine Batch Ticket.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Dynamic Press Job Options/Dynamic Press Job Options.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Dynamic Press Job Options/Dynamic Press Job Options.htm" />
+    <Url
+      Source="../../../../Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Content sized batch ticket/Content sized batch ticket.htm"
+      AbsoluteSource="file:///Y:/qa/Documentation/Support/Infinity Documentation/Content/IPS User Guide/I_AdvancedFeatures/Content sized batch ticket/Content sized batch ticket.htm" />
+  </Files>
+  <ExcludedFiles />
+  <CollectedSourceFiles />
+  <SkippedSourceFiles />
+  <GeneratedFiles>
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Item Number.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/PrintWhen.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Press Rooms.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/NearLine Batch Ticket.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Dynamic Press Job Options.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../../Content/Infinity Production System/B_Features/_Working/Content sized batch ticket.htm"
+      TimeStamp="6/1/2018 12:19:33 PM" />
+    <Url
+      Source="../TOCs/Item Number.fltoc"
+      TimeStamp="6/1/2018 12:19:37 PM" />
+  </GeneratedFiles>
+</HtmlImport>

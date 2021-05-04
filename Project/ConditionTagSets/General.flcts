@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultConditionTagSet>
+  <ConditionTag
+    Comment=""
+    Name="IPS"
+    BackgroundColor="#6495ed" />
+  <ConditionTag
+    BackgroundColor="#ffa500"
+    Name="CJP"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#6d2fb4"
+    Name="IDF"
+    Comment="" />
+</CatapultConditionTagSet>

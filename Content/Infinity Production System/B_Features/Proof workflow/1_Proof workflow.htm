@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Understanding the proof workflow</title>
+        <link href="../../../Resources/Stylesheets/MainStyles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>The <MadCap:keyword term="proof" />proof workflow</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> includes a feature that allows you to generate a proof of an order before printing the original. Creating a proof will print a single copy of a high quantity order to ensure there are no problems with the printed output. Orders on the products tab can be marked manually as <strong class="standOutPrimary">Proof Needed </strong>or, an order decorator can be built to automatically identify orders as <strong class="standOutPrimary">Proof Needed </strong>as they're injected into the system. In order to generate a proof batch, there are two steps you must perform.  </p>
+        <ol>
+            <li>Identify which orders require proofing</li>
+            <li>Create a proof batch for each order identified</li>
+        </ol>
+        <p>For most situations, a decorator will be used to automatically handle this process. As orders flow into the system, a matcher will identify which order should be marked as <strong class="standOutPrimary">Proof Required</strong>. Once identified, these orders will be tagged with a new <strong class="standOutPrimary"><MadCap:keyword term="proofNeeded" />proofNeeded </strong>attribute and its value will be set to yes. Proof batches can then be created from either the products tab or sort groups tab as required. As it is a less common practice, the option does exist to manually mark an order as Proof Required from the products tab, or even generate a proof batch directly from an order without marking it as such first.  For additional information on creating order decorators, see <MadCap:xref href="../F3_OrderDecorators/0_Intro Order Decorators.htm">"Order Decorators" on page 1</MadCap:xref></p>
+        <p class="note">It is important to understand that a proof is for an order, not a specific item within an order. For example, if an order contains 3 line items for a book, cover and a wrap, a proof batch will result in a single quantity of the entire order. You cannot generate a proof batch for a specific item contained within an order. However, if an item contained within the order has multiple components, you can choose to proof only the components you need by selecting the desired options on the batch dialog. Once the orders have been identified as proof required, a proof batch can be generated from either the products or sort groups tabs. When selecting either of these options to generate a proof batch, <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> will clone the original order, change the quantity to 1 and present the batch dialogue to allow the operator to submit the proof to press. Proof batches are configured to have their own batch ID&#160;range, and the batch name can be formatted to meet customer requirements. A&#160;proof batch results in two additional attributes being added to the order.</p>
+        <ul>
+            <li>
+                <MadCap:keyword term="Proof" />Proof (yes / no)</li>
+            <li>
+                <MadCap:keyword term="Proof Sent Timestamp" />Proof Sent Timestamp</li>
+        </ul>
+        <p>The <strong class="standOutPrimary">Proof </strong>attribute simply identifies the order as either being a proof order or not. The <strong class="standOutPrimary">Proof Sent Timestamp </strong>attribute will display the date and time that the proof was generated. The <strong class="standOutPrimary">Proof Sent Timestamp</strong> attribute will be applied to the proof order as well as the original order. All proof batches will be submitted to press with the highest priority of 100 to ensure they are prioritized ahead of other jobs on press.</p>
+        <h2>Proof Required - sort groups</h2>
+        <p>As an order is identified and marked as <MadCap:keyword term="Proof Required" />Proof Required, the value of its <MadCap:keyword term="proofNeeded" />proofNeeded attribute will be set to yes. If only proof orders exist in the sort group, the sort group color will change based on the configuration of the system. If, however, there are a mix of orders with differing values for proofNeeded, the appearance of the sort group will not change and there will be no visibility to the fact that the sort group contains both types of orders. For this reason, it is strongly recommended that all split by lists defined in the order sort configuration be updated to include the attribute proofNeeded Once the attribute has been added to all split by lists, the sort groups will dynamically update as orders are identified as Proof Required and those orders being submitted to press as proof batches. The following image shows a sort group which contains only orders that have been identified as Proof Required, as indicated by the color purple.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/proofSortGroups.png" class="img " title="Proof sort groups" alt="Proof sort groups" />
+        </p>
+        <p>It is important to understand that orders which have been identified as Proof Required have not been altered in any way, other than having a new proofNeeded attribute set to yes. The order has not yet been cloned or had the quantity changed to 1. Because of this, the Proof Required sort groups can be treated just like a regular sort group, allowing for any of the available batching options to be used. Additionally, there is no limit to the number of times you can proof an order. Each time a proof is generated from an order, a new proof batch will be created. Lastly,  <MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> does not enforce or require an order that has been marked as Proof Required to result in a proof batch being generated. The decision to generate proof batches from orders tagged as such is up to you. </p>
+        <h3>Sort group color coding</h3>
+        <p>As shown in the above illustration, the system has been configured to display sort groups containing orders marked as Proof Required in purple. This is controlled using two new color override attributes that can designate sort group colors, as well as a reason for the color. </p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Changing the color of a sort group</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <ol>
+                    <li>Create a new matcher which includes the proofNeeded attribute having a value of yes</li>
+                    <li>Create a decorator for the new matcher and add the attributes <strong class="standOutPrimary">colorOverride </strong>and <strong class="standOutPrimary">colorOverrideReason</strong></li>
+                    <li>Set the <strong class="standOutPrimary">workflow </strong>and <strong class="standOutPrimary">object </strong>context for the decorator to sortgroup</li>
+                    <li>Set the value for the <strong class="standOutPrimary">colorOverride </strong>attribute to any RGB&#160;value </li>
+                </ol>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Decorator attributes section</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody><pre xml:space="preserve"><code class="language-xml">"&lt;attributes&gt;
+	&lt;attribute&gt;
+		&lt;key&gt;colorOverride&lt;/key&gt;
+		&lt;type&gt;string&lt;/type&gt;
+		&lt;value&gt;rgb(127,0,255)&lt;/value&gt;
+	&lt;/attribute&gt;
+	&lt;attribute&gt;
+		&lt;key&gt;colorOverrideReason&lt;/key&gt;
+		&lt;type&gt;string&lt;/type&gt;
+		&lt;value&gt;needs proof&lt;/value&gt;
+	&lt;/attribute&gt;
+&lt;/attributes&gt;</code></pre>
+                <p>For additional information on creating or setting up order decorators, see <MadCap:xref href="../F3_OrderDecorators/0_Intro Order Decorators.htm">"Order Decorators" on page 1</MadCap:xref></p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <h2>
+            <MadCap:keyword term="Proof batches" />Proof batches</h2>
+        <p>Once a proof batch is generated, it will be displayed on the batches tab in the same way as other batches. The key difference with proof batches is that they will include special formatting in the batch name and will carry the same additional attributes as previously discussed.</p>
+        <ul>
+            <li>Proof</li>
+            <li>Proof Sent Timestamp</li>
+        </ul>
+        <p>The following image shows a typical proof batch with a specifically formatted batch name.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/proofBatchesTab.png" class="img " title="Proof batches tab" alt="Proof batches tab" />
+        </p>
+        <p>The press job for the associated batch will display on the press jobs tab as normal and will include the previously discussed proof attributes and an increased priority, as the job shown below.</p>
+        <p>
+            <img src="../../../Resources/Images/Assets/IPS/proofPressJobTab.png" class="img " title="Proof press job tab" alt="Proof press job tab" />
+        </p>
+    </body>
+</html>

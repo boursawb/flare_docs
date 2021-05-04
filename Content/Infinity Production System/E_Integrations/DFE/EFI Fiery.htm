@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>EFI Fiery</title>
+    </head>
+    <body>
+        <h1>EFI Fiery</h1>
+        <p><MadCap:variable name="General.IPSshortName" MadCap:conditions="General.IPS" /><MadCap:variable name="General.CJPshortName" MadCap:conditions="General.CJP" /> can be configured for job submission to print devices compatible with a Fiery DFE&#160;print server. </p>
+        <h2>Creating a new DFE&#160;</h2>
+        <p>Use the following sample to create a new DFE&#160;configuration file and complete the steps shown below. The following example assumes a Ricoh print device driven by a Fiery print server.</p>
+        <p><pre xml:space="preserve"><code class="language-xml">&lt;dfe type="Fiery"&gt;
+    &lt;fierydfe name="YourRicohPrintDevice"
+    			deviceType="ricoh"  
+    			jmfUrl="http://10.99.3.213:8010/"
+    			apiUrl="https://10.99.3.213/live/api/v4"
+				apiToken="**yourVeryLongKeyHere**"
+				apiUser="Admin"
+				apiPass="Fiery.1"
+				jobStagingShare="\\10.99.3.213\InfinityJobStaging"
+				&gt;
+    	&lt;manualDevices&gt;
+            &lt;device 
+            	name="RicohNone" 
+            	path="\\localhost\idf\dfe\noneproductpools\BeltsvilleFieryRicoh2None" 
+            	/&gt;
+        &lt;/manualDevices&gt;
+        
+    &lt;/fierydfe&gt;
+&lt;/dfe&gt;</code></pre>
+            <ol>
+                <li>Create a new DFE configuration file in <code>sharedconfig\dfe</code> for the print dvice connected to the Fiery print server</li>
+                <li>Copy the contents from the above sample and paste into the configuration file created in step 1</li>
+                <li>Specify a value for <strong class="standOutPrimary">name </strong>(can be anything)</li>
+                <li>Specify a value for <strong class="standOutPrimary">deviceType</strong>.  This needs to match what is specified in the batch definition for destinationType</li>
+                <li>Specify the correct host name/IP in the <strong class="standOutPrimary">jmfUrl</strong></li>
+                <li>Specify the correct host name/IP in the <strong class="standOutPrimary">apiUrl</strong></li>
+                <li>Provide the correct api key</li>
+                <li>Specify the required value for <strong class="standOutPrimary">apiUser </strong>and <strong class="standOutPrimary">apiPass</strong></li>
+                <li>Set the desired value for <strong class="standOutPrimary">jobStagingShare</strong></li>
+                <li>Include any manual devices required (Do Not Print / None)</li>
+                <li>Save and close the file</li>
+            </ol>
+        </p>
+        <h3>Creating device groups</h3>
+        <p>&#160;</p>
+        <h2>Configuring job options</h2>
+        <p>The following job options can be set within the setpagedevice section of a batch definition using psOps.</p>
+        <p><strong>Forward Order</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopReversePageOrder" value="false"/&gt;</code></pre>
+            <p>Location on DFE:&#160;Job Properties/Finishing/Output Delivery</p>
+        </p>
+        <p><strong>Reverse Order</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopReversePageOrder" value="true"/&gt;</code></pre>
+            <p>Location on DFE:&#160;Job Properties/Finishing/Output Delivery</p>
+        </p>
+        <p><strong>Face Up</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopOutputPageDelivery" value="(FaceUp)"/&gt;</code></pre>
+            <p>Location on DFE:&#160;Job Properties/Finishing/Output Delivery</p>
+        </p>
+        <p><strong>Face Down</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopOutputPageDelivery" value="(FaceDown)"/&gt;</code></pre>
+        </p>
+        <p>Location on DFE:&#160;Job Properties/Finishing/Output Delivery</p>
+        <p><strong>Output Tray Selection</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopOutputTrayType" value="Top"/&gt;</code></pre>
+            <p>Location on DFE:&#160;Job Properties/Finishing/Destination:&#160;value ‘Finisher Upper Tray’</p>
+        </p>
+        <p><strong>Use Named Feature Preset</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="HCMSSetup" value="13x20_100lbCover" /&gt;</code></pre>
+            <p>This defines the job template (referred to as ticket template by other DFE&#160;vendors) that will be used on press. This is called a 'Preset' on the Fiery and can be found in the upper right corner of the DFE UI&#160;when viewing job properties.</p>
+            <p>
+                <img src="../../../Resources/Images/FieryPresets.png" />
+            </p>
+        </p>
+        <p><strong>Simplex</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopFinishDuplex" value="false"/&gt;
+&lt;setpagedevice key="PSopFinishDuplexTumble" value="false"/&gt;</code></pre>
+            <p>Location on DFE:&#160;Job Properties/Layout:&#160;value 'Duplex = Off'</p>
+        </p>
+        <p><strong>Duplex</strong>
+        </p>
+        <p><code class="language-xml">&lt;setpagedevice key="PSopFinishDuplex" value="true"/&gt;
+&lt;setpagedevice key="PSopFinishDuplexTumble" value="false"/&gt;</code>
+        </p>
+        <p>Location on DFE:&#160;Job Properties/Layout:&#160;value 'Duplex = Open Left'</p>
+        <p><strong>Duplex Tumble</strong>
+        </p>
+        <p><code class="language-xml">&lt;setpagedevice key="PSopFinishDuplex" value="true"/&gt;
+&lt;setpagedevice key="PSopFinishDuplexTumble" value="true"/&gt;</code>
+        </p>
+        <p>Location on DFE:&#160;Job Properties/Layout:&#160;value 'Duplex = Open to Top'</p>
+        <p><strong>Copies</strong>
+        </p>
+        <p><pre><code class="language-xml">&lt;setpagedevice key="PSopNumCopies" value="11"/&gt;</code></pre>
+        </p>
+        <p>Copies verified in the Jobs view on the DFE</p>
+    </body>
+</html>

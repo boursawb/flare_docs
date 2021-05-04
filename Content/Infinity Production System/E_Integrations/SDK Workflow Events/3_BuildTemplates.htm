@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Building templates</title>
+    </head>
+    <body>
+        <h1>Building templates</h1>
+        <p>The first step in building the event templates will be to decide on a format and structure that will be used. The format can be text, XML, or any type that can be consumed by the receiving system. The examples included in the documentation will be in XML&#160;format. How the template will be structured is up to the person performing the integration and will likely be driven by how the receiving system needs the data formatted. </p>
+        <h2>Template structure</h2>
+        <p>To build a template for a simple order event, such as <code>Order Sort complete</code>, a file containing the following XML&#160;could be used. The element names used are completely arbitrary and could be anything based on what makes most sense for your environment. </p>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+	&lt;OrderId&gt;&lt;/OrderId&gt;
+	&lt;EventId&gt;&lt;/EventId&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <p>The above example simply provides the structure that will be created in the event message when generated. The Velocity code that will add the data to this event message within the <code>OrderId </code>and <code>EventId </code>elements will be addressed next.</p>
+        <h3>Including event data</h3>
+        <p>Once the template structure is complete, basic Velocity code will be added to the appropriate elements providing the details for the event. The following example shows the same code as shown above but includes the necessary Velocity code for retrieving the order <code>ID </code>and the <code>state </code>associated with the order that caused the event to fire. The order ID&#160;is simply the ID&#160;of the order. The state describes which type of event has occurred. For example, <code>Order Analyze start</code>, <code>Order Sort end</code>, or <code>Order Batch queue</code>. By using the <code>state </code>attribute, you will be able to use this same template for several order workflow events.</p>
+        <p><pre><code class="language-xml">&lt;OrderEvent&gt;
+	&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+	&lt;EventId&gt;$data.state&lt;/EventId&gt;
+&lt;/OrderEvent&gt;</code></pre>
+        </p>
+        <p>In the above example, <code>$data.id</code> refers to the order ID&#160;of the order which has resulted in this event firing. The <code>$data.state </code>refers to the event state being monitored.</p>
+        <h2>Basic data items</h2>
+        <p>Some of the data items used in the templates are common across all workflow objects.</p>
+        <ul>
+            <li><strong class="standOutPrimary">$data.context </strong>refers to the root workflow object (Order, Batch, or Press Job)</li>
+            <li><strong class="standOutPrimary">$data.state</strong> refers to the workflow event that triggered this event</li>
+            <li><strong class="standOutPrimary">$data.timestamp</strong> specifies a file name friendly format useful for file naming conventions</li>
+            <li><strong class="standOutPrimary">$data.timestampISO</strong>&#160;specifies the time in ISO&#160;format which can be included in the template for use by the consumer of the message</li>
+        </ul>
+        <h3>Common to all objects ($data.context)</h3>
+        <ul>
+            <li><strong class="standOutPrimary">id </strong>of the order, press job or batch</li>
+            <li><strong class="standOutPrimary">dynamicAttributes </strong>which specifies a particular dynamic attribute associated with the object</li>
+        </ul>
+        <p>Reading dynamic attributes from the object</p>
+        <p>Depending on the object type of the event (Order, Batch, or Press Job), any of the available dynamic attributes can be included in the template. To determine what attributes are available, use the View Order Attributes menu option from the appropriate tab (Products, Batches, or Press Jobs) to view the attributes you are interested in. To include the dynamic attribute in the template, the following syntax is used.</p>
+        <p><pre><code class="language-xml">$data.context.dynamicAttributes.get("productType")</code></pre>
+        </p>
+        <h2>Iterating batches and orders</h2>
+        <p>By using a loop in Velocity, you can build a template that lists all of the line items contained within an order, or items contained within a batch. The following code snippet demonstrates how to display a list of line items contained within an order.</p>
+        <p><pre><code class="language-xml">#foreach ( $order in $data.context.orders )
+		&lt;OrderEvent&gt;
+			&lt;OrderId&gt;$data.id&lt;/OrderId&gt;
+			&lt;items&gt;
+			#foreach ( $item in $order.getItems() )</code></pre>
+        </p>
+        <h2>Creating a new template</h2>
+        <p>Template files reside in the sdk\templates folder in sharedconfig. To create a new template, follow the steps shown below.</p>
+        <ol>
+            <li>Browse to <code>sharedconfig\sdk\templates</code></li>
+            <li>Create a new XML&#160;file for the template (i.e. orderEvent.xml)</li>
+            <li>Include the elements and data that will be used in the template</li>
+            <li>Save and close the file</li>
+        </ol>
+    </body>
+</html>

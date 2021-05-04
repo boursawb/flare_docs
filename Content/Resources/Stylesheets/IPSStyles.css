@@ -1,0 +1,61 @@
+/*<meta />*/
+
+p.MyStyle
+{
+	font-family: Arial;
+	font-size: 12pt;
+	margin: 0px;
+}
+
+img
+{
+	border: none;
+	width: 100%;
+}
+
+a.Popup
+{
+	
+}
+
+h1
+{
+	color: #4475a8;
+	font-family: Calibri;
+	font-size: 27pt;
+	font-weight: bolder;
+	margin-bottom: 0px;
+	margin: 0px;
+}
+
+h2
+{
+	color: #90a84e;
+	font-family: Calibri;
+	font-size: 21pt;
+	font-weight: bolder;
+	padding-top: 4.5pt;
+	margin: 0em;
+}
+
+h3
+{
+	color: #735991;
+	font-family: Calibri;
+	font-size: 15pt;
+	font-weight: bolder;
+	padding-top: 4.5pt;
+	margin: 0em;
+}
+
+strong.LeadIn
+{
+	color: #f38429;
+	font-family: Calibri;
+}
+
+p
+{
+	margin-top: 1.0em;
+}
+

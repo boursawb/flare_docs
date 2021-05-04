@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head><title>Scripted Decorator API</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Scripted Decorator API" />Scripted Decorator API</h1>
+        <p>The application programming interface (API)&#160;for scripted decorators provides the following methods for writing your code. The first method, which you are required to implement, is called <code>decorate </code>and takes a single parameter matching the context of the decorator. The next method, <code>getDynamicAttributes()</code>&#160;is available within every object and returns a hashmap of type <code>&lt;String, Object&gt;</code>. To iterate the various objects, accessor methods will be used to traverse the object hierarchy. Each of the accessor methods are shown below under their associated object. Lastly, the <code>getDynamicAttributes()</code>&#160;method includes a <code>get()</code>&#160;method and <code>put()</code>&#160;method for retrieving the value of a dynamic attribute and creating a new dynamic attribute, respectively.</p>
+        <p class="Note">In general, you should avoid changing lists, only read from them. Whenever possible, you should avoid changing key attributes, as defined in the SDK. </p>
+        <h2>Object specific APIs</h2>
+        <p>The following objects are available within the scripted decorator API.</p>
+        <p><strong class="standOutPrimary">[IDFBatch] (object = 'batch')</strong>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>getDynamicAttributes(): Map&lt;String, Object&gt;</li>
+            <li>getOrders(): List&lt;IDFOrder&gt;</li>
+        </ul>
+        <p><strong class="standOutPrimary">[IDFOrder] (object = 'order')</strong>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>getDynamicAttributes(): Map&lt;String, Object&gt;</li>
+            <li>getItems():  List&lt;IDFLineItem&gt;</li>
+        </ul>
+        <p><strong class="standOutPrimary">[IDFLineItem] (object = 'lineItem')</strong>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>getDynamicAttributes(): Map&lt;String, Object&gt;</li>
+            <li>getComponents():  List&lt;IDFComponent&gt;</li>
+        </ul>
+        <p><strong class="standOutPrimary">[IDFComponent] (object = 'component')</strong>
+        </p>
+        <ul style="list-style-type: square;">
+            <li>getDynamicAttributes(): Map&lt;String, Object&gt;</li>
+        </ul>
+        <p class="Note">You can change attributes at the object context level and they will be saved following the decorate process.</p>
+        <p class="Note">You can read attributes from any object level, for example, line items in a batch, or components contained in line items.  However, you should not change attributes on child items, as this may result in errors and will not be saved.</p>
+    </body>
+</html>
